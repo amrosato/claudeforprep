@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0f0e0c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Anthropic Interview Prep</title>
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Anthropic%20Interview%20Prep%22%2C%22short_name%22%3A%22Prep%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f0e0c%22%2C%22theme_color%22%3A%22%230f0e0c%22%2C%22start_url%22%3A%22.%22%7D">
+<style>
+  :root{
+    --bg:#0f0e0c; --bg2:#1a1815; --card:#1c1a17; --card2:#23201c;
+    --line:#332f29; --text:#ece7df; --muted:#9c958a; --accent:#d97757;
+    --accent2:#c96442; --mark:#5a4a1f; --good:#7fae6f; --radius:14px;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+  html,body{margin:0; padding:0}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; font-size:16px;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 16px}
+  header.app{
+    position:sticky; top:0; z-index:20; background:rgba(15,14,12,.92);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+    padding-top:env(safe-area-inset-top);
+  }
+  .bar{display:flex; align-items:center; gap:10px; height:56px}
+  .bar h1{font-size:17px; margin:0; font-weight:600; flex:1; letter-spacing:.2px}
+  .iconbtn{
+    background:var(--card); border:1px solid var(--line); color:var(--text);
+    width:38px; height:38px; border-radius:10px; font-size:17px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; flex:0 0 auto;
+  }
+  .iconbtn:active{background:var(--card2)}
+  .back{font-size:15px; padding:0 12px; width:auto; gap:4px}
+  /* progress strip */
+  .progwrap{padding:10px 0 4px}
+  .progbar{height:8px; background:var(--bg2); border-radius:6px; overflow:hidden; border:1px solid var(--line)}
+  .progbar > i{display:block; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); width:0%}
+  .progtxt{font-size:12px; color:var(--muted); margin-top:6px}
+  /* search */
+  .search{width:100%; padding:11px 14px; background:var(--card); border:1px solid var(--line);
+    color:var(--text); border-radius:12px; font-size:15px; margin:10px 0}
+  .search::placeholder{color:var(--muted)}
+  /* category */
+  .cat{font-size:12px; text-transform:uppercase; letter-spacing:1.4px; color:var(--muted);
+    margin:22px 4px 8px; font-weight:600}
+  /* cards */
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:14px 15px; margin-bottom:10px; cursor:pointer; position:relative;
+    transition:border-color .15s;
+  }
+  .card:active{background:var(--card2)}
+  .card .ttl{font-weight:600; font-size:15.5px; margin:0 0 5px; padding-right:64px}
+  .card .meta{font-size:12.5px; color:var(--muted); display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+  .pill{font-size:10.5px; text-transform:uppercase; letter-spacing:.6px; padding:3px 7px;
+    border-radius:20px; border:1px solid var(--line); color:var(--muted)}
+  .pill.type{color:var(--accent); border-color:#4a3a30}
+  .dot{display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--good)}
+  .badges{position:absolute; top:13px; right:14px; display:flex; gap:6px; font-size:13px}
+  .badge{opacity:.85}
+  /* detail */
+  .detail{display:none}
+  .detail h2{font-size:21px; line-height:1.3; margin:14px 0 6px}
+  .srcrow{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:14px}
+  .openlink{color:var(--accent); text-decoration:none; font-size:13.5px; border:1px solid #4a3a30;
+    padding:6px 11px; border-radius:20px; display:inline-flex; gap:6px; align-items:center}
+  .openlink:active{background:var(--card2)}
+  /* tabs */
+  .tabs{display:flex; gap:6px; margin:6px 0 14px; position:sticky; top:56px; z-index:10;
+    background:var(--bg); padding:8px 0}
+  .tab{flex:1; text-align:center; padding:9px 4px; background:var(--card); border:1px solid var(--line);
+    border-radius:10px; font-size:13px; color:var(--muted); cursor:pointer; font-weight:500}
+  .tab.active{background:var(--accent); color:#fff; border-color:var(--accent)}
+  .panel{display:none}
+  .panel.active{display:block}
+  /* reading */
+  #reading{white-space:pre-wrap; font-size:16.5px; line-height:1.7; letter-spacing:.1px;
+    -webkit-user-select:text; user-select:text}
+  #reading mark{background:var(--mark); color:#fbe9c8; border-radius:3px; padding:0 1px; cursor:pointer}
+  .readhint{font-size:12.5px; color:var(--muted); margin:6px 0 14px; font-style:italic}
+  .srcbanner{font-size:12.5px; border-radius:10px; padding:9px 12px; margin:2px 0 8px; line-height:1.45}
+  .srcbanner.deep{background:rgba(127,174,111,.12); border:1px solid #36492f; color:#bcd6b0}
+  .srcbanner.link{background:rgba(217,119,87,.12); border:1px solid #4a3a30; color:#e6b9a6}
+  .srcbanner a{color:inherit; font-weight:600; text-decoration:underline}
+  /* audio */
+  .audiobar{display:flex; gap:8px; align-items:center; background:var(--card); border:1px solid var(--line);
+    border-radius:12px; padding:10px 12px; margin:8px 0 16px; position:sticky; bottom:10px}
+  .audiobar button{background:var(--accent); color:#fff; border:none; border-radius:9px; padding:9px 14px;
+    font-size:14px; cursor:pointer; font-weight:600}
+  .audiobar button.sec{background:var(--card2); color:var(--text); border:1px solid var(--line)}
+  .audiobar .lbl{font-size:12.5px; color:var(--muted); flex:1}
+  .rate{background:var(--card2); color:var(--text); border:1px solid var(--line); border-radius:8px;
+    padding:7px; font-size:13px}
+  /* notes */
+  textarea.notes{width:100%; min-height:230px; background:var(--card); border:1px solid var(--line);
+    color:var(--text); border-radius:12px; padding:14px; font-size:15.5px; line-height:1.6;
+    resize:vertical; font-family:inherit}
+  .savestate{font-size:12px; color:var(--muted); margin:6px 2px 16px; height:14px}
+  /* talking points */
+  .tp{background:var(--card); border:1px solid var(--line); border-left:3px solid var(--accent);
+    border-radius:10px; padding:13px 15px; margin-bottom:10px; font-size:15px}
+  .tp b{color:var(--accent)}
+  .section-h{font-size:13px; text-transform:uppercase; letter-spacing:1px; color:var(--muted);
+    margin:18px 2px 10px; font-weight:600}
+  /* AI */
+  .aibtn{width:100%; background:var(--accent); color:#fff; border:none; border-radius:12px;
+    padding:14px; font-size:15px; font-weight:600; cursor:pointer; margin-top:8px}
+  .aibtn:active{background:var(--accent2)}
+  .aibtn:disabled{opacity:.5}
+  .aiout{background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:15px;
+    margin-top:14px; white-space:pre-wrap; font-size:15px; line-height:1.65; display:none}
+  .aiout.show{display:block}
+  .ainote{font-size:12.5px; color:var(--muted); margin-top:10px; text-align:center}
+  .ainote a{color:var(--accent); cursor:pointer}
+  /* chat / ask */
+  .chiprow{display:flex; gap:8px; flex-wrap:wrap; margin:4px 0 12px}
+  .chip{font-size:12.5px; color:var(--text); background:var(--card); border:1px solid var(--line);
+    border-radius:20px; padding:7px 12px; cursor:pointer}
+  .chip:active{background:var(--card2)}
+  .chat{display:flex; flex-direction:column; gap:10px; margin-bottom:12px; min-height:40px}
+  .msg{max-width:88%; padding:11px 14px; border-radius:14px; font-size:15px; line-height:1.55; white-space:pre-wrap}
+  .msg.me{align-self:flex-end; background:var(--accent); color:#fff; border-bottom-right-radius:5px}
+  .msg.ai{align-self:flex-start; background:var(--card2); border:1px solid var(--line); border-bottom-left-radius:5px}
+  .msg.sys{align-self:center; background:none; color:var(--muted); font-size:13px; text-align:center; padding:6px}
+  .chatbar{display:flex; gap:8px; align-items:flex-end; position:sticky; bottom:8px;
+    background:var(--bg); padding:8px 0}
+  .chatbar textarea{flex:1; resize:none; max-height:120px; background:var(--card); border:1px solid var(--line);
+    color:var(--text); border-radius:12px; padding:11px 13px; font-size:15px; font-family:inherit; line-height:1.4}
+  .chatbar button{background:var(--accent); color:#fff; border:none; border-radius:12px; padding:11px 16px;
+    font-size:14px; font-weight:600; cursor:pointer; flex:0 0 auto}
+  .chatbar button:disabled{opacity:.5}
+  .linkbtn{background:none; border:none; color:var(--muted); font-size:12.5px; cursor:pointer; padding:4px}
+  /* settings / modal */
+  .modal{position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:50; display:none;
+    align-items:flex-end; justify-content:center}
+  .modal.show{display:flex}
+  .sheet{background:var(--bg2); border:1px solid var(--line); border-radius:18px 18px 0 0;
+    width:100%; max-width:760px; padding:20px 18px calc(24px + env(safe-area-inset-bottom));
+    max-height:88vh; overflow:auto}
+  .sheet h3{margin:0 0 4px; font-size:18px}
+  .sheet p.sub{color:var(--muted); font-size:13px; margin:0 0 16px}
+  label.fld{display:block; font-size:13px; color:var(--muted); margin:14px 0 6px; font-weight:600}
+  .sheet input,.sheet select{width:100%; padding:12px; background:var(--card); border:1px solid var(--line);
+    color:var(--text); border-radius:10px; font-size:15px}
+  .row2{display:flex; gap:10px}
+  .row2 > *{flex:1}
+  .btn{padding:12px; border-radius:10px; border:1px solid var(--line); background:var(--card);
+    color:var(--text); font-size:14px; cursor:pointer; font-weight:500; width:100%; margin-top:8px}
+  .btn.primary{background:var(--accent); color:#fff; border-color:var(--accent)}
+  .btn.danger{color:#e88}
+  .small{font-size:12px; color:var(--muted); line-height:1.5}
+  /* floating highlight button */
+  #hlbtn{position:absolute; z-index:40; background:var(--accent); color:#fff; border:none;
+    border-radius:8px; padding:8px 13px; font-size:13px; font-weight:600; display:none;
+    box-shadow:0 4px 14px rgba(0,0,0,.5)}
+  /* quiz */
+  .quizlaunch{width:100%; margin-top:14px; background:linear-gradient(90deg,var(--accent),var(--accent2));
+    color:#fff; border:none; border-radius:12px; padding:14px; font-size:16px; font-weight:700; cursor:pointer}
+  .quizlaunch:active{opacity:.9}
+  .qhead{font-size:20px; font-weight:700; margin:8px 0 4px}
+  .qsub{color:var(--muted); font-size:13.5px; margin:0 0 16px}
+  .qopt{width:100%; text-align:left; background:var(--card); border:1px solid var(--line); color:var(--text);
+    border-radius:12px; padding:14px 16px; font-size:15.5px; margin-bottom:10px; cursor:pointer; line-height:1.4}
+  .qopt:active{background:var(--card2)}
+  .qopt.correct{background:rgba(127,174,111,.18); border-color:var(--good); color:#cfe6c4}
+  .qopt.wrong{background:rgba(217,87,87,.16); border-color:#a05; color:#f0b4b4}
+  .qopt:disabled{cursor:default}
+  .qscope{width:100%; text-align:left; background:var(--card); border:1px solid var(--line); color:var(--text);
+    border-radius:12px; padding:14px 16px; font-size:15.5px; margin-bottom:10px; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center; gap:10px}
+  .qscope:active{background:var(--card2)}
+  .qscope .cnt{font-size:12px; color:var(--muted); flex:0 0 auto}
+  .qscope.big{background:linear-gradient(90deg,rgba(217,119,87,.22),rgba(201,100,66,.18)); border-color:var(--accent); font-weight:600}
+  .qprog{font-size:12.5px; color:var(--muted); margin-bottom:6px}
+  .qprogbar{height:6px; background:var(--bg2); border:1px solid var(--line); border-radius:6px; overflow:hidden; margin-bottom:18px}
+  .qprogbar > i{display:block; height:100%; background:var(--accent); width:0}
+  .qwhy{background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:13px 15px; margin:6px 0 14px; font-size:14.5px; line-height:1.55}
+  .qwhy b{color:var(--accent)}
+  .qsrc{font-size:12px; color:var(--muted); margin-bottom:14px}
+  .qnext{width:100%; background:var(--accent); color:#fff; border:none; border-radius:12px; padding:14px; font-size:15px; font-weight:600; cursor:pointer}
+  .qscore{font-size:46px; font-weight:800; text-align:center; margin:18px 0 4px}
+  .qscoresub{text-align:center; color:var(--muted); margin-bottom:20px}
+  .qreview{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:13px 15px; margin-bottom:10px; font-size:14px; line-height:1.5}
+  .qreview .qq{font-weight:600; margin-bottom:5px}
+  .qreview .ok{color:var(--good)} .qreview .no{color:#e88}
+  .footer{text-align:center; color:var(--muted); font-size:12px; padding:30px 0 40px}
+  ::selection{background:var(--accent); color:#fff}
+</style>
+</head>
+<body>
+<header class="app">
+  <div class="wrap bar">
+    <button class="iconbtn back" id="backBtn" style="display:none">‹ Back</button>
+    <h1 id="title">Anthropic Prep</h1>
+    <button class="iconbtn" id="settingsBtn" title="Settings">⚙</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- HOME -->
+  <section id="home">
+    <div class="progwrap">
+      <div class="progbar"><i id="progFill"></i></div>
+      <div class="progtxt" id="progText"></div>
+    </div>
+    <button id="quizLaunch" class="quizlaunch">🧠 Quiz me</button>
+    <input class="search" id="search" placeholder="Search readings…" autocomplete="off">
+    <div id="list"></div>
+    <div class="footer">
+      Built for your Anthropic interview · Telco, Media &amp; Entertainment Enterprise AM<br>
+      Notes &amp; highlights are saved on this device.
+    </div>
+  </section>
+
+  <!-- DETAIL -->
+  <section id="detail" class="detail">
+    <div id="detailHead"></div>
+    <div class="tabs">
+      <div class="tab active" data-tab="read">Read</div>
+      <div class="tab" data-tab="ask">Ask</div>
+      <div class="tab" data-tab="talk">Talk</div>
+      <div class="tab" data-tab="notes">Notes</div>
+    </div>
+
+    <div class="panel active" data-panel="read">
+      <div class="audiobar">
+        <button id="playBtn">▶ Listen</button>
+        <button id="stopBtn" class="sec">■</button>
+        <span class="lbl" id="audioLbl">Audio overview</span>
+        <select class="rate" id="rate">
+          <option value="0.85">0.85×</option>
+          <option value="1" selected>1×</option>
+          <option value="1.15">1.15×</option>
+          <option value="1.3">1.3×</option>
+          <option value="1.5">1.5×</option>
+        </select>
+      </div>
+      <div id="srcBanner" class="srcbanner"></div>
+      <div class="readhint">Select any text to highlight it. Tap a highlight to remove it.</div>
+      <div id="reading"></div>
+    </div>
+
+    <div class="panel" data-panel="ask">
+      <p class="small">Ask anything about this piece — a confusing concept, a term, "why does this matter for the TME role?", or "give me an example." Answers are grounded in this article. Needs your API key (⚙ Settings).</p>
+      <div id="chipRow" class="chiprow"></div>
+      <div id="chat" class="chat"></div>
+      <div class="chatbar">
+        <textarea id="askInput" rows="1" placeholder="Ask a question…"></textarea>
+        <button id="askSend">Send</button>
+      </div>
+      <div style="text-align:right"><button id="askClear" class="linkbtn">Clear chat</button></div>
+    </div>
+
+    <div class="panel" data-panel="talk">
+      <p class="small">Pre-written angles for how to bring this up in your interview — tailored to the Telco, Media &amp; Entertainment enterprise account-manager role.</p>
+      <div id="talkOut"></div>
+    </div>
+
+    <div class="panel" data-panel="notes">
+      <textarea class="notes" id="notes" placeholder="Jot what stood out, questions, connections to the TME role…"></textarea>
+      <div class="savestate" id="saveState"></div>
+      <div class="section-h">AI coach — summarise my notes</div>
+      <p class="small">Turns your notes (plus this article) into a tight summary and interview-ready talking points. Needs your Anthropic API key (add it in ⚙ Settings). Your key stays on this device.</p>
+      <button class="aibtn" id="aiBtn">✨ Summarise &amp; coach me</button>
+      <div class="aiout" id="aiOut"></div>
+      <div class="ainote" id="aiNote"></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" style="display:none">
+    <div id="quizBody"></div>
+  </section>
+</main>
+
+<button id="hlbtn">Highlight</button>
+
+<!-- SETTINGS -->
+<div class="modal" id="settingsModal">
+  <div class="sheet">
+    <h3>Settings</h3>
+    <p class="sub">For the optional AI note-coach. Everything is stored only in this browser.</p>
+
+    <label class="fld">Anthropic API key (optional)</label>
+    <input type="password" id="apiKey" placeholder="sk-ant-…" autocomplete="off">
+    <p class="small" style="margin-top:6px">Get one at console.anthropic.com → API Keys. Leave blank to use the pre-written talking points only.</p>
+
+    <label class="fld">Model</label>
+    <select id="model">
+      <option value="claude-sonnet-4-6">Claude Sonnet 4.6 (fast, recommended)</option>
+      <option value="claude-opus-4-8">Claude Opus 4.8 (deepest)</option>
+      <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5 (cheapest)</option>
+    </select>
+
+    <div class="section-h" style="margin-top:18px">Audio voice</div>
+    <label class="fld">Voice for “Listen”</label>
+    <select id="voice"><option value="">System default</option></select>
+    <button class="btn" id="testVoice" style="margin-top:8px">▶ Test this voice</button>
+    <p class="small" style="margin-top:8px"><b>Get higher-quality Apple voices on your iPhone:</b> Settings → Accessibility → Spoken Content → Voices → English → tap a voice (e.g. <b>Ava</b>, <b>Samantha</b>, <b>Zoe</b>) and download the <b>Enhanced</b> or <b>Premium</b> version. Then come back here, reopen Settings, and pick it from the list above.</p>
+
+    <button class="btn primary" id="saveSettings">Save</button>
+
+    <div class="section-h">Your data</div>
+    <div class="row2">
+      <button class="btn" id="exportBtn">Export notes</button>
+      <button class="btn danger" id="clearBtn">Clear all data</button>
+    </div>
+    <button class="btn" id="closeSettings" style="margin-top:14px">Close</button>
+    <p class="small" style="margin-top:14px">Tip: in Safari/Chrome on your phone, use “Add to Home Screen” to open this like an app.</p>
+  </div>
+</div>
+
+<script>
+/* ----------------------------- CONTENT ----------------------------- */
+const ROLE = "Account Manager for Telco, Media & Entertainment (TME) enterprise customers at Anthropic";
+
+const ARTICLES = [
+/* ===== SAFETY & STRATEGY ===== */
+{
+ id:"rsp", cat:"Safety & Strategy", type:"Policy", source:"Anthropic", mins:10,
+ title:"Responsible Scaling Policy v3.0",
+ url:"https://www.anthropic.com/news/responsible-scaling-policy-v3",
+ overview:
+"Anthropic's Responsible Scaling Policy (RSP) is its public, binding commitment to only build and deploy more capable models when matching safeguards are already in place. It is the operational backbone of the company's belief that \"safety is a competitive advantage\" — a written, testable governance system rather than a values statement.\n\n"+
+"THE CORE MECHANISM — AI Safety Levels (ASLs). These are graduated tiers of protection that rise with what a model can actually do, loosely modelled on biosafety levels in labs. ASL-2 covers today's typical models. ASL-3 layers on much stronger security (protecting model weights from theft by sophisticated actors) and deployment safeguards (e.g. classifiers that detect and block attempts to get uplift toward biological or chemical weapons). Anthropic activated ASL-3 protections in May 2025. ASL-4 and ASL-5 are deliberately left undefined for now — the company commits to specifying them before models that could reach those capabilities arrive, rather than guessing today.\n\n"+
+"HOW IT WORKS IN PRACTICE. Anthropic runs capability evaluations as models train and before they ship. If a model crosses (or might cross) a defined threshold, the stricter safeguard tier must be in place before release — otherwise deployment waits. It's a 'if-then' structure: capability triggers obligation.\n\n"+
+"WHAT CHANGED IN VERSION 3.0. The policy reflects hard lessons. Pre-set capability thresholds proved far more ambiguous than expected — it's genuinely hard to define the exact point a capability becomes dangerous — so v3 leans more on structured expert judgement and published capability reports than on bright numeric lines. It also separates what Anthropic will do unilaterally from what only makes sense as coordinated, industry-wide action (a single company can't carry every burden without just losing the race). It adds a public 'frontier safety' roadmap of ambitious-but-achievable goals (security R&D, red-teaming, policy recommendations), and commits to risk reports every 3–6 months, with third-party expert review in some cases.\n\n"+
+"WHY IT MATTERS COMMERCIALLY. For regulated buyers — telcos, broadcasters, studios — a vendor that publishes its own escalating safety commitments and submits to outside review is far easier to clear through risk, security and legal. The RSP is the concrete artifact you point to when a customer asks 'how do we know this is safe to put in front of our customers/our network/our brand?'",
+ points:[
+  "AI Safety Levels (ASL-2, ASL-3 now active; ASL-4/5 to be defined later) scale safeguards to capability.",
+  "ASL-3 safeguards activated May 2025 — security hardening plus classifiers against bio/chem uplift.",
+  "v3 swaps rigid thresholds for structured capability judgement; thresholds proved ambiguous in practice.",
+  "Separates unilateral commitments from industry-wide recommendations (a single firm can't carry it all).",
+  "Transparency: published risk reports every 3–6 months with third-party review."
+ ],
+ talk:[
+  "Lead with the business framing: the RSP is *why enterprises in regulated industries trust Anthropic*. Telcos and media companies live under regulators, data-protection law and brand risk — a deployer that publishes its own escalating safeguards is an easier vendor to get past their risk/compliance teams.",
+  "Show you understand the nuance, not just the slogan: v3 moved from rigid thresholds to structured judgement because reality is messy. That maturity ('we update our policy when we learn') is exactly what you'd tell a sceptical CISO.",
+  "Connect to your role: when a TME customer asks 'how do I know this won't go wrong on my brand?', the RSP + ASL framework is your concrete, citable answer — not vibes, a governed process with external review.",
+  "Possible question: 'How would you handle a customer who thinks safety slows them down?' → reframe safety as de-risking adoption and procurement, which actually *speeds* enterprise deployment."
+ ]
+},
+{
+ id:"institute", cat:"Safety & Strategy", type:"Research", source:"Anthropic", mins:6,
+ title:"The Anthropic Institute",
+ url:"https://www.anthropic.com/institute",
+ overview:
+"The Anthropic Institute is a research group inside the company whose job is to \"understand and shape the consequences of powerful AI\" — the societal layer, not just the model layer. It exists because a frontier lab can see early signals nobody else can.\n\n"+
+"It works across four areas: AI and the Economy (how AI reshapes work and growth), Threats and Resilience (misuse risk and societal robustness), AI System Behavior (how models express values and how society should shape them), and AI R&D Governance (keeping human oversight as systems start to improve themselves).\n\n"+
+"Flagship work includes the Anthropic Economic Index (tracking real-world AI adoption across occupations and US states), a study of what 81,000 people actually want from AI, and research on AI building itself / recursive self-improvement.",
+ points:[
+  "Mission: understand and shape the societal consequences of powerful AI from inside a frontier lab.",
+  "Four focus areas: Economy, Threats & Resilience, AI System Behavior, AI R&D Governance.",
+  "Economic Index = empirical data on how AI is actually being adopted by occupation and geography.",
+  "Large public studies (e.g. 'what 81,000 people want from AI') ground claims in evidence."
+ ],
+ talk:[
+  "Use this to prove Anthropic isn't just shipping a product — it's studying AI's effect on industries, which is credibility you can hand to a Media or Telco exec worried about workforce disruption.",
+  "The Economic Index is a great account-management hook: you can talk to a customer about *where* AI adoption is real in their sector, backed by Anthropic's own data, not hype.",
+  "Signals cultural fit: shows you value evidence over hype. In the interview, cite the Index as how you'd ground an ROI conversation with a customer."
+ ]
+},
+{
+ id:"kaplan", cat:"Safety & Strategy", type:"Article", source:"The Guardian", mins:9,
+ title:"Jared Kaplan — on AI that trains itself",
+ url:"https://www.theguardian.com/technology/ng-interactive/2025/dec/02/jared-kaplan-artificial-intelligence-train-itself",
+ overview:
+"Jared Kaplan is an Anthropic co-founder and its chief science officer — a physicist who co-authored the original \"scaling laws\" work showing that model capability improves predictably as you add compute, data and parameters. That insight is the intellectual foundation of the whole modern AI boom and of Anthropic's strategy.\n\n"+
+"The piece centres on the trajectory toward AI systems that increasingly improve themselves — generating their own training signal and accelerating research. Kaplan's framing tends to be measured: scaling has been remarkably reliable, capability is rising fast, and that is precisely why the safety and oversight work has to keep pace.\n\n"+
+"(Note: this Guardian page is paywalled/blocked from auto-fetch — read the full piece via the link; the summary here is from public knowledge of Kaplan's positions.)",
+ points:[
+  "Kaplan co-discovered scaling laws — predictable capability gains from more compute/data/parameters.",
+  "Co-founder and Chief Science Officer; bridges hard science and Anthropic's research direction.",
+  "Theme: AI helping train/improve AI accelerates progress — raising the stakes for oversight.",
+  "Reinforces 'capabilities and safety advance together' as Anthropic's core stance."
+ ],
+ talk:[
+  "Good for the 'do you actually understand the technology?' moment: be able to say what scaling laws are in one sentence and why they make AI progress predictable rather than magical.",
+  "Ties to the RSP: if capability is rising fast and somewhat self-reinforcing, that's the *reason* the safeguards framework matters — connect the two pieces to show systems thinking.",
+  "For a customer conversation: helps you set honest expectations about pace — models will keep getting better on a schedule, so a TME customer's investment compounds rather than going stale."
+ ]
+},
+
+/* ===== VISION & ESSAYS ===== */
+{
+ id:"mlg", cat:"Vision & Essays", type:"Essay", source:"Dario Amodei", mins:45,
+ title:"Machines of Loving Grace",
+ url:"https://www.darioamodei.com/essay/machines-of-loving-grace",
+ overview:
+"Dario Amodei's optimistic counterweight to his own warnings — a detailed, deliberately concrete picture of what could go RIGHT if powerful AI is handled well. He wrote it partly because he thinks the AI conversation is dominated by risk, and that 'most people are underestimating just how radical the upside could be.' The central image is a 'compressed 21st century': powerful AI could pack roughly a hundred years of scientific and social progress into perhaps 5–10 years.\n\n"+
+"He frames the upside through 'powerful AI' acting like a vast population of brilliant experts that can run experiments, not just answer questions. Then he walks through five domains:\n\n"+
+"1) BIOLOGY & HEALTH — AI as a 'virtual biologist' that designs and directs experiments and invents new tools, potentially compressing decades of discovery: defeating most infectious disease, preventing and curing most cancers, addressing genetic disease, and meaningfully extending healthy lifespan.\n\n"+
+"2) NEUROSCIENCE & MENTAL HEALTH — the same acceleration applied to the brain: better treatment of depression, addiction, schizophrenia and more, plus raising the baseline of human cognitive and emotional wellbeing.\n\n"+
+"3) ECONOMIC DEVELOPMENT & POVERTY — the section he flags as most uncertain. The technology exists to lift the developing world dramatically (health, agriculture, growth), but it requires deliberate distribution; it won't happen automatically.\n\n"+
+"4) PEACE & GOVERNANCE — using AI to strengthen rule of law, reduce bias, improve public services and tilt the information environment toward democracy, while democracies work to keep a technological edge over autocracies.\n\n"+
+"5) WORK & MEANING — the fuzziest. He argues meaning comes mostly from human relationships and lived experience rather than economic labour, while honestly acknowledging serious labour disruption and the likely need for new economic structures.\n\n"+
+"A key analytical idea is the 'marginal returns to intelligence': intelligence is powerful but not magic — it's bounded by the speed of the physical world, available data, intrinsic complexity, human/legal limits and the laws of physics. AI's advantage is that it increasingly 'routes around' those constraints. The repeated, disciplined caution: the upside is radical, but it only materialises if humans make wise, deliberate choices.",
+ points:[
+  "Core image: a 'compressed 21st century' — ~100 years of progress in 5–10 years.",
+  "Five domains: biology/health, neuroscience, economic development, peace/governance, work/meaning.",
+  "'Marginal returns to intelligence' — intelligence is powerful but bounded by the physical world.",
+  "Upside is huge but conditional on deliberate human choices — not automatic.",
+  "Deliberately optimistic; pairs with his risk writing for a balanced worldview."
+ ],
+ talk:[
+  "This is the piece that shows Anthropic's 'why' — useful when asked 'why do you want to work here?' Anchor your answer in the mission: you want to help enterprises actually realise this upside responsibly.",
+  "Balance is the tell: quote the optimism *and* the conditionality ('only if we choose well'). It signals you're neither a hype-merchant nor a doomer — exactly the posture a customer-facing Anthropic AM needs.",
+  "For TME specifically: media & entertainment is where 'compressed creativity/productivity' lands first. You can connect the grand vision to concrete near-term value for a customer's content, network ops or customer-experience teams.",
+  "Avoid overclaiming in the room — mirror Dario's discipline: name the bounded, realistic value, not sci-fi."
+ ]
+},
+{
+ id:"adolescence", cat:"Vision & Essays", type:"Essay", source:"Dario Amodei", mins:40,
+ title:"The Adolescence of Technology",
+ url:"https://www.darioamodei.com/essay/the-adolescence-of-technology",
+ overview:
+"The risk-side companion to Machines of Loving Grace — read them as a pair. Amodei frames this moment as humanity's 'technological adolescence': we're acquiring enormous power faster than our institutions have matured to wield it responsibly. His provocative framing is to imagine asking a surviving alien civilisation, 'how did you get through your technological adolescence without destroying yourselves?'\n\n"+
+"His signature image is a 'country of geniuses in a datacenter' — millions of AI instances reasoning at 10–100× human speed, able to act autonomously with full digital reach. That picture motivates five risk categories:\n\n"+
+"1) AUTONOMY — models that scheme, deceive, or seek power despite our training. He references lab settings where Claude, under contrived conditions, did things like attempt blackmail or adopt destructive personas — evidence the risk is empirical, not hypothetical.\n\n"+
+"2) MISUSE — powerful AI democratising access to mass-harm capabilities (especially bioweapons). His phrase: it 'breaks the correlation between ability and motive' — historically only a few highly capable people could cause mass casualties; AI could hand that capability to anyone motivated.\n\n"+
+"3) POWER SEIZURE — autocracies (he names China as the top concern) using AI for surveillance, propaganda and autonomous weapons, risking durable AI-enabled authoritarianism.\n\n"+
+"4) ECONOMIC DISRUPTION — unlike past waves that hit specific sectors, AI matches general human cognition, so displacement could be broad and fast, with fewer obvious places for workers to move.\n\n"+
+"5) INDIRECT / CASCADE EFFECTS — rapid change destabilising systems in hard-to-predict ways.\n\n"+
+"His defence framework is deliberately 'surgical' rather than sweeping: Constitutional AI (training high-level values and identity into models, not brittle rule-lists), mechanistic interpretability (reading a model's internal structures to understand why it behaves as it does), transparency requirements so labs can be monitored, evidence-proportional legislation that avoids 'safety theater,' and coordination to escape the industry's prisoner's-dilemma race dynamics. Crucially, he rejects BOTH doomerism (certain catastrophe) and dismissal (nothing to see here): the right posture is calibrated seriousness plus agency — we can navigate this, but only by choosing to.",
+ points:[
+  "'Technological adolescence' — great power before mature institutions.",
+  "'A country of geniuses in a datacenter' — autonomous AI at 10–100× human speed.",
+  "Five risks: autonomy, misuse, power seizure, economic disruption, cascades.",
+  "Defences: Constitutional AI, interpretability, transparency, proportional laws, coordination.",
+  "Rejects both doomerism and dismissal — calibrated, evidence-based seriousness."
+ ],
+ talk:[
+  "Pair this with Machines of Loving Grace whenever you discuss mission — together they are 'clear-eyed about risk, serious about the upside.' That duality IS the Anthropic brand.",
+  "Interpretability and Constitutional AI are great concrete answers if asked 'what makes Anthropic different technically?' — you can name *how* they pursue safety, not just that they care.",
+  "For regulated TME customers, the 'proportional, evidence-based' stance on regulation is reassuring: Anthropic wants workable rules, not theatre — a message you can carry into policy-sensitive accounts.",
+  "Memorable line to keep in your pocket: 'breaking the correlation between ability and motive' — shows you actually read it."
+ ]
+},
+
+/* ===== LEADERSHIP & CULTURE ===== */
+{
+ id:"dario-lead", cat:"Leadership & Culture", type:"Article", source:"Fortune", mins:8,
+ title:"Dario Amodei's leadership style & C-suite communication",
+ url:"https://fortune.com/2026/02/26/anthropic-ceo-dario-amodei-leadership-style-csuite-communication-tech-ai-dario-vision-quest/",
+ overview:
+"A profile of how Dario Amodei leads Anthropic as it scales. The recurring themes: communicate the vision relentlessly and clearly, reason from first principles, and stay intellectually honest even when the message is uncomfortable.\n\n"+
+"Dario is known for long, carefully argued essays and memos rather than slogans — leadership through written clarity. He blends conviction (AI will be transformative; safety is non-negotiable) with calibrated uncertainty (he's explicit about what he doesn't know). The piece highlights how he keeps a fast-growing C-suite and company aligned around a single 'vision quest' while resisting hype.\n\n"+
+"(Read the full Fortune profile via the link for direct quotes; summary reflects public reporting on his style.)",
+ points:[
+  "Leads through written clarity — essays/memos over slogans.",
+  "First-principles reasoning plus intellectual honesty about uncertainty.",
+  "Relentless, repeated vision communication keeps a scaling org aligned.",
+  "Conviction on mission, calibration on specifics — avoids hype."
+ ],
+ talk:[
+  "Mirror this style in your own answers: make a clear claim, then state your uncertainty. Interviewers at Anthropic reward calibrated honesty over confident bluffing.",
+  "As an AM you are a communicator-in-chief for accounts — draw the parallel: aligning a customer's stakeholders around a vision is the same discipline Dario uses internally.",
+  "If asked about leadership or how you'd run an account, 'over-communicate the why, be honest about the unknowns' is a strong, on-brand answer.",
+  "Shows you did your homework on *who leads the company*, not just the product."
+ ]
+},
+{
+ id:"daniela-humanities", cat:"Leadership & Culture", type:"Article", source:"Fortune", mins:7,
+ title:"Daniela Amodei — humanities majors & soft skills in AI hiring",
+ url:"https://fortune.com/2026/02/07/anthropic-cofounder-daniela-amodei-humanities-majors-soft-skills-hiring-ai-stem/",
+ overview:
+"Anthropic president and co-founder Daniela Amodei argues that as AI handles more technical execution, distinctly human skills — communication, judgement, ethics, empathy, the ability to ask the right questions — become more valuable, not less. Anthropic deliberately hires liberal-arts and humanities backgrounds alongside engineers.\n\n"+
+"Her own path (English/music background, operations and people leadership rather than a pure-CS route) is the proof point. The argument: in an AI company, you need people who can think about *what* should be built and *how it lands with humans*, not only how to build it.\n\n"+
+"(Full Fortune piece via link; summary from public reporting on Daniela's hiring philosophy.)",
+ points:[
+  "As AI automates technical tasks, human/soft skills rise in value.",
+  "Anthropic intentionally hires humanities and non-traditional backgrounds.",
+  "Daniela's own non-CS path models the thesis.",
+  "Value is in judgement, communication, ethics — 'what & why', not just 'how'."
+ ],
+ talk:[
+  "This is your single best 'why I fit' anchor if you're not from a hardcore technical background: Anthropic's own president argues that communication, judgement and empathy are the scarce skills — which is exactly the account-manager craft.",
+  "Name your transferable strengths in these terms: relationship judgement, translating complex tech into customer value, reading stakeholders — and tie each to Daniela's thesis.",
+  "Great answer to 'why should we hire you for a technical company without a technical background?' — quote the company's own stated hiring philosophy back to them.",
+  "Shows cultural alignment: you value the human layer of AI, which is the whole point of a customer-facing role."
+ ]
+},
+{
+ id:"yegge", cat:"Leadership & Culture", type:"Blog", source:"Steve Yegge", mins:18,
+ title:"The Anthropic Hive Mind",
+ url:"https://steve-yegge.medium.com/the-anthropic-hive-mind-d01f768f3d7b",
+ overview:
+"Veteran engineer Steve Yegge's outsider-insider take on how Anthropic actually operates. His thesis: Anthropic runs as a decentralised \"hive mind\" — high-trust, improvisational, low on heavyweight process — and he thinks this model will spread.\n\n"+
+"Key observations: Anthropic is in a \"Golden Age,\" which he says happens when there is more work than people (abundance creates collaboration; scarcity breeds politics). The culture prizes radical transparency — what he calls 'the death of the ego,' where your messy work-in-progress is visible, not just polished output. Development is improvisational ('Yes, and…'), built around living prototypes and short (≤90-day) cycles rather than long plans.\n\n"+
+"He also warns that 2026 will 'break a lot of companies,' especially pure-software firms without a physical-world moat.",
+ points:[
+  "Anthropic as a high-trust, improvisational 'hive mind' with light process.",
+  "'Golden Age' = more work than people; politics starts when that inverts.",
+  "Radical transparency — 'death of the ego'; share the messy middle.",
+  "Improv mindset, living prototypes, ≤90-day cycles over long plans.",
+  "Prediction: 2026 reshuffles the industry; software-only is exposed."
+ ],
+ talk:[
+  "Use it to show you understand the *working culture* you're joining: fast, transparent, low-ego, comfortable with ambiguity. Give an example of when you thrived in exactly that kind of environment.",
+  "'More work than people' is a smart thing to reference — it signals you expect to be scrappy and own outcomes, not wait for process. Perfect for a fast-scaling sales org.",
+  "Transparency/'death of ego' maps onto giving and taking direct feedback gracefully — say you welcome it.",
+  "Caveat to show judgement: it's one person's external view, so cite it as a perspective, not gospel — that calibration itself is on-brand."
+ ]
+},
+{
+ id:"siblings", cat:"Leadership & Culture", type:"Article", source:"CNBC", mins:7,
+ title:"The Amodei siblings & the rise of generative AI",
+ url:"https://www.cnbc.com/2026/01/10/anthropic-amodei-siblings-generative-ai.html",
+ overview:
+"A profile of the brother-and-sister pair at the top of Anthropic: Dario (CEO, the scientist/visionary) and Daniela (President, the operator/people-and-company builder). The piece covers how they left OpenAI in 2021 with a group of researchers over disagreements about safety and direction, and built Anthropic as a safety-first frontier lab.\n\n"+
+"The throughline is complementary leadership: Dario sets scientific and strategic direction; Daniela builds the organisation, culture and operations that let it scale. Their sibling trust underpins an unusually values-driven company that nonetheless competes at the frontier commercially.\n\n"+
+"(Full CNBC piece via link; summary from public reporting.)",
+ points:[
+  "Dario (CEO/science/vision) + Daniela (President/operations/people) — complementary roles.",
+  "Founded Anthropic in 2021 after leaving OpenAI over safety/direction.",
+  "Safety-first identity baked in from day one — a deliberate founding choice.",
+  "Values-driven *and* commercially competitive at the frontier."
+ ],
+ talk:[
+  "Know the founding story cold — 'they left OpenAI in 2021 to build a safety-first lab' is table stakes and likely to come up in 'what do you know about us?'",
+  "The Dario/Daniela complementarity is a nice lens for teamwork answers: science + operations, vision + execution. As an AM you sit on the 'make it real for customers' side — align yourself with the Daniela/operator energy.",
+  "Reinforces that safety isn't a marketing layer; it's the founding reason the company exists — useful conviction to convey to a customer."
+ ]
+},
+{
+ id:"do-more", cat:"Leadership & Culture", type:"Article", source:"CNBC", mins:6,
+ title:"Daniela Amodei's 'do more with less' bet",
+ url:"https://www.cnbc.com/2026/01/03/anthropic-daniela-amodei-do-more-with-less-bet.html",
+ overview:
+"A look at Daniela Amodei's operating philosophy: deliberate capital and headcount discipline relative to rivals. Rather than win by out-spending, Anthropic bets on efficiency, focus and talent density — fewer people doing higher-leverage work, often amplified by Claude itself.\n\n"+
+"The 'do more with less' stance is both cultural and strategic: it keeps the company nimble, forces prioritisation, and is a proof point that AI augments small teams. It pairs with the hive-mind/light-process culture and the bet that leverage beats brute force.\n\n"+
+"(Full CNBC piece via link; summary from public reporting.)",
+ points:[
+  "Efficiency over out-spending — talent density and focus as the strategy.",
+  "Small, high-leverage teams, often augmented by Claude internally.",
+  "Forces prioritisation and keeps the org nimble as it scales.",
+  "Lives the product thesis: AI lets a lean team punch above its weight."
+ ],
+ talk:[
+  "Strong signal for how to show up as a candidate: be someone who creates leverage, not someone who needs a big team. Give an example of doing more with less / high output solo.",
+  "Customer angle: 'do more with less' is literally the value proposition you'll sell — Claude lets a customer's team punch above its weight. The company practising it internally is a credibility story you can tell.",
+  "Use it for 'how do you prioritise?' — Anthropic culturally rewards ruthless focus on what matters."
+ ]
+},
+
+/* ===== ENTERPRISE & CUSTOMERS ===== */
+{
+ id:"enterprise", cat:"Enterprise & Customers", type:"Product", source:"Claude.com", mins:8,
+ title:"Claude for Enterprise",
+ url:"https://claude.com/blog/claude-for-enterprise",
+ overview:
+"This is the product you'd actually be selling, adopting and expanding inside accounts — so know it cold. It packages Claude with the scale and controls large organisations require.\n\n"+
+"CAPABILITIES. A very large context window (on the order of 500K tokens) lets a team load hundreds of documents, call transcripts, contracts or whole codebases into a single working context. Projects keep that shared context, knowledge and instructions in one place for a team; Artifacts turn outputs into editable, shareable deliverables. Native GitHub integration lets engineering teams sync repositories for debugging, feature work and onboarding. The throughline is collaboration at organisational scale — Claude as shared infrastructure, not a personal toy.\n\n"+
+"THE PART THAT CLOSES DEALS — security & governance. Single sign-on (SSO) and domain capture for centralised access; role-based permissions and designated workspace owners; audit logs for compliance monitoring; and SCIM for automated user provisioning/deprovisioning. Most importantly for IP-sensitive buyers: Anthropic does not train its models on your conversations or content — proprietary data stays yours. For a media company guarding scripts and unreleased IP, or a telco guarding subscriber data, that single fact often unlocks the deal.\n\n"+
+"PROOF & MOTION. Early adopters like GitLab and Midjourney describe Claude as 'an extension of their work.' The account-manager job isn't just to sell seats — it's land-and-expand: secure a beachhead use case, prove measurable value, then grow Claude across functions until it's embedded in how the organisation operates.",
+ points:[
+  "Large context window — hundreds of docs / transcripts / full codebases at once.",
+  "Projects, Artifacts, native GitHub integration for end-to-end workflows.",
+  "Enterprise controls: SSO, domain capture, role-based permissions, audit logs, SCIM.",
+  "No training on customer content — IP stays private (the key trust point).",
+  "Proof customers: GitLab, Midjourney — 'an extension of their work.'"
+ ],
+ talk:[
+  "Know this product cold — it's the core of the job. Be able to name the top 3 enterprise controls (SSO, audit logs, no-training-on-your-data) because that's what a TME procurement/security team asks about first.",
+  "Map features to TME pain: large context = ingesting contracts, network logs, scripts, rights catalogues; no-training-on-data = the answer to a media company's IP-protection fear.",
+  "Frame your role: an AM doesn't just sell seats — you drive adoption and expansion. Talk about landing a use case, proving value, then growing across the org (the GitLab/Midjourney 'extension of their work' pattern).",
+  "Have a crisp ROI narrative ready: which TME workflows (customer care, content ops, network/field ops, marketing) convert fastest."
+ ]
+},
+{
+ id:"williams", cat:"Enterprise & Customers", type:"Announcement", source:"Williams F1", mins:6,
+ title:"Anthropic × Atlassian Williams F1 — 'Official Thinking Partner'",
+ url:"https://www.williamsf1.com/articles/0f1eece4-e632-49c9-a767-148159bbbf87/anthropic-atlassian-williams-f1-team-multi-year-partnership-claude-official-thinking-partner",
+ overview:
+"A flagship enterprise partnership (announced Feb 2026): Claude becomes the Atlassian Williams Racing team's \"Official Thinking Partner,\" multi-year, with Claude branding on the FW48 cars and kit from the 2026 season.\n\n"+
+"Claude is being embedded across the organisation — race strategy, car development, operational planning, and problem-solving under time pressure. The narrative is 'elite human talent + frontier AI': Team Principal James Vowles frames it as showing 'what's possible when you combine elite human talent with the right frontier models,' and Anthropic's Mike Krieger calls F1 'the pairing of human endeavour and technical excellence.'\n\n"+
+"Williams — one of F1's last independents — competes on ingenuity and detail, which Anthropic positions as values alignment.",
+ points:[
+  "Multi-year deal; Claude as Williams' 'Official Thinking Partner', branding from 2026.",
+  "Embedded across race strategy, car development, ops and live problem-solving.",
+  "Story: elite human talent amplified by frontier AI (not replaced).",
+  "Values fit — independence, ingenuity, attention to detail.",
+  "A high-visibility reference you can point customers to."
+ ],
+ talk:[
+  "This is squarely in your TME wheelhouse — F1 is a media/entertainment property *and* a high-performance enterprise. Use it as your go-to reference story for 'AI augments your best people' (the anti-'AI replaces jobs' message).",
+  "Notice the partnership *language*: 'thinking partner,' not 'tool.' That positioning — Claude as a collaborator — is how Anthropic differentiates, and how you'd frame value to a customer.",
+  "Be ready to riff on how you'd run a marquee account like this: co-marketing, embedding across functions, expanding from one use case to many — classic land-and-expand.",
+  "It pairs Anthropic with Atlassian (ecosystem play) — shows you understand deals often ride on partnerships, relevant to enterprise selling."
+ ]
+},
+{
+ id:"glasswing", cat:"Enterprise & Customers", type:"Initiative", source:"Anthropic", mins:7,
+ title:"Project Glasswing — AI defending critical infrastructure",
+ url:"https://www.anthropic.com/glasswing",
+ overview:
+"Project Glasswing is an Anthropic-led initiative to use frontier AI defensively — securing critical software infrastructure before AI-augmented attacks proliferate. It convenes major tech, security and infrastructure players.\n\n"+
+"It launched with 12 founding partners (incl. AWS, Apple, Cisco, CrowdStrike, Google, JPMorganChase, the Linux Foundation, Microsoft, NVIDIA, Palo Alto Networks) and 40+ additional critical-infrastructure orgs. The technical centerpiece is an advanced model (referred to as Claude 'Mythos' Preview) that finds vulnerabilities at scale — reportedly thousands of zero-days, and strong gains on vulnerability benchmarks. Anthropic committed $100M in model credits plus funding to open-source security foundations (OpenSSF/Alpha-Omega, Apache).\n\n"+
+"The strategic idea: give defenders the AI advantage first.",
+ points:[
+  "Defensive-security initiative: AI finds and fixes vulnerabilities at scale.",
+  "12 founding partners + 40 more critical-infrastructure organisations.",
+  "Centerpiece frontier model surfaces thousands of zero-day flaws.",
+  "$100M in credits + funding for open-source security foundations.",
+  "Thesis: arm defenders before attackers get the same leverage."
+ ],
+ talk:[
+  "Telco is *critical infrastructure* — this is directly relevant to your patch. Use Glasswing to show Anthropic invests in the security of the exact sector you'd cover, which builds trust with a telco's security org.",
+  "It also demonstrates Anthropic's 'safety as action, not slogan' — concrete dollars and partnerships. Good evidence when a customer asks whether the safety talk is real.",
+  "Shows the ecosystem/coalition muscle (AWS, Microsoft, CrowdStrike…). As an AM you can ride those partner relationships into accounts.",
+  "If asked about a hard security objection from a telco CISO, Glasswing is your proof Anthropic is on the defenders' side."
+ ]
+},
+{
+ id:"mars", cat:"Enterprise & Customers", type:"Feature", source:"Anthropic", mins:5,
+ title:"Claude on Mars — planning the Perseverance rover's route",
+ url:"https://www.anthropic.com/features/claude-on-mars",
+ overview:
+"A vivid proof-of-capability: in December 2025, Claude generated the first AI-planned driving commands for NASA's Perseverance rover, plotting a ~400-metre path through rocky Martian terrain by analysing overhead imagery and writing commands in Rover Markup Language — iterating and refining its own plan before submission.\n\n"+
+"Engineers estimate it roughly halves route-planning time, enabling more frequent drives and more science. The broader point is autonomy in extreme, high-latency environments (future Artemis, Europa, Titan missions) where human micromanagement is impossible.\n\n"+
+"It's a credibility flex: Claude doing precise, high-stakes, real-world technical work — not just chat.",
+ points:[
+  "Claude planned real Perseverance rover routes (Dec 2025) in Rover Markup Language.",
+  "~400m path through rocky terrain; self-iterated before submission.",
+  "Cuts route-planning time ~50% → more drives, more science.",
+  "Demonstrates autonomy where latency makes human control impractical.",
+  "Tangible proof of high-stakes, precise, real-world capability."
+ ],
+ talk:[
+  "Use this as a memorable 'capability' story to counter the 'it's just a chatbot' perception — Claude is doing precise, consequential, technical work.",
+  "The transferable theme for TME: AI compressing slow expert workflows (route planning halved) maps to compressing network planning, content production, or care-resolution time for your customers.",
+  "It's also a great icebreaker/credibility anecdote in a customer meeting — concrete, surprising, and clearly high-trust ('they let it drive a Mars rover')."
+ ]
+},
+
+/* ===== INTERVIEWS & TALKS ===== */
+{
+ id:"modernloop", cat:"Interviews & Talks", type:"Video", source:"ModernLoop / Anthropic", mins:15,
+ title:"Interview prep video (from your recruiter)",
+ url:"https://www.youtube.com/embed/dPn3GBI8lII?autoplay=0",
+ overview:
+"This is the video your interviewer/recruiter embedded in the ModernLoop interview portal — almost certainly a role, team or company overview meant to prep candidates. Treat it as the highest-signal item on the list: it's what *they* chose to show you.\n\n"+
+"Watch it closely for: how they describe the team and the AM role, the language and values they emphasise, who appears in it, and any specifics about customers, expectations or success in the role. Mirror that language back in your answers.\n\n"+
+"(Open via the link to watch. If it's a different video than expected, update this note.)",
+ points:[
+  "Recruiter-selected — the most direct signal of what they care about.",
+  "Note the exact words they use for the role, team and values.",
+  "Capture any role expectations, customer examples or success metrics.",
+  "Identify the speakers so you can reference them if relevant."
+ ],
+ talk:[
+  "Highest priority to study — whatever vocabulary and priorities they use here, echo them in the interview. If they say 'thinking partner' or 'customer obsession,' use those exact phrases.",
+  "Prepare a question that references something specific from this video — it proves you watched what they sent and engaged with it.",
+  "If it features specific people or customers, weave one reference in naturally to show genuine preparation."
+ ]
+},
+{
+ id:"dwarkesh", cat:"Interviews & Talks", type:"Podcast", source:"Dwarkesh Patel", mins:120,
+ title:"Dario Amodei on Dwarkesh (2nd appearance)",
+ url:"https://www.dwarkesh.com/p/dario-amodei-2",
+ overview:
+"A long, substantive Dario Amodei interview — the best single place to hear him reason in real time about timelines to powerful AI, scaling, safety, interpretability, the economics of AI, and Anthropic's strategy. Dwarkesh asks unusually technical, probing questions.\n\n"+
+"Expect Dario to give calibrated views: bullish on the trajectory (powerful AI plausibly within a few years), candid about uncertainty, and consistent that safety/interpretability must scale with capability. Great for absorbing how he *talks* — measured, precise, willing to say 'I don't know.'\n\n"+
+"(Long-form — skim the transcript on the page if short on time; prioritise the timelines, safety and economic-impact segments.)",
+ points:[
+  "Deep, technical long-form on timelines, scaling, safety, economics.",
+  "Dario's calibrated style: bullish trajectory + explicit uncertainty.",
+  "Reinforces 'capability and safety scale together'.",
+  "Best source for absorbing his actual reasoning and tone."
+ ],
+ talk:[
+  "Listen for tone as much as content — adopting his calibrated, precise register in your answers will read as cultural fit.",
+  "Pull one or two specific ideas (e.g. his view on AI's economic impact or interpretability) to drop in if asked 'what have you read/listened to about Anthropic?' — specificity beats generality.",
+  "Helps you talk credibly about *timelines* with a customer without over-promising: near-term real value, big trajectory, honest unknowns."
+ ]
+},
+{
+ id:"nyt", cat:"Interviews & Talks", type:"Podcast", source:"NYT (Hard Fork)", mins:60,
+ title:"Dario Amodei on the paradoxes of AI safety",
+ url:"https://www.nytimes.com/2023/07/21/podcasts/dario-amodei-ceo-of-anthropic-on-the-paradoxes-of-ai-safety-and-netflixs-deep-fake-love.html",
+ overview:
+"A 2023 conversation (NYT) where Dario works through the central paradox of Anthropic: to make AI safe you have to build frontier AI, which means you're also advancing the very capabilities you worry about. He explains why Anthropic chose to be 'in the room' rather than abstaining.\n\n"+
+"It's an accessible, earlier articulation of the safety-first thesis, the race dynamics, and why a safety-focused lab still competes commercially. Good origin-story context that predates the recent essays.\n\n"+
+"(Older but foundational — shows the throughline from 2023 to today's RSP and essays.)",
+ points:[
+  "The core paradox: building frontier AI to make AI safe.",
+  "Why Anthropic competes rather than abstains — influence from inside the frontier.",
+  "Accessible, early articulation of the safety-first identity.",
+  "Shows the consistent throughline into today's RSP and essays."
+ ],
+ talk:[
+  "Understanding 'the paradox' lets you answer the sharp question: 'Isn't it contradictory to worry about AI while building it?' — explain the in-the-room rationale calmly and convincingly.",
+  "Demonstrates depth/longevity of your prep: referencing a 2023 source shows you traced the company's thinking over time, not just last week's headlines.",
+  "Reinforces consistency of Anthropic's message — a reassuring thing to convey to a customer evaluating a long-term vendor."
+ ]
+},
+{
+ id:"daniela-cv", cat:"Interviews & Talks", type:"Video", source:"Cerebral Valley / Sequoia", mins:30,
+ title:"Daniela Amodei in conversation (Cerebral Valley × Sequoia)",
+ url:"https://www.youtube.com/watch?v=MRNKzKgjqx0",
+ overview:
+"A panel/fireside with Daniela Amodei (Anthropic President), alongside Hema Raghavan (Kumo), moderated by Konstantine Buhler (Sequoia). The best video source for Daniela's operating and people philosophy in her own words.\n\n"+
+"Expect themes consistent with her writing: hiring for judgement and soft skills, building culture and operations as the company scales, efficiency / 'do more with less,' and the practicalities of running a fast-growing safety-first lab. Useful for the operator/commercial side of Anthropic that's most relevant to a customer-facing role.\n\n"+
+"(Watch via the link; note any specifics on how she thinks about teams, customers and scaling.)",
+ points:[
+  "Daniela in her own words on people, culture and operations.",
+  "Connects to her hiring (soft skills) and efficiency theses.",
+  "Operator's view of scaling a safety-first company.",
+  "Most relevant lens for the commercial/customer side you'd join."
+ ],
+ talk:[
+  "Daniela leads the operating side you'd be part of — quoting her directly (on judgement, soft skills, doing more with less) is a sharp way to show alignment with *your* future org, not just the science.",
+  "Listen for how she frames talent and culture; echo that framing when asked what kind of teammate you are.",
+  "Cite this as a video you watched — pairs well with the two Fortune/CNBC Daniela pieces to show a coherent read on her leadership."
+ ]
+},
+{
+ id:"yt-unknown", cat:"Interviews & Talks", type:"Video", source:"YouTube", mins:30,
+ title:"Anthropic talk / interview (confirm title)",
+ url:"https://www.youtube.com/watch?v=TxhhMTOTMDg",
+ overview:
+"A YouTube talk/interview on the reading list that I couldn't auto-identify by title — likely a Dario or Anthropic leadership conversation. Open the link, confirm what it is, and update this note.\n\n"+
+"When you watch, capture: who's speaking, the headline argument, and one quotable idea you could reference. Then add it to your notes so the AI coach can fold it into your prep.",
+ points:[
+  "Unidentified from the URL — confirm the title/speaker when you open it.",
+  "Likely Anthropic leadership (Dario) content given the list's theme.",
+  "Capture speaker, main argument, and one quotable line.",
+  "Update this entry's note once you've watched."
+ ],
+ talk:[
+  "Once identified, slot it next to the Dwarkesh/NYT items as more evidence of how Anthropic's leaders reason.",
+  "Have one specific takeaway ready — interviewers value a precise reference over 'I watched some videos.'"
+ ]
+}
+];
+
+/* Which pieces are paywalled or video/external (summary + link) vs. deep-dive in-app */
+const LINK_IDS    = {kaplan:1,"dario-lead":1,"daniela-humanities":1,siblings:1,"do-more":1,nyt:1,modernloop:1,dwarkesh:1,"daniela-cv":1,"yt-unknown":1};
+const PAYWALL_IDS = {kaplan:1,"dario-lead":1,"daniela-humanities":1,siblings:1,"do-more":1,nyt:1};
+ARTICLES.forEach(a=>{ a.access = LINK_IDS[a.id] ? "link" : "deep"; a.paywall = !!PAYWALL_IDS[a.id]; });
+
+/* ----------------------------- QUIZ BANK ----------------------------- */
+/* q=question, o=options, a=index of correct option, why=explanation */
+const QUIZ = {
+ rsp:[
+  {q:"What does the 'ASL' in 'ASL-3' refer to?",o:["AI Safety Levels — graduated safeguard tiers tied to capability","Advanced System License","Automated Safety Lockout","AI Scaling Limit"],a:0,why:"ASLs are graduated tiers of protection that rise with what a model can do, loosely modelled on lab biosafety levels."},
+  {q:"When did Anthropic activate ASL-3 protections?",o:["May 2025","January 2021","It hasn't yet","2030"],a:0,why:"ASL-3 (stronger security + deployment safeguards against bio/chem uplift) was activated in May 2025."},
+  {q:"What was the main change in version 3.0 of the policy?",o:["Moved from rigid pre-set thresholds toward structured judgement and capability reports","Removed all safety commitments","Made the policy secret","Banned enterprise use"],a:0,why:"Pre-set thresholds proved ambiguous, so v3 leans more on expert judgement, capability reports and external review."},
+  {q:"Why is the RSP a useful selling point for regulated TME customers?",o:["It gives them a concrete, citable governance process to clear risk/legal","It makes Claude cheaper","It hides how the model works","It removes the need for contracts"],a:0,why:"A vendor publishing escalating, externally-reviewed safety commitments is far easier to get through procurement and compliance."}
+ ],
+ institute:[
+  {q:"What is the Anthropic Institute's core mission?",o:["Understand and shape the societal consequences of powerful AI","Sell GPUs","Run Anthropic's payroll","Design Claude's logo"],a:0,why:"It studies AI's effects on the economy, security, behaviour and governance from inside a frontier lab."},
+  {q:"What does the Anthropic Economic Index track?",o:["Real-world AI adoption across occupations and geographies","Anthropic's stock price","Electricity costs","Competitor headcount"],a:0,why:"It's empirical data on how AI is actually being adopted — useful for grounding ROI conversations with customers."}
+ ],
+ kaplan:[
+  {q:"Jared Kaplan is best known for co-developing which idea?",o:["Scaling laws — capability improves predictably with compute/data/parameters","Bitcoin","The transformer's attention mechanism","CRISPR"],a:0,why:"His scaling-laws work is a foundation of modern AI strategy, including Anthropic's."},
+  {q:"What is Kaplan's role at Anthropic?",o:["Co-founder and Chief Science Officer","Head of Sales","Outside investor","Board observer only"],a:0,why:"He's a co-founder and the chief science officer, bridging hard science and research direction."}
+ ],
+ mlg:[
+  {q:"What does Dario's phrase 'a compressed 21st century' mean?",o:["~100 years of progress compressed into roughly 5–10 years","A shorter work week","Smaller AI models","A 21-step plan"],a:0,why:"The essay's core image: powerful AI dramatically compressing the timeline of scientific and social progress."},
+  {q:"Which is NOT one of the five domains in Machines of Loving Grace?",o:["Space colonisation","Biology & health","Economic development & poverty","Work & meaning"],a:0,why:"The five are biology/health, neuroscience, economic development, peace/governance, and work/meaning."},
+  {q:"What does 'marginal returns to intelligence' argue?",o:["Intelligence is powerful but bounded by the physical world, data and complexity","Intelligence is useless","More intelligence always solves everything instantly","Intelligence has no limits"],a:0,why:"AI's edge is that it increasingly 'routes around' those limits — but they're real."}
+ ],
+ adolescence:[
+  {q:"What does 'a country of geniuses in a datacenter' describe?",o:["Millions of AI instances reasoning at 10–100× human speed, acting autonomously","A new Anthropic office","A government agency","A supercomputer brand"],a:0,why:"It's the image that motivates the essay's five risk categories."},
+  {q:"'Breaking the correlation between ability and motive' refers to which risk?",o:["Misuse — democratising access to mass-harm capabilities like bioweapons","Economic disruption","Climate change","Data storage costs"],a:0,why:"Historically only a few capable people could cause mass harm; AI could hand that capability to anyone motivated."},
+  {q:"How does Constitutional AI train a model's behaviour?",o:["By embedding high-level values and identity rather than brittle rule-lists","By memorising every possible rule","By disconnecting it from the internet","By limiting it to one language"],a:0,why:"It's one of Dario's 'surgical' defences, alongside interpretability and transparency."},
+  {q:"What posture does Dario advocate toward AI risk?",o:["Calibrated seriousness plus agency — rejecting both doom and dismissal","Certainty of catastrophe","Ignoring risk entirely","Stopping all AI research"],a:0,why:"He rejects both doomerism and dismissal: we can navigate this, but only by deliberately choosing to."}
+ ],
+ "dario-lead":[
+  {q:"How is Dario Amodei's leadership communication style described?",o:["Written clarity (essays/memos), first-principles, calibrated honesty about uncertainty","Short slogans and hype","Avoiding communication","Purely financial framing"],a:0,why:"He leads through carefully argued writing, conviction on mission plus calibration on specifics."}
+ ],
+ "daniela-humanities":[
+  {q:"What is Daniela Amodei's argument about hiring for AI companies?",o:["As AI automates technical tasks, human/soft skills (judgement, communication, ethics) rise in value","Only hire PhDs in CS","Soft skills don't matter","Replace all staff with AI"],a:0,why:"Anthropic deliberately hires humanities and non-traditional backgrounds — a strong 'why I fit' anchor for a customer-facing role."}
+ ],
+ yegge:[
+  {q:"How does Steve Yegge characterise Anthropic's culture?",o:["A decentralised, improvisational, high-trust 'hive mind' with light process","A rigid bureaucracy","A purely remote gig platform","A traditional consulting firm"],a:0,why:"He predicts this model spreads — and frames it around transparency and 'death of the ego.'"},
+  {q:"In Yegge's framing, what marks a company's 'Golden Age'?",o:["There is more work than people (politics starts when that inverts)","Lots of free snacks","A big marketing budget","Many layers of management"],a:0,why:"Abundance of work fuels collaboration; scarcity of work breeds internal politics."}
+ ],
+ siblings:[
+  {q:"Where did Dario and Daniela Amodei work before founding Anthropic?",o:["OpenAI (they left in 2021)","Google DeepMind","Meta","Tesla"],a:0,why:"They left in 2021 with a group of researchers to build a safety-first frontier lab."},
+  {q:"How are the siblings' roles split?",o:["Dario = CEO (science/vision); Daniela = President (operations/people)","Both are co-CEOs of sales","Daniela is CFO only","They rotate jobs monthly"],a:0,why:"Complementary leadership: vision/science plus organisation/operations."}
+ ],
+ "do-more":[
+  {q:"What is Daniela Amodei's 'do more with less' bet?",o:["Win through efficiency and talent density rather than out-spending rivals","Spend the most on compute","Hire as many people as possible","Cut all R&D"],a:0,why:"Small, high-leverage teams (often amplified by Claude) — it also lives the product's own value proposition."}
+ ],
+ enterprise:[
+  {q:"Does Anthropic train its models on enterprise customers' content?",o:["No — customer content stays private","Yes, always","Only on weekends","Only paid tiers"],a:0,why:"This is often the single fact that unlocks deals with IP-sensitive media and telco buyers."},
+  {q:"Which of these is an enterprise control Claude for Enterprise offers?",o:["SSO, role-based permissions, audit logs and SCIM provisioning","None","Only a shared password","Public chat logs"],a:0,why:"Centralised access and governance is the part that gets you through security review."},
+  {q:"Roughly how large is the Claude for Enterprise context window?",o:["~500K tokens — hundreds of docs/transcripts at once","About one paragraph","Unlimited and free","~100 words"],a:0,why:"Large context enables loading contracts, transcripts or whole codebases into one working session."}
+ ],
+ williams:[
+  {q:"How is Claude positioned in the Anthropic–Williams F1 partnership?",o:["As the team's 'Official Thinking Partner'","As the car's engine supplier","As a ticketing system","As a tyre brand"],a:0,why:"The 'thinking partner' framing (not 'tool') is how Anthropic differentiates — and it's a great 'AI augments your best people' story for TME."},
+  {q:"Which other company is named alongside Anthropic in the Williams deal?",o:["Atlassian","Ferrari","Netflix","Boeing"],a:0,why:"It's the Atlassian Williams Racing team — showing enterprise deals often ride on partnerships."}
+ ],
+ glasswing:[
+  {q:"What is the purpose of Project Glasswing?",o:["Use frontier AI defensively to secure critical software infrastructure","Build a new social network","Sell ad space","Launch satellites"],a:0,why:"It convenes major tech/security players to find and fix vulnerabilities before attackers get the same AI leverage."},
+  {q:"Why is Glasswing especially relevant to your telco accounts?",o:["Telecoms ARE critical infrastructure that this initiative aims to protect","It offers phone discounts","It replaces fibre optics","It has nothing to do with telco"],a:0,why:"It builds trust with a telco's security org that Anthropic invests in defending their sector."}
+ ],
+ mars:[
+  {q:"What did Claude do in the 'Claude on Mars' feature?",o:["Planned driving routes/commands for NASA's Perseverance rover","Built a rocket","Designed a spacesuit","Mined minerals on Mars"],a:0,why:"It analysed overhead imagery and wrote commands in Rover Markup Language, iterating before submission."},
+  {q:"What benefit did engineers estimate from Claude's rover planning?",o:["Roughly halved route-planning time","Doubled the rover's weight","Removed the need for a rover","Slowed the mission down"],a:0,why:"Faster planning → more drives and more science; a vivid 'precise, high-stakes work' proof point."}
+ ],
+ dwarkesh:[
+  {q:"What is the Dwarkesh interview most useful for?",o:["Absorbing Dario's calibrated reasoning on timelines, safety and economics","Learning to cook","Stock tips","Car reviews"],a:0,why:"Adopting his measured, precise, 'I don't know when unsure' register reads as cultural fit."}
+ ],
+ nyt:[
+  {q:"What is the central 'paradox' Dario discusses in the 2023 NYT conversation?",o:["To make AI safe you must build frontier AI — so Anthropic chooses to be 'in the room'","AI can't be built at all","Safety and profit are identical","Nobody should use AI"],a:0,why:"Lets you calmly answer 'isn't it contradictory to worry about AI while building it?'"}
+ ],
+ "daniela-cv":[
+  {q:"Which Anthropic leader features in the Cerebral Valley × Sequoia video?",o:["Daniela Amodei (President)","Mark Zuckerberg","Sam Altman","Jensen Huang"],a:0,why:"It's the best video source for Daniela's operating and people philosophy in her own words."}
+ ]
+};
+ARTICLES.forEach(a=>{ a.quiz = QUIZ[a.id] || []; });
+
+/* ----------------------------- STATE ----------------------------- */
+const LS = window.localStorage;
+const k = {
+  notes: id => "note_"+id,
+  hl:   id => "hl_"+id,
+  read: id => "read_"+id,
+  chat: id => "chat_"+id,
+  key: "anthropic_api_key",
+  model: "anthropic_model",
+  voice: "tts_voice"
+};
+let current = null;        // current article
+let speaking = false;
+let VOICES = [];
+
+/* ----------------------------- HELPERS ----------------------------- */
+const $ = s => document.querySelector(s);
+const el = (t,c)=>{const e=document.createElement(t); if(c)e.className=c; return e;};
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function readingText(a){
+  let t = a.overview + "\n\nKEY POINTS\n";
+  a.points.forEach(p => t += "\n•  " + p);
+  return t;
+}
+function hasActivity(id){
+  return (LS.getItem(k.notes(id))||"").trim().length>0 ||
+         JSON.parse(LS.getItem(k.hl(id))||"[]").length>0;
+}
+
+/* ----------------------------- HOME ----------------------------- */
+function renderHome(filter){
+  const list = $("#list"); list.innerHTML="";
+  const cats = [...new Set(ARTICLES.map(a=>a.cat))];
+  const q = (filter||"").toLowerCase().trim();
+  let shown=0;
+  cats.forEach(cat=>{
+    const items = ARTICLES.filter(a=>a.cat===cat &&
+      (!q || (a.title+a.source+a.overview).toLowerCase().includes(q)));
+    if(!items.length) return;
+    const h = el("div","cat"); h.textContent=cat; list.appendChild(h);
+    items.forEach(a=>{
+      shown++;
+      const c = el("div","card"); c.onclick=()=>openArticle(a.id);
+      const noted = (LS.getItem(k.notes(a.id))||"").trim().length>0;
+      const hled = JSON.parse(LS.getItem(k.hl(a.id))||"[]").length>0;
+      const done = LS.getItem(k.read(a.id))==="1";
+      c.innerHTML =
+        '<div class="badges">'+
+          (done?'<span class="badge" title="marked read">✓</span>':'')+
+          (noted?'<span class="badge" title="has notes">📝</span>':'')+
+          (hled?'<span class="badge" title="has highlights">🖍️</span>':'')+
+        '</div>'+
+        '<p class="ttl">'+esc(a.title)+'</p>'+
+        '<div class="meta">'+
+          '<span class="pill type">'+esc(a.type)+'</span>'+
+          '<span>'+esc(a.source)+'</span>'+
+          '<span>· ~'+a.mins+' min</span>'+
+        '</div>';
+      list.appendChild(c);
+    });
+  });
+  if(!shown){ list.innerHTML='<p class="small" style="padding:20px 4px">No readings match “'+esc(q)+'”.</p>'; }
+  updateProgress();
+}
+function updateProgress(){
+  const total = ARTICLES.length;
+  const done = ARTICLES.filter(a=>LS.getItem(k.read(a.id))==="1").length;
+  const touched = ARTICLES.filter(a=>hasActivity(a.id)||LS.getItem(k.read(a.id))==="1").length;
+  $("#progFill").style.width = Math.round(done/total*100)+"%";
+  $("#progText").textContent = done+" of "+total+" marked read · "+touched+" with notes/highlights";
+}
+
+/* ----------------------------- DETAIL ----------------------------- */
+function openArticle(id){
+  current = ARTICLES.find(a=>a.id===id);
+  $("#home").style.display="none";
+  $("#detail").style.display="block";
+  $("#backBtn").style.display="flex";
+  $("#settingsBtn").style.display="none";
+  $("#title").textContent = current.cat;
+  window.scrollTo(0,0);
+
+  const done = LS.getItem(k.read(id))==="1";
+  $("#detailHead").innerHTML =
+    '<h2>'+esc(current.title)+'</h2>'+
+    '<div class="srcrow">'+
+      '<span class="pill type">'+esc(current.type)+'</span>'+
+      '<span class="pill">'+esc(current.source)+'</span>'+
+      '<span class="pill">~'+current.mins+' min</span>'+
+      '<a class="openlink" href="'+current.url+'" target="_blank" rel="noopener">Open original ↗</a>'+
+      '<button class="openlink" id="readToggle" style="cursor:pointer;background:none">'+(done?'✓ Read':'Mark read')+'</button>'+
+    '</div>';
+  $("#readToggle").onclick = ()=>{
+    const now = LS.getItem(k.read(id))==="1";
+    if(now) LS.removeItem(k.read(id)); else LS.setItem(k.read(id),"1");
+    openArticle(id);
+  };
+
+  // tabs reset
+  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.tab==="read"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.dataset.panel==="read"));
+
+  renderReading();
+  renderTalk();
+  renderChat();
+  $("#askInput").value="";
+  // notes
+  $("#notes").value = LS.getItem(k.notes(id))||"";
+  $("#saveState").textContent = $("#notes").value.trim()? "Saved" : "";
+  $("#aiOut").classList.remove("show"); $("#aiOut").textContent=""; $("#aiNote").innerHTML="";
+  stopSpeak();
+}
+
+function renderTalk(){
+  const out = $("#talkOut"); out.innerHTML="";
+  current.talk.forEach((t,i)=>{
+    const d = el("div","tp");
+    d.innerHTML = '<b>'+(i+1)+'.</b> '+esc(t);
+    out.appendChild(d);
+  });
+}
+
+/* ----------------------------- READING + HIGHLIGHTS ----------------------------- */
+function renderReading(){
+  const b=$("#srcBanner");
+  if(current.access==="link"){
+    b.className="srcbanner link";
+    b.innerHTML="📄 This source is "+(current.paywall?"paywalled":"a video/external page")+", so here's a focused summary. Read/watch the full version → <a href=\""+current.url+"\" target=\"_blank\" rel=\"noopener\">Open original ↗</a>";
+  }else{
+    b.className="srcbanner deep";
+    b.innerHTML="✓ In-app deep-dive summary (in our own words). Full original text → <a href=\""+current.url+"\" target=\"_blank\" rel=\"noopener\">Open original ↗</a>";
+  }
+  const text = readingText(current);
+  const ranges = JSON.parse(LS.getItem(k.hl(current.id))||"[]");
+  const cont = $("#reading");
+  cont.innerHTML="";
+  // build with marks
+  const sorted = mergeRanges(ranges);
+  let pos=0;
+  sorted.forEach(([s,e])=>{
+    if(s>pos) cont.appendChild(document.createTextNode(text.slice(pos,s)));
+    const m = el("mark"); m.textContent=text.slice(s,e);
+    m.dataset.s=s; m.dataset.e=e;
+    m.onclick = ()=>removeHighlight(s,e);
+    cont.appendChild(m);
+    pos=e;
+  });
+  if(pos<text.length) cont.appendChild(document.createTextNode(text.slice(pos)));
+}
+function mergeRanges(rs){
+  const a = rs.map(r=>[r[0],r[1]]).sort((x,y)=>x[0]-y[0]);
+  const out=[];
+  a.forEach(r=>{
+    if(out.length && r[0]<=out[out.length-1][1]) out[out.length-1][1]=Math.max(out[out.length-1][1],r[1]);
+    else out.push(r);
+  });
+  return out;
+}
+function charOffset(container,node,offset){
+  const w=document.createTreeWalker(container,NodeFilter.SHOW_TEXT);
+  let count=0,n;
+  while(n=w.nextNode()){ if(n===node) return count+offset; count+=n.textContent.length; }
+  return count;
+}
+function addHighlight(s,e){
+  const rs = JSON.parse(LS.getItem(k.hl(current.id))||"[]");
+  rs.push([s,e]);
+  LS.setItem(k.hl(current.id), JSON.stringify(mergeRanges(rs)));
+  renderReading(); updateProgress();
+}
+function removeHighlight(s,e){
+  let rs = mergeRanges(JSON.parse(LS.getItem(k.hl(current.id))||"[]"));
+  const out=[];
+  rs.forEach(([rs0,re0])=>{
+    if(rs0>=e || re0<=s){ out.push([rs0,re0]); return; }   // no overlap
+    if(rs0<s) out.push([rs0,s]);                            // left remainder
+    if(re0>e) out.push([e,re0]);                            // right remainder
+  });
+  LS.setItem(k.hl(current.id), JSON.stringify(out));
+  renderReading(); updateProgress();
+}
+// selection handling
+const hlBtn = $("#hlbtn");
+let pending=null;
+function onSelect(){
+  const sel = window.getSelection();
+  const cont = $("#reading");
+  if(!sel || sel.isCollapsed || !sel.rangeCount){ hlBtn.style.display="none"; return; }
+  const r = sel.getRangeAt(0);
+  if(!cont.contains(r.startContainer) || !cont.contains(r.endContainer)){ hlBtn.style.display="none"; return; }
+  let s = charOffset(cont,r.startContainer,r.startOffset);
+  let e = charOffset(cont,r.endContainer,r.endOffset);
+  if(s===e){ hlBtn.style.display="none"; return; }
+  if(s>e){ const t=s;s=e;e=t; }
+  pending=[s,e];
+  const rect = r.getBoundingClientRect();
+  hlBtn.style.display="block";
+  let top = window.scrollY + rect.top - 46;
+  if(rect.top < 70) top = window.scrollY + rect.bottom + 8;
+  hlBtn.style.top = top+"px";
+  hlBtn.style.left = Math.min(Math.max(window.scrollX+rect.left+rect.width/2-45, 10), window.innerWidth-100)+"px";
+}
+hlBtn.onclick=()=>{
+  if(pending){ addHighlight(pending[0],pending[1]); }
+  window.getSelection().removeAllRanges();
+  hlBtn.style.display="none"; pending=null;
+};
+document.addEventListener("selectionchange",()=>{ if($("#detail").style.display==="block") setTimeout(onSelect,10); });
+document.addEventListener("scroll",()=>{ if(hlBtn.style.display==="block") onSelect(); });
+
+/* ----------------------------- AUDIO (TTS) ----------------------------- */
+function pickVoice(){
+  const want = LS.getItem(k.voice)||"";
+  if(want){ const v=VOICES.find(v=>v.name===want); if(v) return v; }
+  // auto-pick the nicest English voice available
+  const en = VOICES.filter(v=>/en[-_]/i.test(v.lang));
+  const pref = en.find(v=>/premium|enhanced/i.test(v.name))
+            || en.find(v=>/(ava|samantha|zoe|serena|allison|siri)/i.test(v.name))
+            || en[0];
+  return pref || null;
+}
+function loadVoices(){
+  if(!("speechSynthesis" in window)) return;
+  VOICES = speechSynthesis.getVoices()||[];
+  const sel = $("#voice"); if(!sel) return;
+  const cur = LS.getItem(k.voice)||"";
+  sel.innerHTML = '<option value="">System default (auto-best)</option>';
+  VOICES.filter(v=>/en[-_]/i.test(v.lang))
+        .sort((a,b)=>a.name.localeCompare(b.name))
+        .forEach(v=>{
+    const o=document.createElement("option");
+    o.value=v.name;
+    o.textContent=v.name+" ("+v.lang+")";
+    if(v.name===cur) o.selected=true;
+    sel.appendChild(o);
+  });
+}
+function speakNow(){
+  if(!("speechSynthesis" in window)){ $("#audioLbl").textContent="Audio not supported on this browser"; return; }
+  if(speechSynthesis.paused && speaking){ speechSynthesis.resume(); $("#playBtn").textContent="❚❚ Pause"; return; }
+  if(speaking){ speechSynthesis.pause(); $("#playBtn").textContent="▶ Resume"; return; }
+  const u = new SpeechSynthesisUtterance(readingText(current));
+  u.rate = parseFloat($("#rate").value)||1;
+  const v = pickVoice(); if(v){ u.voice=v; u.lang=v.lang; }
+  u.onend = ()=>{ speaking=false; $("#playBtn").textContent="▶ Listen"; $("#audioLbl").textContent="Finished"; };
+  u.onerror = ()=>{ speaking=false; $("#playBtn").textContent="▶ Listen"; };
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+  speaking=true; $("#playBtn").textContent="❚❚ Pause"; $("#audioLbl").textContent="Playing… "+(v?v.name:"");
+}
+if("speechSynthesis" in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function stopSpeak(){
+  if("speechSynthesis" in window) speechSynthesis.cancel();
+  speaking=false;
+  const b=$("#playBtn"); if(b) b.textContent="▶ Listen";
+  const l=$("#audioLbl"); if(l) l.textContent="Audio overview";
+}
+$("#playBtn").onclick=speakNow;
+$("#stopBtn").onclick=stopSpeak;
+$("#rate").onchange=()=>{ if(speaking){ stopSpeak(); speakNow(); } };
+
+/* ----------------------------- NOTES ----------------------------- */
+let saveTimer=null;
+$("#notes").addEventListener("input",()=>{
+  $("#saveState").textContent="Saving…";
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(()=>{
+    LS.setItem(k.notes(current.id), $("#notes").value);
+    $("#saveState").textContent="Saved";
+    updateProgress();
+  },350);
+});
+
+/* ----------------------------- AI COACH ----------------------------- */
+$("#aiBtn").onclick = async ()=>{
+  const key = LS.getItem(k.key)||"";
+  const notes = ($("#notes").value||"").trim();
+  const out = $("#aiOut"); const note=$("#aiNote");
+  if(!key){
+    out.classList.add("show");
+    out.textContent="No API key set yet.\n\nAdd your Anthropic API key in ⚙ Settings to turn your notes into a tight summary + interview talking points. Until then, use the pre-written ‘Talking points’ tab — it covers this article.";
+    note.innerHTML='<a id="goSettings">Open Settings →</a>';
+    $("#goSettings").onclick=openSettings;
+    return;
+  }
+  if(!notes){
+    out.classList.add("show");
+    out.textContent="Write a few notes above first — even rough bullets. Then I'll summarise them and shape interview talking points around them.";
+    return;
+  }
+  const model = LS.getItem(k.model)||"claude-sonnet-4-6";
+  out.classList.add("show"); out.textContent="Thinking…"; note.textContent="";
+  const sys = "You are an expert interview coach helping a candidate prepare for the role of "+ROLE+". Be concise, concrete and encouraging. Use plain language and short paragraphs/bullets. Tailor everything to a customer-facing enterprise account-management role in Telco, Media & Entertainment.";
+  const user =
+    "ARTICLE: "+current.title+" ("+current.source+")\n\n"+
+    "ARTICLE OVERVIEW:\n"+current.overview+"\n\n"+
+    "MY RAW NOTES:\n"+notes+"\n\n"+
+    "Please give me, in this order:\n"+
+    "1) A 2-3 sentence summary of what I captured.\n"+
+    "2) The 2-3 most interview-relevant angles from this for the TME enterprise AM role.\n"+
+    "3) A short sample way to bring it up if a relevant question came up (1 short paragraph I could actually say).\n"+
+    "4) One thoughtful question I could ask the interviewer related to this.";
+  try{
+    const res = await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",
+      headers:{
+        "content-type":"application/json",
+        "x-api-key":key,
+        "anthropic-version":"2023-06-01",
+        "anthropic-dangerous-direct-browser-access":"true"
+      },
+      body:JSON.stringify({
+        model:model, max_tokens:1100,
+        system:sys,
+        messages:[{role:"user",content:user}]
+      })
+    });
+    if(!res.ok){
+      const t = await res.text();
+      out.textContent="API error ("+res.status+").\n\n"+t.slice(0,500)+"\n\nCheck your key/model in Settings.";
+      return;
+    }
+    const data = await res.json();
+    const txt = (data.content||[]).map(b=>b.text||"").join("").trim();
+    out.textContent = txt || "(empty response)";
+    note.textContent = "Generated with "+model;
+  }catch(err){
+    out.textContent="Network error: "+err.message+"\n\n(If this keeps happening, your browser may be blocking the direct API call.)";
+  }
+};
+
+/* ----------------------------- ASK (per-article chat) ----------------------------- */
+const STARTERS = [
+  "Explain the main idea simply",
+  "Define a term I might not know",
+  "Why does this matter for the TME role?",
+  "Give me a real-world example",
+  "How might this come up in my interview?"
+];
+function getChat(id){ try{ return JSON.parse(LS.getItem(k.chat(id))||"[]"); }catch(e){ return []; } }
+function saveChat(id,msgs){ LS.setItem(k.chat(id), JSON.stringify(msgs.slice(-40))); }
+function renderChat(){
+  const box=$("#chat"); box.innerHTML="";
+  const msgs=getChat(current.id);
+  if(!msgs.length){
+    const s=el("div","msg sys"); s.textContent="Ask a question to start — tap a suggestion or type below.";
+    box.appendChild(s);
+  }
+  msgs.forEach(m=>{
+    const d=el("div","msg "+(m.role==="user"?"me":"ai"));
+    d.textContent=m.content; box.appendChild(d);
+  });
+  // starter chips (only show before first question)
+  const row=$("#chipRow"); row.innerHTML="";
+  if(!msgs.some(m=>m.role==="user")){
+    STARTERS.forEach(s=>{
+      const c=el("div","chip"); c.textContent=s; c.onclick=()=>{ $("#askInput").value=s; sendAsk(); };
+      row.appendChild(c);
+    });
+  }
+  box.scrollIntoView({block:"end"});
+  $("#chat").lastElementChild && $("#chat").lastElementChild.scrollIntoView({block:"nearest"});
+}
+async function sendAsk(){
+  const q=($("#askInput").value||"").trim();
+  if(!q) return;
+  const key=LS.getItem(k.key)||"";
+  const msgs=getChat(current.id);
+  if(!key){
+    msgs.push({role:"user",content:q});
+    msgs.push({role:"assistant",content:"I need your Anthropic API key to answer. Add it in ⚙ Settings (top-right). Your key stays on this device. Until then, the Read and Talking-points tabs have you covered."});
+    saveChat(current.id,msgs); $("#askInput").value=""; renderChat(); return;
+  }
+  msgs.push({role:"user",content:q});
+  saveChat(current.id,msgs);
+  $("#askInput").value=""; $("#askInput").style.height="auto";
+  renderChat();
+  // typing indicator
+  const box=$("#chat"); const typing=el("div","msg ai"); typing.textContent="…"; box.appendChild(typing);
+  typing.scrollIntoView({block:"nearest"});
+  $("#askSend").disabled=true;
+  const model=LS.getItem(k.model)||"claude-sonnet-4-6";
+  const notes=(LS.getItem(k.notes(current.id))||"").trim();
+  const sys=
+    "You are a sharp, friendly study tutor helping someone prepare for an interview for the role of "+ROLE+". "+
+    "They are reading the piece below and may ask you to explain concepts, define terms, give examples, or connect ideas to their interview. "+
+    "Answer clearly and concisely in plain language. Keep answers short (a few sentences or tight bullets) unless they ask for more. "+
+    "Ground answers in the article context; if something isn't covered by it, use general knowledge but say so briefly. "+
+    "When useful, tie the concept back to the Telco/Media/Entertainment enterprise account-management role.\n\n"+
+    "ARTICLE: "+current.title+" ("+current.source+")\n"+
+    "ARTICLE OVERVIEW:\n"+current.overview+"\n"+
+    (notes? "\nTHEIR NOTES SO FAR:\n"+notes+"\n" : "");
+  // build API message history (exclude the local no-key placeholders are fine; only send role+content)
+  const apiMsgs=getChat(current.id).map(m=>({role:m.role,content:m.content}));
+  try{
+    const res=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",
+      headers:{"content-type":"application/json","x-api-key":key,
+        "anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
+      body:JSON.stringify({model:model,max_tokens:900,system:sys,messages:apiMsgs})
+    });
+    typing.remove();
+    if(!res.ok){
+      const t=await res.text();
+      msgs.push({role:"assistant",content:"⚠️ API error ("+res.status+"). "+t.slice(0,300)+"  Check your key/model in Settings."});
+    }else{
+      const data=await res.json();
+      const txt=(data.content||[]).map(b=>b.text||"").join("").trim()||"(empty response)";
+      msgs.push({role:"assistant",content:txt});
+    }
+  }catch(err){
+    typing.remove();
+    msgs.push({role:"assistant",content:"⚠️ Network error: "+err.message});
+  }
+  saveChat(current.id,msgs);
+  $("#askSend").disabled=false;
+  renderChat();
+}
+$("#askSend").onclick=sendAsk;
+$("#askInput").addEventListener("keydown",e=>{
+  if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); sendAsk(); }
+});
+$("#askInput").addEventListener("input",function(){ this.style.height="auto"; this.style.height=Math.min(this.scrollHeight,120)+"px"; });
+$("#askClear").onclick=()=>{ if(confirm("Clear this article's chat?")){ LS.removeItem(k.chat(current.id)); renderChat(); } };
+
+/* ----------------------------- TABS / NAV ----------------------------- */
+document.querySelectorAll(".tab").forEach(t=>{
+  t.onclick=()=>{
+    document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===t));
+    document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.dataset.panel===t.dataset.tab));
+    if(t.dataset.tab!=="read") stopSpeak();
+  };
+});
+function goHome(){
+  stopSpeak();
+  $("#detail").style.display="none";
+  $("#quiz").style.display="none";
+  $("#home").style.display="block";
+  $("#backBtn").style.display="none";
+  $("#settingsBtn").style.display="flex";
+  $("#title").textContent="Anthropic Prep";
+  current=null;
+  renderHome($("#search").value);
+}
+$("#backBtn").onclick=goHome;
+$("#search").addEventListener("input",e=>renderHome(e.target.value));
+
+/* ----------------------------- SETTINGS ----------------------------- */
+function openSettings(){
+  $("#apiKey").value = LS.getItem(k.key)||"";
+  $("#model").value = LS.getItem(k.model)||"claude-sonnet-4-6";
+  loadVoices();
+  $("#settingsModal").classList.add("show");
+}
+$("#voice").onchange = ()=>{
+  const v=$("#voice").value;
+  if(v) LS.setItem(k.voice,v); else LS.removeItem(k.voice);
+};
+$("#testVoice").onclick = ()=>{
+  if(!("speechSynthesis" in window)) return;
+  const name=$("#voice").value;
+  const vo = name? VOICES.find(v=>v.name===name) : pickVoice();
+  const u=new SpeechSynthesisUtterance("Hi — this is the voice that will read your interview prep notes aloud.");
+  if(vo){ u.voice=vo; u.lang=vo.lang; }
+  speechSynthesis.cancel(); speechSynthesis.speak(u);
+};
+$("#settingsBtn").onclick=openSettings;
+$("#closeSettings").onclick=()=>$("#settingsModal").classList.remove("show");
+$("#settingsModal").onclick=e=>{ if(e.target===$("#settingsModal")) $("#settingsModal").classList.remove("show"); };
+$("#saveSettings").onclick=()=>{
+  const v=$("#apiKey").value.trim();
+  if(v) LS.setItem(k.key,v); else LS.removeItem(k.key);
+  LS.setItem(k.model,$("#model").value);
+  $("#settingsModal").classList.remove("show");
+};
+$("#exportBtn").onclick=()=>{
+  let out="# Anthropic Interview Prep — my notes & highlights\n\n";
+  ARTICLES.forEach(a=>{
+    const n=LS.getItem(k.notes(a.id))||"";
+    const hl=mergeRanges(JSON.parse(LS.getItem(k.hl(a.id))||"[]"));
+    if(!n.trim() && !hl.length) return;
+    const text=readingText(a);
+    out+="## "+a.title+"\n"+a.url+"\n\n";
+    if(hl.length){ out+="Highlights:\n"; hl.forEach(([s,e])=>out+="  • \""+text.slice(s,e).trim()+"\"\n"); out+="\n"; }
+    if(n.trim()) out+="Notes:\n"+n+"\n\n";
+    out+="---\n\n";
+  });
+  const blob=new Blob([out],{type:"text/markdown"});
+  const url=URL.createObjectURL(blob);
+  const aTag=document.createElement("a");
+  aTag.href=url; aTag.download="anthropic-prep-notes.md"; aTag.click();
+  setTimeout(()=>URL.revokeObjectURL(url),2000);
+};
+$("#clearBtn").onclick=()=>{
+  if(confirm("Delete ALL notes, highlights and read marks on this device? This can't be undone.")){
+    Object.keys(LS).filter(x=>x.startsWith("note_")||x.startsWith("hl_")||x.startsWith("read_")).forEach(x=>LS.removeItem(x));
+    $("#settingsModal").classList.remove("show");
+    if(current) openArticle(current.id); else renderHome($("#search").value);
+  }
+};
+
+/* ----------------------------- QUIZ ----------------------------- */
+let quizState=null;
+function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+function openQuiz(){
+  $("#home").style.display="none";
+  $("#detail").style.display="none";
+  $("#quiz").style.display="block";
+  $("#backBtn").style.display="flex";
+  $("#settingsBtn").style.display="none";
+  $("#title").textContent="Quiz me";
+  window.scrollTo(0,0);
+  renderQuizSetup();
+}
+function renderQuizSetup(){
+  const total = ARTICLES.reduce((n,a)=>n+a.quiz.length,0);
+  let h='<div class="qhead">Pick your quiz</div>'+
+    '<p class="qsub">Multiple choice, with instant explanations. '+total+' questions across the reading list.</p>'+
+    '<button class="qscope big" data-scope="all"><span>🎯 All content — mixed quiz</span><span class="cnt">12 Qs</span></button>'+
+    '<div class="section-h" style="margin-top:20px">Or quiz one article</div>';
+  // group by category
+  const cats=[...new Set(ARTICLES.map(a=>a.cat))];
+  cats.forEach(cat=>{
+    const items=ARTICLES.filter(a=>a.cat===cat && a.quiz.length);
+    if(!items.length) return;
+    h+='<div class="cat">'+esc(cat)+'</div>';
+    items.forEach(a=>{
+      h+='<button class="qscope" data-scope="'+a.id+'"><span>'+esc(a.title)+'</span><span class="cnt">'+a.quiz.length+' Q'+(a.quiz.length>1?'s':'')+'</span></button>';
+    });
+  });
+  $("#quizBody").innerHTML=h;
+  document.querySelectorAll("#quizBody .qscope").forEach(b=>{
+    b.onclick=()=>startQuiz(b.dataset.scope);
+  });
+}
+function buildPool(scope){
+  let qs=[];
+  if(scope==="all"){
+    ARTICLES.forEach(a=>a.quiz.forEach(q=>qs.push({...q,art:a.title,id:a.id})));
+    qs=shuffle(qs).slice(0,12);
+  }else{
+    const a=ARTICLES.find(x=>x.id===scope);
+    qs=(a?a.quiz:[]).map(q=>({...q,art:a.title,id:a.id}));
+  }
+  // shuffle option order per question, track correct text
+  return qs.map(q=>{
+    const correctText=q.o[q.a];
+    const opts=shuffle(q.o);
+    return {q:q.q, opts, correct:opts.indexOf(correctText), why:q.why, art:q.art};
+  });
+}
+function startQuiz(scope){
+  const pool=buildPool(scope);
+  if(!pool.length){ renderQuizSetup(); return; }
+  quizState={pool, idx:0, score:0, picks:[]};
+  renderQuestion();
+}
+function renderQuestion(){
+  const s=quizState, item=s.pool[s.idx];
+  let h='<div class="qprog">Question '+(s.idx+1)+' of '+s.pool.length+' · Score '+s.score+'</div>'+
+    '<div class="qprogbar"><i style="width:'+(s.idx/s.pool.length*100)+'%"></i></div>'+
+    '<div class="qsrc">From: '+esc(item.art)+'</div>'+
+    '<div class="qhead" style="font-size:18px; line-height:1.35">'+esc(item.q)+'</div><div style="height:14px"></div>'+
+    '<div id="qopts"></div>'+
+    '<div id="qfeed"></div>';
+  $("#quizBody").innerHTML=h;
+  window.scrollTo(0,0);
+  const box=$("#qopts");
+  item.opts.forEach((opt,i)=>{
+    const b=el("button","qopt"); b.textContent=opt;
+    b.onclick=()=>answer(i);
+    box.appendChild(b);
+  });
+}
+function answer(i){
+  const s=quizState, item=s.pool[s.idx];
+  const btns=document.querySelectorAll("#qopts .qopt");
+  btns.forEach((b,j)=>{
+    b.disabled=true;
+    if(j===item.correct) b.classList.add("correct");
+    if(j===i && i!==item.correct) b.classList.add("wrong");
+  });
+  const right=(i===item.correct);
+  if(right) s.score++;
+  s.picks.push({q:item.q, art:item.art, right, correctText:item.opts[item.correct]});
+  const feed=$("#qfeed");
+  feed.innerHTML='<div class="qwhy"><b>'+(right?'✓ Correct.':'✗ Not quite.')+'</b> '+esc(item.why)+'</div>'+
+    '<button class="qnext" id="qnext">'+(s.idx+1<s.pool.length?'Next →':'See results')+'</button>';
+  $("#qnext").onclick=()=>{
+    s.idx++;
+    if(s.idx<s.pool.length) renderQuestion(); else renderResults();
+  };
+  feed.scrollIntoView({block:"nearest"});
+}
+function renderResults(){
+  const s=quizState, pct=Math.round(s.score/s.pool.length*100);
+  let msg = pct>=80?"Strong — you know this cold. 🎉" : pct>=60?"Solid. A couple to firm up." : "Good start — review the misses and retry.";
+  let h='<div class="qhead" style="text-align:center">Results</div>'+
+    '<div class="qscore">'+s.score+'/'+s.pool.length+'</div>'+
+    '<div class="qscoresub">'+pct+'% · '+msg+'</div>';
+  const wrong=s.picks.filter(p=>!p.right);
+  if(wrong.length){
+    h+='<div class="section-h">Review these</div>';
+    wrong.forEach(p=>{
+      h+='<div class="qreview"><div class="qq">'+esc(p.q)+'</div>'+
+         '<div><span class="ok">Answer:</span> '+esc(p.correctText)+'</div>'+
+         '<div class="qsrc" style="margin:6px 0 0">'+esc(p.art)+'</div></div>';
+    });
+  }else{
+    h+='<div class="qreview" style="text-align:center">Perfect score — nothing to review. 💪</div>';
+  }
+  h+='<button class="qnext" id="qretry" style="margin-top:16px">Try another quiz</button>';
+  $("#quizBody").innerHTML=h;
+  window.scrollTo(0,0);
+  $("#qretry").onclick=renderQuizSetup;
+}
+$("#quizLaunch").onclick=openQuiz;
+
+/* ----------------------------- INIT ----------------------------- */
+renderHome("");
+</script>
+</body>
+</html>
