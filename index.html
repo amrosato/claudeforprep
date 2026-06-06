@@ -306,11 +306,17 @@
 
     <button class="btn primary" id="saveSettings">Save</button>
 
-    <div class="section-h">Your data</div>
-    <div class="row2">
-      <button class="btn" id="exportBtn">Export notes</button>
-      <button class="btn danger" id="clearBtn">Clear all data</button>
+    <div class="section-h">Export my prep</div>
+    <p class="small" style="margin:0 0 8px">Bundles every article's notes, highlights and AI coach summaries into one document.</p>
+    <button class="btn primary" id="emailBtn">📧 Email / share all my prep</button>
+    <div class="row2" style="margin-top:8px">
+      <button class="btn" id="copyBtn">Copy all</button>
+      <button class="btn" id="exportBtn">Download (.md)</button>
     </div>
+    <div class="savestate" id="exportState" style="text-align:center"></div>
+
+    <div class="section-h">Danger zone</div>
+    <button class="btn danger" id="clearBtn">Clear all data</button>
     <button class="btn" id="closeSettings" style="margin-top:14px">Close</button>
     <p class="small" style="margin-top:14px">Tip: in Safari/Chrome on your phone, use “Add to Home Screen” to open this like an app.</p>
   </div>
@@ -826,6 +832,7 @@ const k = {
   hl:   id => "hl_"+id,
   read: id => "read_"+id,
   chat: id => "chat_"+id,
+  coach: id => "coach_"+id,
   key: "anthropic_api_key",
   model: "anthropic_model",
   voice: "tts_voice"
@@ -845,7 +852,8 @@ function readingText(a){
 }
 function hasActivity(id){
   return (LS.getItem(k.notes(id))||"").trim().length>0 ||
-         JSON.parse(LS.getItem(k.hl(id))||"[]").length>0;
+         JSON.parse(LS.getItem(k.hl(id))||"[]").length>0 ||
+         (LS.getItem(k.coach(id))||"").length>0;
 }
 
 /* ----------------------------- HOME ----------------------------- */
@@ -928,7 +936,7 @@ function openArticle(id){
   // notes
   $("#notes").value = LS.getItem(k.notes(id))||"";
   $("#saveState").textContent = $("#notes").value.trim()? "Saved" : "";
-  $("#aiOut").classList.remove("show"); $("#aiOut").textContent=""; $("#aiNote").innerHTML="";
+  renderCoach();
   stopSpeak();
 }
 
@@ -1096,6 +1104,21 @@ $("#notes").addEventListener("input",()=>{
 });
 
 /* ----------------------------- AI COACH ----------------------------- */
+function renderCoach(){
+  const out=$("#aiOut"), note=$("#aiNote"), btn=$("#aiBtn");
+  let saved=null;
+  try{ saved=JSON.parse(LS.getItem(k.coach(current.id))||"null"); }catch(e){}
+  if(saved && saved.text){
+    out.classList.add("show"); out.textContent=saved.text;
+    const d=new Date(saved.ts);
+    note.innerHTML="Saved "+d.toLocaleDateString()+" "+d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})+" · "+saved.model+" &nbsp; <a id=\"coachClear\">Clear</a>";
+    $("#coachClear").onclick=()=>{ LS.removeItem(k.coach(current.id)); renderCoach(); updateProgress(); };
+    btn.textContent="🔄 Regenerate summary";
+  }else{
+    out.classList.remove("show"); out.textContent=""; note.innerHTML="";
+    btn.textContent="✨ Summarise & coach me";
+  }
+}
 $("#aiBtn").onclick = async ()=>{
   const key = LS.getItem(k.key)||"";
   const notes = ($("#notes").value||"").trim();
@@ -1146,8 +1169,13 @@ $("#aiBtn").onclick = async ()=>{
     }
     const data = await res.json();
     const txt = (data.content||[]).map(b=>b.text||"").join("").trim();
-    out.textContent = txt || "(empty response)";
-    note.textContent = "Generated with "+model;
+    if(txt){
+      LS.setItem(k.coach(current.id), JSON.stringify({text:txt, model:model, ts:Date.now()}));
+      renderCoach();
+      updateProgress();
+    }else{
+      out.textContent="(empty response)";
+    }
   }catch(err){
     out.textContent="Network error: "+err.message+"\n\n(If this keeps happening, your browser may be blocking the direct API call.)";
   }
@@ -1297,27 +1325,79 @@ $("#saveSettings").onclick=()=>{
   LS.setItem(k.model,$("#model").value);
   $("#settingsModal").classList.remove("show");
 };
-$("#exportBtn").onclick=()=>{
-  let out="# Anthropic Interview Prep — my notes & highlights\n\n";
-  ARTICLES.forEach(a=>{
-    const n=LS.getItem(k.notes(a.id))||"";
-    const hl=mergeRanges(JSON.parse(LS.getItem(k.hl(a.id))||"[]"));
-    if(!n.trim() && !hl.length) return;
-    const text=readingText(a);
-    out+="## "+a.title+"\n"+a.url+"\n\n";
-    if(hl.length){ out+="Highlights:\n"; hl.forEach(([s,e])=>out+="  • \""+text.slice(s,e).trim()+"\"\n"); out+="\n"; }
-    if(n.trim()) out+="Notes:\n"+n+"\n\n";
-    out+="---\n\n";
+function buildExport(){
+  const today=new Date().toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
+  let out="ANTHROPIC INTERVIEW PREP — MY NOTES\n";
+  out+="Role: Account Manager, Telco/Media/Entertainment enterprise\n";
+  out+="Exported: "+today+"\n";
+  out+="==================================================\n\n";
+  let any=false;
+  const cats=[...new Set(ARTICLES.map(a=>a.cat))];
+  cats.forEach(cat=>{
+    const items=ARTICLES.filter(a=>a.cat===cat).filter(a=>{
+      const n=(LS.getItem(k.notes(a.id))||"").trim();
+      const hl=JSON.parse(LS.getItem(k.hl(a.id))||"[]").length;
+      let coach=null; try{ coach=JSON.parse(LS.getItem(k.coach(a.id))||"null"); }catch(e){}
+      return n||hl||(coach&&coach.text);
+    });
+    if(!items.length) return;
+    out+="\n### "+cat.toUpperCase()+" ###\n\n";
+    items.forEach(a=>{
+      any=true;
+      const n=(LS.getItem(k.notes(a.id))||"").trim();
+      const hl=mergeRanges(JSON.parse(LS.getItem(k.hl(a.id))||"[]"));
+      let coach=null; try{ coach=JSON.parse(LS.getItem(k.coach(a.id))||"null"); }catch(e){}
+      const text=readingText(a);
+      out+="• "+a.title+"\n  "+a.url+"\n";
+      if(hl.length){ out+="\n  HIGHLIGHTS:\n"; hl.forEach(([s,e])=>out+="   - \""+text.slice(s,e).trim()+"\"\n"); }
+      if(n){ out+="\n  MY NOTES:\n"+n.split("\n").map(l=>"   "+l).join("\n")+"\n"; }
+      if(coach&&coach.text){ out+="\n  AI COACH SUMMARY:\n"+coach.text.split("\n").map(l=>"   "+l).join("\n")+"\n"; }
+      out+="\n--------------------------------------------------\n\n";
+    });
   });
-  const blob=new Blob([out],{type:"text/markdown"});
+  if(!any) out+="(No notes, highlights or AI summaries saved yet.)\n";
+  return out;
+}
+function flash(msg){ const s=$("#exportState"); s.textContent=msg; setTimeout(()=>{ if(s.textContent===msg) s.textContent=""; },2500); }
+
+$("#emailBtn").onclick=async ()=>{
+  const body=buildExport();
+  const subject="My Anthropic interview prep notes";
+  // Best path on iPhone: native share sheet (includes Mail) — handles long text well.
+  if(navigator.share){
+    try{ await navigator.share({title:subject, text:body}); flash("Shared ✓"); return; }
+    catch(e){ if(e && e.name==="AbortError"){ return; } /* fall through */ }
+  }
+  // Fallback: open Mail via mailto (may truncate very long bodies).
+  const mailto="mailto:?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+  if(mailto.length>14000){
+    try{ await navigator.clipboard.writeText(body); flash("Too long to auto-email — copied to clipboard. Paste into a new email."); }
+    catch(e){ flash("Use 'Copy all', then paste into an email."); }
+    return;
+  }
+  window.location.href=mailto;
+};
+$("#copyBtn").onclick=async ()=>{
+  const body=buildExport();
+  try{ await navigator.clipboard.writeText(body); flash("Copied to clipboard ✓"); }
+  catch(e){
+    // fallback: temporary textarea
+    const ta=document.createElement("textarea"); ta.value=body; document.body.appendChild(ta);
+    ta.select(); try{ document.execCommand("copy"); flash("Copied ✓"); }catch(_){ flash("Couldn't copy — use Download."); }
+    ta.remove();
+  }
+};
+$("#exportBtn").onclick=()=>{
+  const blob=new Blob([buildExport()],{type:"text/plain"});
   const url=URL.createObjectURL(blob);
   const aTag=document.createElement("a");
-  aTag.href=url; aTag.download="anthropic-prep-notes.md"; aTag.click();
+  aTag.href=url; aTag.download="anthropic-prep-notes.txt"; aTag.click();
   setTimeout(()=>URL.revokeObjectURL(url),2000);
+  flash("Downloaded ✓");
 };
 $("#clearBtn").onclick=()=>{
-  if(confirm("Delete ALL notes, highlights and read marks on this device? This can't be undone.")){
-    Object.keys(LS).filter(x=>x.startsWith("note_")||x.startsWith("hl_")||x.startsWith("read_")).forEach(x=>LS.removeItem(x));
+  if(confirm("Delete ALL notes, highlights, AI summaries, chats and read marks on this device? This can't be undone.")){
+    Object.keys(LS).filter(x=>/^(note_|hl_|read_|chat_|coach_)/.test(x)).forEach(x=>LS.removeItem(x));
     $("#settingsModal").classList.remove("show");
     if(current) openArticle(current.id); else renderHome($("#search").value);
   }
