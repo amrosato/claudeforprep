@@ -163,6 +163,10 @@
   .quizlaunch{width:100%; margin-top:14px; background:linear-gradient(90deg,var(--accent),var(--accent2));
     color:#fff; border:none; border-radius:12px; padding:14px; font-size:16px; font-weight:700; cursor:pointer}
   .quizlaunch:active{opacity:.9}
+  .cheatlink{display:block; width:100%; margin-top:10px; text-align:center; text-decoration:none;
+    background:var(--card); border:1px solid var(--line); color:var(--text); border-radius:12px;
+    padding:13px; font-size:15px; font-weight:600}
+  .cheatlink:active{background:var(--card2)}
   .qhead{font-size:20px; font-weight:700; margin:8px 0 4px}
   .qsub{color:var(--muted); font-size:13.5px; margin:0 0 16px}
   .qopt{width:100%; text-align:left; background:var(--card); border:1px solid var(--line); color:var(--text);
@@ -210,6 +214,7 @@
       <div class="progtxt" id="progText"></div>
     </div>
     <button id="quizLaunch" class="quizlaunch">🧠 Quiz me</button>
+    <a class="cheatlink" href="recruiter-cheat-sheet.html">📋 Recruiter screen cheat sheet&nbsp;›</a>
     <input class="search" id="search" placeholder="Search readings…" autocomplete="off">
     <div id="list"></div>
     <div class="footer">
@@ -325,7 +330,7 @@
 
 <script>
 /* ----------------------------- CONTENT ----------------------------- */
-const APP_VERSION = "2026.06.06";
+const APP_VERSION = "2026.06.15";
 const ROLE = "Account Manager for Telco, Media & Entertainment (TME) enterprise customers at Anthropic";
 
 const ARTICLES = [
