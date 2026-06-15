@@ -330,7 +330,7 @@
 
 <script>
 /* ----------------------------- CONTENT ----------------------------- */
-const APP_VERSION = "2026.06.15";
+const APP_VERSION = "2026.06.15.2";
 const ROLE = "Account Manager for Telco, Media & Entertainment (TME) enterprise customers at Anthropic";
 
 const ARTICLES = [
@@ -735,20 +735,21 @@ const ARTICLES = [
 },
 {
  id:"yt-unknown", cat:"Interviews & Talks", type:"Video", source:"YouTube", mins:30,
- title:"Anthropic talk / interview (confirm title)",
+ title:"Interpretability — the 'Biology of AI'",
  url:"https://www.youtube.com/watch?v=TxhhMTOTMDg",
  overview:
-"A YouTube talk/interview on the reading list that I couldn't auto-identify by title — likely a Dario or Anthropic leadership conversation. Open the link, confirm what it is, and update this note.\n\n"+
-"When you watch, capture: who's speaking, the headline argument, and one quotable idea you could reference. Then add it to your notes so the AI coach can fold it into your prep.",
+"Anthropic's interpretability work — understanding these models from the inside out: how they work and why they do what they do, almost like studying the biology of a new organism. The framing is that a neural network is grown rather than written: it develops over training into many tightly-bound layers, and the research is about prising those open to see the 'circuits' and features inside.\n\n"+
+"Why it matters: interpretability lets Anthropic tell whether a model reached an answer because it genuinely 'knew' it or because it took a shortcut/cheated — and then develop techniques to steer models toward more honest, reliable outputs. In effect, we start to learn what the model's 'thinking' actually is.",
  points:[
-  "Unidentified from the URL — confirm the title/speaker when you open it.",
-  "Likely Anthropic leadership (Dario) content given the list's theme.",
-  "Capture speaker, main argument, and one quotable line.",
-  "Update this entry's note once you've watched."
+  "Interpretability = understanding a model from the inside (the 'biology of AI').",
+  "Models are grown, not written — the work is mapping the internal 'circuits'.",
+  "Lets you see whether the model truly reasoned or just got lucky / cheated.",
+  "Enables steering models toward more honest, reliable, performant outputs."
  ],
  talk:[
-  "Once identified, slot it next to the Dwarkesh/NYT items as more evidence of how Anthropic's leaders reason.",
-  "Have one specific takeaway ready — interviewers value a precise reference over 'I watched some videos.'"
+  "Trust as a sales asset: for a TME customer in a regulated, brand-sensitive environment, 'we can actually see inside how Claude reasons' beats 'our benchmarks are good.' It moves the conversation from performance to reliability.",
+  "Strong rebuttal to the black-box objection — Anthropic can verify a model is reasoning correctly, not pattern-matching to a lucky answer.",
+  "Long-term partnership framing: a model Anthropic understands better every day signals durable, improvable tech, not a static API."
  ]
 }
 ];
@@ -832,6 +833,55 @@ const QUIZ = {
 };
 ARTICLES.forEach(a=>{ a.quiz = QUIZ[a.id] || []; });
 
+/* ----------------------------- GROUPING ----------------------------- */
+/* Regroup the readings into themed buckets, colour-coded on the home screen. */
+const CAT_BY_ID = {
+  modernloop:            "Start here",
+  mlg:                   "Dario's papers & talks",
+  adolescence:           "Dario's papers & talks",
+  "dario-lead":          "Dario's papers & talks",
+  nyt:                   "Dario's papers & talks",
+  dwarkesh:              "Dario's papers & talks",
+  "daniela-humanities":  "Daniela's material",
+  "do-more":             "Daniela's material",
+  "daniela-cv":          "Daniela's material",
+  rsp:                   "How they govern themselves",
+  institute:             "Research they do",
+  kaplan:                "Research they do",
+  "yt-unknown":          "Research they do",
+  yegge:                 "Culture & founders",
+  siblings:              "Culture & founders",
+  enterprise:            "Case studies",
+  williams:              "Case studies",
+  glasswing:             "Case studies",
+  mars:                  "Case studies"
+};
+ARTICLES.forEach(a=>{ if(CAT_BY_ID[a.id]) a.cat = CAT_BY_ID[a.id]; });
+
+const CATEGORY_ORDER = [
+  "Start here",
+  "Dario's papers & talks",
+  "Daniela's material",
+  "How they govern themselves",
+  "Research they do",
+  "Culture & founders",
+  "Case studies"
+];
+const CAT_COLOR = {
+  "Start here":                  "#9c958a",
+  "Dario's papers & talks":      "#d97757",
+  "Daniela's material":          "#c08adb",
+  "How they govern themselves":  "#6c9fd6",
+  "Research they do":            "#7fae6f",
+  "Culture & founders":          "#5bb8b0",
+  "Case studies":                "#d9b25a"
+};
+function orderedCats(){
+  const present = [...new Set(ARTICLES.map(a=>a.cat))];
+  return CATEGORY_ORDER.filter(c=>present.includes(c))
+    .concat(present.filter(c=>!CATEGORY_ORDER.includes(c)));
+}
+
 /* ----------------------------- STATE ----------------------------- */
 const LS = window.localStorage;
 const k = {
@@ -866,17 +916,19 @@ function hasActivity(id){
 /* ----------------------------- HOME ----------------------------- */
 function renderHome(filter){
   const list = $("#list"); list.innerHTML="";
-  const cats = [...new Set(ARTICLES.map(a=>a.cat))];
+  const cats = orderedCats();
   const q = (filter||"").toLowerCase().trim();
   let shown=0;
   cats.forEach(cat=>{
     const items = ARTICLES.filter(a=>a.cat===cat &&
       (!q || (a.title+a.source+a.overview).toLowerCase().includes(q)));
     if(!items.length) return;
-    const h = el("div","cat"); h.textContent=cat; list.appendChild(h);
+    const color = CAT_COLOR[cat] || "var(--muted)";
+    const h = el("div","cat"); h.textContent=cat; h.style.color=color; list.appendChild(h);
     items.forEach(a=>{
       shown++;
       const c = el("div","card"); c.onclick=()=>openArticle(a.id);
+      c.style.borderLeft="3px solid "+color;
       const noted = (LS.getItem(k.notes(a.id))||"").trim().length>0;
       const hled = JSON.parse(LS.getItem(k.hl(a.id))||"[]").length>0;
       const done = LS.getItem(k.read(a.id))==="1";
@@ -1339,7 +1391,7 @@ function buildExport(){
   out+="Exported: "+today+"\n";
   out+="==================================================\n\n";
   let any=false;
-  const cats=[...new Set(ARTICLES.map(a=>a.cat))];
+  const cats=orderedCats();
   cats.forEach(cat=>{
     const items=ARTICLES.filter(a=>a.cat===cat).filter(a=>{
       const n=(LS.getItem(k.notes(a.id))||"").trim();
@@ -1431,7 +1483,7 @@ function renderQuizSetup(){
     '<button class="qscope big" data-scope="all"><span>🎯 All content — mixed quiz</span><span class="cnt">12 Qs</span></button>'+
     '<div class="section-h" style="margin-top:20px">Or quiz one article</div>';
   // group by category
-  const cats=[...new Set(ARTICLES.map(a=>a.cat))];
+  const cats=orderedCats();
   cats.forEach(cat=>{
     const items=ARTICLES.filter(a=>a.cat===cat && a.quiz.length);
     if(!items.length) return;
