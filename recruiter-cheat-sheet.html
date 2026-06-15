@@ -373,6 +373,17 @@
   }
   @media (max-width: 1100px) { .research-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 640px) { .research-grid { grid-template-columns: 1fr; } }
+  .rc-group {
+    grid-column: 1 / -1;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 12px 0 0;
+    padding-bottom: 4px;
+    border-bottom: 2px solid currentColor;
+  }
+  .rc-group:first-child { margin-top: 0; }
   .research-card {
     background: #faf5ff;
     border: 1px solid #e1bee7;
@@ -497,35 +508,6 @@
     <div class="section grey">
       <h2>All Question Answers — click to expand</h2>
       <div class="accordion-intro">Every answer is the full spoken version — read it out verbatim if you need to. Q3, Q6, Q13, Q14 are open by default (most likely to come up).</div>
-
-      <!-- Q3 NBCU - HERO, open by default, with characteristics -->
-      <details class="hero" open>
-        <summary>
-          <div class="summary-content">
-            <div class="summary-top">
-              <span class="q-tag">Q3</span>
-              <span class="q-anchor">STARI</span>
-              <span class="q-title-text">NBCU Olympics — Al Michaels voice clone</span>
-            </div>
-            <div class="q-chars">
-              <span class="char-tag">Commercial creativity</span>
-              <span class="char-tag">Ethical bar</span>
-              <span class="char-tag">Program leadership</span>
-              <span class="char-tag">Exec escalation</span>
-              <span class="char-tag">Public referenceability</span>
-              <span class="char-tag">Values alignment</span>
-            </div>
-          </div>
-        </summary>
-        <div class="detail-body">
-          <p class="target">Target: 130 sec. Most distinctive Microsoft win. STARI structure.</p>
-          <p><strong class="beat">S — Situation</strong>: "My most distinctive Microsoft win was the NBCU Olympics voice-clone deal during the Paris 2024 Games. NBCU was a transactional Microsoft account from an AI specialist perspective. Google was their main cloud for the Olympics app build — so we weren't even in that conversation at the start.</p>
-          <p><strong class="beat">T — Task</strong>: Rather than chase a platform win against the incumbent, I wanted to find AI opportunities Google wasn't positioned for.</p>
-          <p><strong class="beat">A — Action</strong>: On an on-site meeting in New York, I asked about their Olympics build. They wanted a unique experience inside the Peacock app. I pitched Microsoft's voice-cloning capability — at the time still in preview, with a strict ethical bar: the celebrity had to be alive, willing to record personal consent, and sign paperwork. I pitched it in the meeting. Followed up fast with a demo using one of our product engineer's voices, ran a technical session with their team, and NBCU committed. The Olympics timeline was unforgiving, so I hired a delivery partner and led the program end-to-end — weekly steering, scope management, stakeholder alignment across technical, legal, and financial workstreams. Al Michaels' consent process needed real care given his profile.</p>
-          <p><strong class="beat">R — Result</strong>: The project was escalated to Satya Nadella's desk. Immediate revenue was modest — voice cloning was a small product line at the time — but it became a category-defining PR moment. Satya signed off a multi-million-dollar PR commitment for "Powered by Copilot" branding across the Olympics experience and the press around it. Publicly referenceable — NBC News announced it in June 2024.</p>
-          <p><strong class="beat">I — Impact beyond</strong>: It taught me how to find AI opportunities in accounts where the incumbent cloud assumed they'd already won. The ethical-consent template became the way I positioned Microsoft AI across the rest of my M&amp;E tenure. And honestly — the values alignment of that consent process is exactly the kind of work I want to do more of. The current parallel at Google is the Hollywood post-prod deal I'm driving — same instinct, same ethical rigor — closing this quarter with a bespoke commercial structure, and our models will be credited on edited scenes in a feature film hitting cinemas this August. <strong>That work is happening right now.</strong>"</p>
-        </div>
-      </details>
 
       <!-- Q6 HOLLYWOOD - HERO, open by default, with characteristics -->
       <details class="hero" open>
@@ -925,8 +907,102 @@
 <!-- ========================== RESEARCH SECTION ========================== -->
 <div class="research-section">
   <h2>What I Read / Watched / Listened To — quick reference</h2>
-  <div class="research-intro">All 15 sources Anthropic shared. ⭐ = highest priority for the recruiter screen specifically. Click any card to see the M&amp;E linkage.</div>
+  <div class="research-intro">All 16 sources, organised into the same groups as your prep app. ⭐ = highest priority for the recruiter screen specifically. Click any card to see the M&amp;E linkage.</div>
   <div class="research-grid">
+
+    <div class="rc-group" style="color:#c0562f">Dario's papers &amp; talks</div>
+
+    <details class="research-card">
+      <summary>
+        <div class="rc-head"><span class="media-icon">📖</span><span class="rc-title">Machines of Loving Grace</span></div>
+        <span class="rc-take">"Dario honest about caveats — upside only materialises if we choose distribution carefully"</span>
+      </summary>
+      <div class="rc-body">
+        <div class="rc-section"><span class="rc-label">Key point</span>Dario's optimistic essay with disciplined caveats. AI's benefits depend on deliberate choices about who gets access. The anti-ageing concentration risk lives here.</div>
+        <div class="rc-section"><span class="rc-label">M&amp;E link</span>Responsible AI as differentiator, not constraint, for public-trust-sensitive customers. Telcos are infrastructure for underserved populations — access equity is commercial. Healthy skepticism of hype useful to cautious buyers.</div>
+      </div>
+    </details>
+
+    <details class="research-card">
+      <summary>
+        <div class="rc-head"><span class="media-icon">📖</span><span class="rc-title">Adolescence of Technology</span></div>
+        <span class="rc-take">"AI breaks the historical link between capability and harm — which is why partner choice matters"</span>
+      </summary>
+      <div class="rc-body">
+        <div class="rc-section"><span class="rc-label">Key point</span>Dario argues AI changes the historical pattern where only highly skilled people could cause large-scale damage. Constitutional AI is the alignment approach — values baked in at training, not a rule list.</div>
+        <div class="rc-section"><span class="rc-label">M&amp;E link</span>"Capability-vs-harm decoupling" framing for mature procurement conversations. Economic displacement hits cognitive work broadly (media + telco are knowledge-heavy). Constitutional AI = the answer to enterprise safety questions.</div>
+      </div>
+    </details>
+
+    <details class="research-card priority">
+      <summary>
+        <div class="rc-head"><span class="media-icon">📖</span><span class="rc-title">Policy on the AI Exponential (NEW)</span><span class="priority-star">⭐</span></div>
+        <span class="rc-take">"Regulate frontier AI like aviation — independent certification before deployment. The most current proof Anthropic shapes the rules, not dodges them."</span>
+      </summary>
+      <div class="rc-body">
+        <div class="rc-section"><span class="rc-label">Key point</span>June 2026 essay: AI moves exponentially while policy crawls, so laws risk being outdated on arrival. Dario wants independent third-party testing of frontier models before deployment (an FAA/FDA model), government power to block unacceptably risky releases (narrowly scoped, with safeguards against political abuse), plus funded proposals on frontier-model testing and job displacement. A deliberate shift beyond transparency-only.</div>
+        <div class="rc-section"><span class="rc-label">If policy / regulation comes up</span>"Dario's most recent essay argues frontier models should be independently certified before deployment — like an aircraft before it flies. It's exactly why a regulated TME buyer can trust Anthropic: they're helping write the rules — backing SB 53, RAISE and SB 315 — and funding a job-displacement framework. The recent Fable 5 export restriction shows those deployment-control powers are already live."</div>
+      </div>
+    </details>
+
+    <details class="research-card">
+      <summary>
+        <div class="rc-head"><span class="media-icon">📖</span><span class="rc-title">Dario's leadership style (Fortune)</span></div>
+        <span class="rc-take">"Clarity is a competitive advantage — would rather flag a roadmap gap than win short-term"</span>
+      </summary>
+      <div class="rc-body">
+        <div class="rc-section"><span class="rc-label">Key point</span>Dario as communicator-in-chief, aligning company around a vision through calibrated honesty. Customer relationships built on trust, not transactional filings.</div>
+        <div class="rc-section"><span class="rc-label">M&amp;E link</span>TME buyers are sophisticated and have been burned by vendor overpromise. Flagging roadmap gaps before close builds trust that survives bumpy implementation. POC clarity (paid vs unpaid, preview vs GA) protects credibility.</div>
+      </div>
+    </details>
+
+    <details class="research-card">
+      <summary>
+        <div class="rc-head"><span class="media-icon">🎧</span><span class="rc-title">Dario on Dwarkesh (2nd)</span></div>
+        <span class="rc-take">"Change management is the real bottleneck — AM is the translator"</span>
+      </summary>
+      <div class="rc-body">
+        <div class="rc-section"><span class="rc-label">Key point</span>Dario on how Claude Code should let enterprises move at startup pace, but realistically must clear security, legal, compliance first. RL expanding to broader task domains. DVQ culture (Dario Vision Quest every 2 weeks).</div>
+        <div class="rc-section"><span class="rc-label">M&amp;E link</span>Enterprise adoption friction is expected and real. Productivity gains require evidence-building — use Anthropic itself as proof. RL expanding tasks = broader TME use cases (network ops, content metadata, customer care automation).</div>
+      </div>
+    </details>
+
+    <div class="rc-group" style="color:#a85fc8">Daniela's material</div>
+
+    <details class="research-card">
+      <summary>
+        <div class="rc-head"><span class="media-icon">📖</span><span class="rc-title">Daniela on humanities + soft skills</span></div>
+        <span class="rc-take">"Empathy and communication are differentiators — soft skills are AI-era moats"</span>
+      </summary>
+      <div class="rc-body">
+        <div class="rc-section"><span class="rc-label">Key point</span>Daniela's argument that humanities backgrounds and soft skills aren't a weakness in AI hiring — they're the differentiator. Master's in Applied AI as a bridge, not a developer pivot.</div>
+        <div class="rc-section"><span class="rc-label">M&amp;E link</span>Validates the humanities + commercial + tech-depth profile you actually have. Soft skills in AI = senior, not junior. Lucy Arbotrose coaching = growth-mindset proof point.</div>
+      </div>
+    </details>
+
+    <details class="research-card">
+      <summary>
+        <div class="rc-head"><span class="media-icon">📖</span><span class="rc-title">Daniela 'do more with less' (CNBC)</span></div>
+        <span class="rc-take">"Anthropic lives the value prop — efficiency is the operating principle"</span>
+      </summary>
+      <div class="rc-body">
+        <div class="rc-section"><span class="rc-label">Key point</span>Anthropic's lean operational style — careful spending despite scale. Dario's note that predicting spend wrong can bankrupt the company. Everything done with care.</div>
+        <div class="rc-section"><span class="rc-label">M&amp;E link</span>Efficiency as sales proof point — Anthropic uses what it sells. Cost/value objection handling for ruthless TCO buyers (telcos especially). IPO trajectory awareness shows commercial maturity for multi-year deals.</div>
+      </div>
+    </details>
+
+    <details class="research-card">
+      <summary>
+        <div class="rc-head"><span class="media-icon">📺</span><span class="rc-title">Daniela on Cerebral Valley × Sequoia</span></div>
+        <span class="rc-take">"Helpful, honest, harmless, with humour — how I'd want customers to describe me too"</span>
+      </summary>
+      <div class="rc-body">
+        <div class="rc-section"><span class="rc-label">Key point</span>Daniela on Anthropic's mission, coaching focus, "simple things that work effectively" principle. Constitutional AI as the path to helpful + honest + harmless + humour.</div>
+        <div class="rc-section"><span class="rc-label">M&amp;E link</span>"Do simple things that work effectively" is enterprise AM gold. TME wants clarity, reliability, simplification — not complexity. Trust journey (fear → trust → adoption) is exactly the account-narrative arc you've run before.</div>
+      </div>
+    </details>
+
+    <div class="rc-group" style="color:#5a8fc8">How they govern themselves</div>
 
     <details class="research-card">
       <summary>
@@ -938,6 +1014,8 @@
         <div class="rc-section"><span class="rc-label">M&amp;E link</span>Risk-clearance accelerator for telcos and broadcasters with security, legal, brand-risk teams. Concrete artefact procurement can actually review (not soft reassurance). ASL-3 deployment safeguards = direct answer to "what stops this embarrassing us?"</div>
       </div>
     </details>
+
+    <div class="rc-group" style="color:#4f8a3f">Research they do</div>
 
     <details class="research-card priority">
       <summary>
@@ -963,47 +1041,16 @@
 
     <details class="research-card">
       <summary>
-        <div class="rc-head"><span class="media-icon">📖</span><span class="rc-title">Machines of Loving Grace</span></div>
-        <span class="rc-take">"Dario honest about caveats — upside only materialises if we choose distribution carefully"</span>
+        <div class="rc-head"><span class="media-icon">📺</span><span class="rc-title">Interpretability — "Biology of AI"</span></div>
+        <span class="rc-take">"We can actually see inside how the model reasons"</span>
       </summary>
       <div class="rc-body">
-        <div class="rc-section"><span class="rc-label">Key point</span>Dario's optimistic essay with disciplined caveats. AI's benefits depend on deliberate choices about who gets access. The anti-ageing concentration risk lives here.</div>
-        <div class="rc-section"><span class="rc-label">M&amp;E link</span>Responsible AI as differentiator, not constraint, for public-trust-sensitive customers. Telcos are infrastructure for underserved populations — access equity is commercial. Healthy skepticism of hype useful to cautious buyers.</div>
+        <div class="rc-section"><span class="rc-label">Key point</span>Interpretability research = understanding AI models from the inside out. Circuits, reasoning, whether the model got the answer correctly or "cheated." Like growing a neural network as a new organism.</div>
+        <div class="rc-section"><span class="rc-label">M&amp;E link</span>Trust as sales asset — enterprises worry about black-box AI in regulated environments. Reliability for production use cases (network ops, content moderation, customer experience). Long-term partnership narrative — "growing organism we understand better every day."</div>
       </div>
     </details>
 
-    <details class="research-card">
-      <summary>
-        <div class="rc-head"><span class="media-icon">📖</span><span class="rc-title">Adolescence of Technology</span></div>
-        <span class="rc-take">"AI breaks the historical link between capability and harm — which is why partner choice matters"</span>
-      </summary>
-      <div class="rc-body">
-        <div class="rc-section"><span class="rc-label">Key point</span>Dario argues AI changes the historical pattern where only highly skilled people could cause large-scale damage. Constitutional AI is the alignment approach — values baked in at training, not a rule list.</div>
-        <div class="rc-section"><span class="rc-label">M&amp;E link</span>"Capability-vs-harm decoupling" framing for mature procurement conversations. Economic displacement hits cognitive work broadly (media + telco are knowledge-heavy). Constitutional AI = the answer to enterprise safety questions.</div>
-      </div>
-    </details>
-
-    <details class="research-card">
-      <summary>
-        <div class="rc-head"><span class="media-icon">📖</span><span class="rc-title">Dario's leadership style (Fortune)</span></div>
-        <span class="rc-take">"Clarity is a competitive advantage — would rather flag a roadmap gap than win short-term"</span>
-      </summary>
-      <div class="rc-body">
-        <div class="rc-section"><span class="rc-label">Key point</span>Dario as communicator-in-chief, aligning company around a vision through calibrated honesty. Customer relationships built on trust, not transactional filings.</div>
-        <div class="rc-section"><span class="rc-label">M&amp;E link</span>TME buyers are sophisticated and have been burned by vendor overpromise. Flagging roadmap gaps before close builds trust that survives bumpy implementation. POC clarity (paid vs unpaid, preview vs GA) protects credibility.</div>
-      </div>
-    </details>
-
-    <details class="research-card">
-      <summary>
-        <div class="rc-head"><span class="media-icon">📖</span><span class="rc-title">Daniela on humanities + soft skills</span></div>
-        <span class="rc-take">"Empathy and communication are differentiators — soft skills are AI-era moats"</span>
-      </summary>
-      <div class="rc-body">
-        <div class="rc-section"><span class="rc-label">Key point</span>Daniela's argument that humanities backgrounds and soft skills aren't a weakness in AI hiring — they're the differentiator. Master's in Applied AI as a bridge, not a developer pivot.</div>
-        <div class="rc-section"><span class="rc-label">M&amp;E link</span>Validates the humanities + commercial + tech-depth profile you actually have. Soft skills in AI = senior, not junior. Lucy Arbotrose coaching = growth-mindset proof point.</div>
-      </div>
-    </details>
+    <div class="rc-group" style="color:#3f9b93">Culture &amp; founders</div>
 
     <details class="research-card priority">
       <summary>
@@ -1016,16 +1063,7 @@
       </div>
     </details>
 
-    <details class="research-card">
-      <summary>
-        <div class="rc-head"><span class="media-icon">📖</span><span class="rc-title">Daniela 'do more with less' (CNBC)</span></div>
-        <span class="rc-take">"Anthropic lives the value prop — efficiency is the operating principle"</span>
-      </summary>
-      <div class="rc-body">
-        <div class="rc-section"><span class="rc-label">Key point</span>Anthropic's lean operational style — careful spending despite scale. Dario's note that predicting spend wrong can bankrupt the company. Everything done with care.</div>
-        <div class="rc-section"><span class="rc-label">M&amp;E link</span>Efficiency as sales proof point — Anthropic uses what it sells. Cost/value objection handling for ruthless TCO buyers (telcos especially). IPO trajectory awareness shows commercial maturity for multi-year deals.</div>
-      </div>
-    </details>
+    <div class="rc-group" style="color:#bd923a">Case studies</div>
 
     <details class="research-card priority">
       <summary>
@@ -1057,39 +1095,6 @@
       <div class="rc-body">
         <div class="rc-section"><span class="rc-label">Key point</span>Claude autonomously planning Perseverance's driving routes on Mars. Halved route-planning time = more science per day. Precise technical work under zero-margin conditions.</div>
         <div class="rc-section"><span class="rc-label">M&amp;E link</span>Strong rebuttal to "AI just hallucinates" objections. Maps to broadcaster content pipelines, telco network diagnostics. Mission-driven selling for purpose-driven customers.</div>
-      </div>
-    </details>
-
-    <details class="research-card">
-      <summary>
-        <div class="rc-head"><span class="media-icon">🎧</span><span class="rc-title">Dario on Dwarkesh (2nd)</span></div>
-        <span class="rc-take">"Change management is the real bottleneck — AM is the translator"</span>
-      </summary>
-      <div class="rc-body">
-        <div class="rc-section"><span class="rc-label">Key point</span>Dario on how Claude Code should let enterprises move at startup pace, but realistically must clear security, legal, compliance first. RL expanding to broader task domains. DVQ culture (Dario Vision Quest every 2 weeks).</div>
-        <div class="rc-section"><span class="rc-label">M&amp;E link</span>Enterprise adoption friction is expected and real. Productivity gains require evidence-building — use Anthropic itself as proof. RL expanding tasks = broader TME use cases (network ops, content metadata, customer care automation).</div>
-      </div>
-    </details>
-
-    <details class="research-card">
-      <summary>
-        <div class="rc-head"><span class="media-icon">📺</span><span class="rc-title">Daniela on Cerebral Valley × Sequoia</span></div>
-        <span class="rc-take">"Helpful, honest, harmless, with humour — how I'd want customers to describe me too"</span>
-      </summary>
-      <div class="rc-body">
-        <div class="rc-section"><span class="rc-label">Key point</span>Daniela on Anthropic's mission, coaching focus, "simple things that work effectively" principle. Constitutional AI as the path to helpful + honest + harmless + humour.</div>
-        <div class="rc-section"><span class="rc-label">M&amp;E link</span>"Do simple things that work effectively" is enterprise AM gold. TME wants clarity, reliability, simplification — not complexity. Trust journey (fear → trust → adoption) is exactly the account-narrative arc you've run before.</div>
-      </div>
-    </details>
-
-    <details class="research-card">
-      <summary>
-        <div class="rc-head"><span class="media-icon">📺</span><span class="rc-title">Interpretability — "Biology of AI"</span></div>
-        <span class="rc-take">"We can actually see inside how the model reasons"</span>
-      </summary>
-      <div class="rc-body">
-        <div class="rc-section"><span class="rc-label">Key point</span>Interpretability research = understanding AI models from the inside out. Circuits, reasoning, whether the model got the answer correctly or "cheated." Like growing a neural network as a new organism.</div>
-        <div class="rc-section"><span class="rc-label">M&amp;E link</span>Trust as sales asset — enterprises worry about black-box AI in regulated environments. Reliability for production use cases (network ops, content moderation, customer experience). Long-term partnership narrative — "growing organism we understand better every day."</div>
       </div>
     </details>
 
