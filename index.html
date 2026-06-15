@@ -330,7 +330,7 @@
 
 <script>
 /* ----------------------------- CONTENT ----------------------------- */
-const APP_VERSION = "2026.06.15.2";
+const APP_VERSION = "2026.06.15.3";
 const ROLE = "Account Manager for Telco, Media & Entertainment (TME) enterprise customers at Anthropic";
 
 const ARTICLES = [
@@ -455,6 +455,32 @@ const ARTICLES = [
   "Memorable line to keep in your pocket: 'breaking the correlation between ability and motive' — shows you actually read it."
  ]
 },
+{
+ id:"ai-exponential", cat:"Dario's papers & talks", type:"Policy", source:"Dario Amodei", mins:18,
+ title:"Policy on the AI Exponential",
+ url:"https://darioamodei.com/post/policy-on-the-ai-exponential",
+ overview:
+"Dario Amodei's June 2026 essay on how to govern AI that's improving on an exponential while policymaking moves slowly and linearly. His core worry: by the time a law is drafted, debated and passed, the technology has already moved on — so we risk locking in policy that's outdated the day it arrives. The question he sets is hard: how do you design policy for capabilities that don't fully exist yet? It builds on his 'country of geniuses in a datacenter' framing.\n\n"+
+"His answer is to regulate AI the way we already regulate other powerful, economically essential but potentially dangerous technologies — cars, aeroplanes, drugs. He argues for independent, third-party testing of frontier models above a certain size before they're deployed — much like an aircraft is certified before it's allowed to fly, or a drug before it reaches the market (think FAA / FDA for AI). Government should have the power to block or deter a deployment if a third-party assessment finds unacceptable risk — but that power must be narrowly scoped to a few specific catastrophic risks, with real safeguards against political favouritism or arbitrary decisions.\n\n"+
+"It's also a notable shift. For three years Anthropic's public policy position centred on transparency — developers disclosing their safety procedures, the tests they run, and reporting critical safety incidents so the public and scientists can see risks as they emerge. Anthropic backed that with action: helping pass SB 53 in California, RAISE in New York and SB 315 in Illinois, and pushing for a federal transparency standard. This essay goes further: alongside it, Anthropic released a legislative proposal on frontier-model testing and a policy framework for job displacement — and committed substantial financial backing to both.\n\n"+
+"Rounding it out: continued advocacy for export controls on advanced chips, gathering real data on AI's labour effects (the Economic Index is the evidence base for this), and a coordinated strategy among democratic allies — almost a 'NATO for AI' — designed to be as attractive as possible to join, so the democratic world keeps the technological edge.",
+ points:[
+  "Core tension: AI advances exponentially while policy moves slowly — laws risk being outdated by the time they pass.",
+  "Regulate AI like aviation/pharma: independent third-party testing of frontier models above a size threshold before deployment.",
+  "Government should be able to block/deter unacceptably risky deployments — narrowly scoped, with safeguards against political abuse.",
+  "A shift beyond transparency: Anthropic is backing (and funding) a frontier-model testing proposal + a job-displacement framework.",
+  "Plus: chip export controls, labour-effects data (the Economic Index), and a democratic 'NATO for AI' coalition.",
+  "Track record: helped pass SB 53 (CA), RAISE (NY), SB 315 (IL) and pushed for a federal transparency standard."
+ ],
+ talk:[
+  "This is your most CURRENT proof that Anthropic shapes the rules rather than dodging them — actively backing legislation and funding frontier-testing and job-displacement frameworks. For a regulated telco or broadcaster, that's a vendor your policy and risk teams can genuinely respect.",
+  "The aviation/FDA analogy is a memorable, reassuring line for a cautious buyer: 'frontier models should be independently certified before deployment, like an aircraft before it flies.' Perfect for brand- and safety-sensitive M&E and telco accounts.",
+  "The job-displacement framework + Economic Index is your answer to TME workforce anxiety — Anthropic is putting money behind policy and real labour-effects data, not just selling a product.",
+  "The pacing gap — tech outrunning regulation — is exactly where the AM adds value: helping customers move responsibly faster than the rules clarify.",
+  "Live example you spotted: the recent Fable 5 export restriction is government deployment-control in action — a concrete, current way to show these powers aren't hypothetical."
+ ]
+}
+,
 
 /* ===== LEADERSHIP & CULTURE ===== */
 {
@@ -793,6 +819,11 @@ const QUIZ = {
  "daniela-humanities":[
   {q:"What is Daniela Amodei's argument about hiring for AI companies?",o:["As AI automates technical tasks, human/soft skills (judgement, communication, ethics) rise in value","Only hire PhDs in CS","Soft skills don't matter","Replace all staff with AI"],a:0,why:"Anthropic deliberately hires humanities and non-traditional backgrounds — a strong 'why I fit' anchor for a customer-facing role."}
  ],
+ "ai-exponential":[
+  {q:"What is the core tension in 'Policy on the AI Exponential'?",o:["AI advances exponentially while policymaking is slow — so laws risk being outdated by the time they pass","AI is too cheap to regulate","Policy moves faster than the technology","There is no role for government"],a:0,why:"Dario's worry is the pace mismatch — designing policy for capabilities that don't fully exist yet."},
+  {q:"What real-world analogy does Dario use for regulating frontier AI?",o:["Independent testing/certification like aviation (FAA) or drugs (FDA) before deployment","Deregulate it like early social media","Treat it like a household appliance","Ban it outright"],a:0,why:"Powerful, valuable, but dangerous if poorly built — so test frontier models above a size threshold before release."},
+  {q:"How does this essay shift Anthropic's policy stance?",o:["Beyond transparency-only — now backing and funding frontier-model testing + a job-displacement framework","It abandons safety entirely","It opposes all legislation","It stays purely on transparency"],a:0,why:"Anthropic had centred on transparency (SB 53, RAISE, SB 315); this goes further with funded legislative proposals."}
+ ],
  yegge:[
   {q:"How does Steve Yegge characterise Anthropic's culture?",o:["A decentralised, improvisational, high-trust 'hive mind' with light process","A rigid bureaucracy","A purely remote gig platform","A traditional consulting firm"],a:0,why:"He predicts this model spreads — and frames it around transparency and 'death of the ego.'"},
   {q:"In Yegge's framing, what marks a company's 'Golden Age'?",o:["There is more work than people (politics starts when that inverts)","Lots of free snacks","A big marketing budget","Many layers of management"],a:0,why:"Abundance of work fuels collaboration; scarcity of work breeds internal politics."}
@@ -881,6 +912,22 @@ function orderedCats(){
   return CATEGORY_ORDER.filter(c=>present.includes(c))
     .concat(present.filter(c=>!CATEGORY_ORDER.includes(c)));
 }
+
+/* Notes you'd already taken, pre-loaded once into the relevant article's Notes tab. */
+const SEED_NOTES = {
+ "ai-exponential":
+"My notes on 'Policy on the AI Exponential':\n"+
+"- The speed AI is progressing is out of step with how the world is addressing AI policy.\n"+
+"- Talks about the fast approach to a 'country of geniuses'.\n"+
+"- How do we design policies for the unknown? Legislation is so slow that by the time it passes, the tech has matured and the policy is already outdated.\n"+
+"- Anthropic has vouched for: transparency legislation, export controls on chips, and data collection on AI's labour effects.\n"+
+"- Anthropic is releasing a legislative proposal on frontier model testing and a policy framework for job displacement, and intends to provide substantial financial backing.\n"+
+"- The right approach (for now) is transparency: developers should disclose their safety procedures and the tests they run, and report critical safety incidents, so the public and scientific community can see risks as they emerge. In 2025 Anthropic supported transparency legislation — SB 53 (CA), RAISE (NY), SB 315 (IL, early 2026), and advocated for a federal transparency standard.\n"+
+"- Government should be able to block or deter deployment if a third-party assessment finds unacceptable risks — scoped to four specific risks, with protections against political favouritism or arbitrary decisions. (Interesting: the US gov just blocked Fable 5 export outside the US.)\n"+
+"- Anthropic is calling for independent bodies to measure and assess models over a certain size — like a plane being assessed before it goes to market.\n"+
+"- To put good policy in place we have to understand what's happening — Anthropic's Economic Index data is needed to better inform policy and track job displacement.\n"+
+"- Talks about a coalition between AI companies — almost a 'NATO for AI' — and making it as appealing as possible to be in it."
+};
 
 /* ----------------------------- STATE ----------------------------- */
 const LS = window.localStorage;
@@ -1581,6 +1628,12 @@ function renderResults(){
 $("#quizLaunch").onclick=openQuiz;
 
 /* ----------------------------- INIT ----------------------------- */
+// Seed pre-written notes once per article (won't overwrite your edits or re-add after you clear).
+Object.keys(SEED_NOTES).forEach(id=>{
+  if(LS.getItem("seeded_"+id)) return;
+  if(!(LS.getItem(k.notes(id))||"").trim()) LS.setItem(k.notes(id), SEED_NOTES[id]);
+  LS.setItem("seeded_"+id,"1");
+});
 const vs=$("#verStamp"); if(vs) vs.textContent="Version "+APP_VERSION;
 renderHome("");
 
