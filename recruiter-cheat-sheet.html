@@ -479,6 +479,10 @@
   .map-tile:hover { background:#1F3A5F; color:#fff; }
   .map-tile .tile-code { display:block; font-size:9.5px; font-weight:700; color:#6a89a8; margin-top:3px; letter-spacing:.3px; }
   .map-tile:hover .tile-code { color:#cfe2f7; }
+  .map-tile.t-red { border-left-color:#C00000; background:#fff7f7; } .map-tile.t-red:hover { background:#C00000; }
+  .map-tile.t-gold { border-left-color:#B8860B; background:#fffdf4; } .map-tile.t-gold:hover { background:#B8860B; }
+  .map-tile.t-green { border-left-color:#2E7D32; background:#f4fbf4; } .map-tile.t-green:hover { background:#2E7D32; }
+  .map-tile.t-navy { border-left-color:#1F3A5F; background:#f5f8fc; } .map-tile.t-navy:hover { background:#1F3A5F; }
   .stats { background:#f1f8f2; border:1px solid #cfe6cf; border-left:3px solid #0a7d33; border-radius:4px; padding:7px 10px; margin:0 0 9px 0; font-size:12px; font-weight:700; color:#14471f; line-height:1.5; }
 </style>
 </head>
@@ -1191,26 +1195,26 @@
       <h2>Question → answer map (glance &amp; deploy)</h2>
       <div class="target">Don't recall — find the row, open the card. Lead with the number, name the names.</div>
       <div class="tile-grid">
-        <button class="map-tile" data-tag="SKY-ARC">Complex / multi-entity deal<span class="tile-code">SKY-ARC</span></button>
-        <button class="map-tile" data-tag="UDX">Commercial structuring<span class="tile-code">UDX</span></button>
-        <button class="map-tile" data-tag="UNIV">Big ACV / displacement<span class="tile-code">UNIVERSAL</span></button>
-        <button class="map-tile" data-tag="OMNI">Patient / long-cycle deal<span class="tile-code">OMNI</span></button>
-        <button class="map-tile" data-tag="PARAMOUNT">New customer / land &amp; expand<span class="tile-code">PARAMOUNT</span></button>
-        <button class="map-tile" data-tag="WIN-OVER">Difficult customer won over<span class="tile-code">WIN-OVER</span></button>
-        <button class="map-tile" data-tag="NBCU+">Repeatable play / template<span class="tile-code">NBCU+ fanout</span></button>
-        <button class="map-tile" data-tag="NUMBERS">My numbers / attainment<span class="tile-code">NUMBERS</span></button>
-        <button class="map-tile" data-tag="RAMP">Prioritise / territory plan<span class="tile-code">RAMP</span></button>
-        <button class="map-tile" data-tag="PACE">Fast pace / no process<span class="tile-code">PACE</span></button>
-        <button class="map-tile" data-tag="Q9">Beyond quota / growing talent<span class="tile-code">Q9</span></button>
-        <button class="map-tile" data-tag="Q5">Growth mindset / a weakness<span class="tile-code">Q5</span></button>
-        <button class="map-tile" data-tag="WHYANTHROPIC">Why Anthropic<span class="tile-code">mission-first</span></button>
-        <button class="map-tile" data-tag="DIFF">Differentiation vs Gemini/ChatGPT<span class="tile-code">DIFF</span></button>
-        <button class="map-tile" data-tag="PIVOT">Pivot / hard convo / kill deal<span class="tile-code">PIVOT</span></button>
-        <button class="map-tile" data-tag="UK-M&amp;E">Why M&amp;E now / what you'd bring<span class="tile-code">UK-M&amp;E</span></button>
-        <button class="map-tile" data-tag="Q12">Failure / lesson<span class="tile-code">Q12</span></button>
-        <button class="map-tile" data-tag="Q15">Values — helpful/honest/harmless<span class="tile-code">Q15</span></button>
-        <button class="map-tile" data-tag="Q7">Standing up / conviction<span class="tile-code">Q7</span></button>
-        <button class="map-tile" data-tag="Q8">When would you leave Anthropic<span class="tile-code">Q8</span></button>
+        <button class="map-tile t-red" data-tag="SKY-ARC">Complex / multi-entity deal<span class="tile-code">SKY-ARC</span></button>
+        <button class="map-tile t-red" data-tag="UDX">Commercial structuring<span class="tile-code">UDX</span></button>
+        <button class="map-tile t-red" data-tag="UNIV">Big ACV / displacement<span class="tile-code">UNIVERSAL</span></button>
+        <button class="map-tile t-red" data-tag="OMNI">Patient / long-cycle deal<span class="tile-code">OMNI</span></button>
+        <button class="map-tile t-red" data-tag="PARAMOUNT">New customer / land &amp; expand<span class="tile-code">PARAMOUNT</span></button>
+        <button class="map-tile t-red" data-tag="WIN-OVER">Difficult customer won over<span class="tile-code">WIN-OVER</span></button>
+        <button class="map-tile t-red" data-tag="NBCU+">Repeatable play / template<span class="tile-code">NBCU+ fanout</span></button>
+        <button class="map-tile t-red" data-tag="NUMBERS">My numbers / attainment<span class="tile-code">NUMBERS</span></button>
+        <button class="map-tile t-red" data-tag="RAMP">Prioritise / territory plan<span class="tile-code">RAMP</span></button>
+        <button class="map-tile t-red" data-tag="PACE">Fast pace / no process<span class="tile-code">PACE</span></button>
+        <button class="map-tile t-gold" data-tag="Q9">Beyond quota / growing talent<span class="tile-code">Q9</span></button>
+        <button class="map-tile t-gold" data-tag="Q5">Growth mindset / a weakness<span class="tile-code">Q5</span></button>
+        <button class="map-tile t-navy" data-tag="WHYANTHROPIC">Why Anthropic<span class="tile-code">mission-first</span></button>
+        <button class="map-tile t-red" data-tag="DIFF">Differentiation vs Gemini/ChatGPT<span class="tile-code">DIFF</span></button>
+        <button class="map-tile t-red" data-tag="PIVOT">Pivot / hard convo / kill deal<span class="tile-code">PIVOT</span></button>
+        <button class="map-tile t-red" data-tag="UK-M&amp;E">Why M&amp;E now / what you'd bring<span class="tile-code">UK-M&amp;E</span></button>
+        <button class="map-tile t-gold" data-tag="Q12">Failure / lesson<span class="tile-code">Q12</span></button>
+        <button class="map-tile t-green" data-tag="Q15">Values — helpful/honest/harmless<span class="tile-code">Q15</span></button>
+        <button class="map-tile t-gold" data-tag="Q7">Standing up / conviction<span class="tile-code">Q7</span></button>
+        <button class="map-tile t-gold" data-tag="Q8">When would you leave Anthropic<span class="tile-code">Q8</span></button>
       </div>
     </div>
 
