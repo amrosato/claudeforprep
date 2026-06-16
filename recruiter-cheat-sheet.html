@@ -474,6 +474,12 @@
   @media (max-width: 1100px) {
     .grid { grid-template-columns: 1fr; }
   }
+  .tile-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:6px; margin-top:8px; }
+  .map-tile { text-align:left; background:#fff; border:1px solid #cfe2f7; border-left:3px solid #1F3A5F; border-radius:5px; padding:8px 9px; font-size:11.5px; font-weight:600; color:#1F3A5F; cursor:pointer; line-height:1.35; font-family:inherit; transition:background .12s, color .12s; }
+  .map-tile:hover { background:#1F3A5F; color:#fff; }
+  .map-tile .tile-code { display:block; font-size:9.5px; font-weight:700; color:#6a89a8; margin-top:3px; letter-spacing:.3px; }
+  .map-tile:hover .tile-code { color:#cfe2f7; }
+  .stats { background:#f1f8f2; border:1px solid #cfe6cf; border-left:3px solid #0a7d33; border-radius:4px; padding:7px 10px; margin:0 0 9px 0; font-size:12px; font-weight:700; color:#14471f; line-height:1.5; }
 </style>
 </head>
 <body>
@@ -542,6 +548,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">💰 Escalated to Satya · multi-$M PR commitment · NBC News Jun 2024 · ethical-consent template</p>
           <p class="target">Target: 130 sec. Most distinctive Microsoft win. STARI structure.</p>
           <p><strong class="beat">S — Situation</strong>: "My most distinctive Microsoft win was the NBCU Olympics voice-clone deal during the Paris 2024 Games. NBCU was a transactional Microsoft account from an AI specialist perspective. Google was their main cloud for the Olympics app build — so we weren't even in that conversation at the start.</p>
           <p><strong class="beat">T — Task</strong>: Rather than chase a platform win against the incumbent, I wanted to find AI opportunities Google wasn't positioned for.</p>
@@ -571,6 +578,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">💰 Film in cinemas Aug · GCP migration talks · Lumière award (LA) · chosen over Sora</p>
           <p class="target">Target: 170 sec. Most Anthropic-aligned answer. The values showcase.</p>
           <p class="target">🔁 You told Ollie this story in the screen — this is a <strong>reworded</strong> version so a transcript won't read as scripted. Facts/numbers repeating is fine; verbatim sentences aren't.</p>
           <p><strong class="beat">S — Situation</strong>: "The deal I'm proudest of at Google is a greenfield win with a Hollywood post-production startup whose whole identity is ethics-led AI. When it landed on my desk the relationship was in a poor state — thin and purely transactional. This is a customer on a mission to shift how Hollywood thinks about AI: they champion the 'assistive, not replacement' message and work hand-in-hand with the guilds, all in the still-raw aftermath of the actors' and writers' strikes. So they weren't shopping for a vendor — they wanted a partner who shared their ethics, not just their pricing. And the obvious rival, OpenAI's Sora, was pushing the industry the other way, its training history doing the opposite of earning trust.</p>
@@ -595,6 +603,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 16 sources · "responsibility = operating principle" · the Daniela leadership signal</p>
           <p class="target">Target: 100 sec. Likely opening question. Two-takeaway structure.</p>
           <p>"Two things stood out the most across the reading.</p>
           <p><strong class="beat">First</strong> — the consistency between what Anthropic says publicly and how it operates. Reading Dario's writing on calibrated honesty, the RSP as a governance document rather than a values statement, the interpretability research that actively publishes limitations not just breakthroughs, and Steve Yegge's piece on the hive-mind culture — they all reinforced the same idea. <strong>The responsibility piece isn't marketing, it's an operating principle.</strong> For someone who has to represent Anthropic in front of TME customers — broadcasters, telcos, studios with serious regulatory and brand exposure — that consistency matters. It's a verifiable artefact.</p>
@@ -615,6 +624,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 3 builds: scheduled newsletters · this prep app · the plumbing app</p>
           <p class="target">Target: ~95 sec. Three real builds — the prep-app beat (Two) is the memorable one. If time's tight, keep the prep app + one other.</p>
           <p class="target">🔁 You walked Ollie through these three builds — this is a <strong>reworded</strong> version. Same examples, different phrasing.</p>
           <p>"Yes — I use both, and properly, not just to kick the tyres. Claude's chat is a fixture in my day — it's the thinking partner I work ideas through with, sharpen customer positioning with, draft briefs with; that 'thinking partner' framing is exactly how Williams F1 describe it. That's the everyday baseline. Where it gets genuinely fun is Claude Code and the connected workflows — three quick examples.</p>
@@ -636,6 +646,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 Helpful · Honest · Harmless (+ humour) · a named example per value</p>
           <p class="target">Target: ~110 sec. Open with the Constitutional-AI frame, then one crisp proof per value. The "harmless" beat is your strongest — land it.</p>
           <p>"It's a fair question — and it's part of why Anthropic's helpful, honest, harmless framing landed with me. Anthropic trains those values into Claude through Constitutional AI; I try to run my accounts on the same three. Let me take them in turn.</p>
           <p><strong class="beat">Helpful</strong> — for me that's <strong>being a thinking partner, not a vendor</strong>. I lead with the customer's outcome, simplify rather than complicate, and I'll tell a customer when our product isn't the right fit. <strong>Example — the UK fintech</strong>: I restructured their wider Google agreement to fund the product they actually needed, putting their outcome ahead of a quick deal. Being genuinely useful builds trust that outlasts any single deal.</p>
@@ -662,6 +673,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">💰 6,500 agents · 23 Hackweek (5 OpenAI) · $70k/mo PTU · $12k/mo Peacock · OMNI 13× ($2k→$27k) · Comcast 121% YoY</p>
           <p class="target">Target: ~120 sec, Paddy-style — lead with numbers, name people, then stop. Your strongest <strong>fresh</strong> enterprise story (you gave Ollie Hollywood, not this). Multi-entity TMT = directly his patch.</p>
           <p>"My strongest enterprise story at Microsoft is the <strong>Sky / Comcast / Peacock</strong> arc — one corporate family, four entities I sold to independently, and I compounded AI workloads across all of them by working the parent/subsidiary politics.</p>
           <p><strong class="beat">The numbers</strong>: AI call centres live across <strong>6,500 agents</strong> — 5,000 UK, 1,000 Italian, 500 German. A Hackweek I drove with their Product team — <strong>23 projects, 5 on OpenAI</strong>. Two PTU sales — dedicated AI compute — at <strong>$70k a month</strong> combined across Sky and Fandango. The Peacock Olympics workshop — a <strong>$12k-a-month</strong> workload. OMNI Assist at Comcast scaled <strong>13× in 9 months</strong>, $2k to $27k a month. Comcast AI consumption up <strong>121% year-on-year</strong>.</p>
@@ -683,6 +695,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">💰 FY24 Q4 100–115% (all 6 measures) · 121% YoY Comcast · 278% Google Y1</p>
           <p class="target">Target: ~45 sec. Paddy WILL ask. Lead with the pattern, then headline figures, then stop.</p>
           <p>"At Microsoft I overdelivered every quarter — <strong>FY24 Q4 attainment 100% to 115%</strong> across all six measures. That's the senior consistent pattern, not a junior spike. Headline growth: <strong>121% year-on-year on Comcast</strong>. I won the <strong>Azure committed-pipeline sales competition</strong>, and was on track for the 'Go Big' PTU contest. Then at Google, first year as AI Specialist for UK startups, <strong>278% to plan</strong>. The Microsoft numbers are the discipline; the Google number is that discipline hitting a high-growth segment."</p>
         </div>
@@ -700,6 +713,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">💰 23 workloads · 3-yr migration · ECIF/ACO credits tied to delivery · 15% Azure discount-share · replicated at OMD</p>
           <p class="target">Target: ~60 sec. Your cleanest commercial-structuring proof — real, repeatable. For 'commercial creativity / procurement / deal structuring.' (This is the deal with the 23-workload structure — not Universal.)</p>
           <p>"My cleanest commercial-structuring example is the <strong>Comcast UDX Workload Commit Deal</strong>. I structured it so <strong>ECIF/ACO credits were aligned to a commitment to migrate 23 workloads to Azure over 3 years</strong> — credits tied to delivery, not handed over up front — plus a <strong>15% Azure discount-sharing model</strong>. And it was repeatable: I then <strong>replicated the structure at OMD/Omnicom</strong>. That's bespoke procurement structuring most AEs don't touch — exactly the muscle for Anthropic enterprise deals where a standard contract doesn't fit the use case."</p>
         </div>
@@ -717,6 +731,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">💰 $2k → $27k/mo · 13× in 9 months</p>
           <p class="target">Target: ~50 sec. For 'a deal that needed patience / long-cycle AI deployment / change management.' Real number: 13× in 9 months.</p>
           <p>"OMNI Assist at Comcast is my patient-rollout story. <strong>Nine months</strong> of engineering work with Anurag from our applied-AI team before it hit production — and for six of those there was nothing on the revenue line. Most AEs would've walked at month four to chase a faster win; I stayed, because I knew the production scale was coming. When it landed it grew <strong>13× in 9 months — $2k to $27k a month</strong>. That's the discipline TMT AI deals need: stay with it through the quiet middle."</p>
         </div>
@@ -734,6 +749,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">💰 Ask Murray $5k/mo · account ADS $75k→$95k/qtr · 2 use cases to prod in Q2</p>
           <p class="target">Target: ~50 sec. For 'new customer / land-and-expand / holding through disruption.' Real numbers.</p>
           <p>"Paramount is my land-and-expand story. I hit the ground running — turned up, heard their roadmap, and built <strong>template architectures on OpenAI, Cosmos DB and Cog Search</strong> before competitors were in the room. <strong>Two use cases to production in Q2</strong>; 'Ask Murray' became a <strong>$5k-a-month</strong> workload; account ADS grew <strong>$75k to $95k</strong> in a quarter. And I held it through customer-side redundancies — rebuilding the scenarios with the new teams — which is how they verbally committed to invest more with us in 2024."</p>
         </div>
@@ -751,6 +767,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 100 accounts · 0–30 learn · 4–12 wk prioritise (~15–20 deep) · 3–6 mo land</p>
           <p class="target">Target: ~120 sec. The BIGGEST gate — the 20-page exercise tests exactly this. Frame as THREE gears, and lead with self-sufficiency (no account team).</p>
           <p>"First thing I'd accept: with <strong>no account team and light process</strong>, my job is to make myself self-sufficient and build the structure — and that's exactly where I do my best work (<strong>it's what I did building Google's UK startup motion</strong>). I'd run the first six months in three gears.</p>
           <p><strong class="beat">Gear 1 · Weeks 0–4 — Learn &amp; map</strong>: get <strong>technically self-sufficient fast</strong> — Claude, Code, Cowork, what each displaces and plugs into — because I'd be selling complex tech to technical buyers, solo. In parallel, <strong>map the 100 accounts</strong>: segment the TMT patch into sub-verticals, pull signals (funding, leadership changes, AI announcements, buying vs tech-freeze cycles), and meet product, FDEs and partners to learn where customer signal goes.</p>
@@ -772,6 +789,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 Brand-new org (Oliver Parker) · 278% Y1 · ~1,500 accounts</p>
           <p class="target">Target: ~60 sec. Ollie flagged it's intense. Be realistic + energised, never naive. Your <strong>real proof</strong>: you already live "fast pace + no process + writing the rules" at Google.</p>
           <p>"Yes — and eyes open. You were honest it's intense, and people who've moved over said the same. Two reasons I'm confident. One — my best work is in roles where <strong>the playbook wasn't written and I ran everything myself</strong>, and that's literally my job right now: I'm in a <strong>brand-new org under Oliver Parker, writing the rules of engagement</strong> — and it's <strong>doubling into one of the most important orgs in the business</strong>. I built the UK startup motion inside it from scratch (<strong>278%</strong> in year one). I've also <strong>ported Microsoft's enterprise rigour into Google's more creative deal-making</strong> — best of both worlds. That pace energises me; it doesn't burn me out. Two — pace only drains you when the work doesn't matter, and <strong>this does</strong>. What I'd lean on hardest is <strong>ruthless prioritisation</strong> — I ran <strong>~1,500 UK startup accounts</strong>, so portfolio discipline at 100 is familiar ground. So I'm not just okay with the pace — it's the environment I've been moving toward."</p>
           <p class="target"><strong>If pushed on a claim, jump to:</strong> "tell me more about building that" → the <strong>UK startup-motion story (Q4, 278%)</strong> · "how do you prioritise that many?" → the <strong>1,500-accounts framework (Q10)</strong>.</p>
@@ -790,6 +808,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 Amagi · Harmonic · MediaKind · Avid · Adobe — certify / co-build / scale</p>
           <p class="target">Target: ~100 sec. Gold for the GTM interview + the 20-page exercise — ecosystem thinking + the creative long-tail play Ollie probed on. Naming the landscape (distribution vs creation) shows real domain depth.</p>
           <p>"One angle I'd bring early is the partner ecosystem, because in M&amp;E it's a force multiplier most AI vendors underuse. The specialist players already have the domain depth and, crucially, the <strong>installed base and trust</strong> inside studios and broadcasters. On the distribution and playout side there's <strong>Amagi, Harmonic and MediaKind</strong>; on the creation and post-production side, <strong>Avid and Adobe</strong>. Each already sits inside the workflows we'd want Claude in — which is the fast way into a sceptical industry.</p>
           <p><strong class="beat">1 · Certify &amp; co-sell</strong>: make those partners <strong>Anthropic-certified for M&amp;E</strong> — validated integrations to a known standard — and co-sell into the relationships they already own. It scales trusted delivery without Anthropic hiring an army, and gives a studio confidence the products and people implementing Claude are both Claude-fluent and M&amp;E-fluent.</p>
@@ -811,6 +830,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">💰 Multi-$M "Powered by Copilot" PR commitment · NBC News Jun 2024 · fanout → Sky CT&amp;I, Dreamworks, NBCU parent, Fandango</p>
           <p class="target">Target: ~150 sec. Your enterprise-complexity story for the deal-review round — lead with this when they want ENTERPRISE, not the startup deal. Strength = stakeholder level + structure + ethical template. <strong>⚠️ Confirm the hard ACV/TCV before you use it.</strong></p>
           <p><strong class="beat">S — Context</strong>: "My strongest enterprise example is the NBCU Olympics deal at Microsoft — a strategic M&amp;E account I owned on the AI side. It was effectively <strong>white space</strong> for us on AI: their Olympics app was being built on a competitor cloud, so we weren't even in that conversation. The complexity wasn't the line-item size — it was the <strong>stakeholder web, the legal exposure, and an immovable deadline</strong>.</p>
           <p><strong class="beat">Stakeholders</strong>: it ran from working teams to the very top — on NBCU's side, their Olympics product and engineering leads, brand/marketing, and legal (the consent piece); on ours it <strong>escalated to Satya Nadella</strong>, plus our product group and a delivery partner I brought in.</p>
@@ -835,6 +855,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">💰 ~$20–30M TCV · 3 yrs · ~20 workloads · displaced AWS &nbsp;(⚠️ confirm vs UDX)</p>
           <p class="target">Target: ~150 sec. Use this when the deal-review wants SIZE, new-logo/white-space, displacement, and commercial structure. The structure (bottom-up from workloads + year-aligned credits/partner funding) is the gold — land it slowly.</p>
           <p><strong class="beat">S — Context</strong>: "At Microsoft I <strong>co-led the Universal Studios theme-parks deal</strong> — a <strong>three-year Data &amp; AI partnership</strong>. It was a genuinely contested account: Universal ran <strong>multi-cloud, split across AWS and us</strong>, and the Data &amp; AI workloads were <strong>white space</strong> we had to win against the incumbent.</p>
           <p><strong class="beat">T — Task</strong>: take share from AWS on the Data &amp; AI side, and structure a multi-year deal the customer could actually <strong>execute</strong> — not just sign.</p>
@@ -857,7 +878,8 @@
           </div>
         </summary>
         <div class="detail-body">
-          <p class="target">Target: ~150 sec. Classic "difficult customer / how did you win them over." The win-over = earning trust before pitching. <strong>⚠️ Same deal as Q11 — use it for EITHER "difficult customer" OR "challenging status quo," never both in one process</strong> (alternates below).</p>
+          <p class="stats">💰 Biggest deal in the startups product line · from an account written off in January</p>
+          <p class="target">Target: ~150 sec. Classic"difficult customer / how did you win them over." The win-over = earning trust before pitching. <strong>⚠️ Same deal as Q11 — use it for EITHER "difficult customer" OR "challenging status quo," never both in one process</strong> (alternates below).</p>
           <p><strong class="beat">S — Situation</strong>: "When I took over a UK fintech at Google in January, it was about as difficult as a customer gets. The relationship was <strong>transactional, even a bit negative</strong>; they'd <strong>just renewed our main competitor</strong>, so there was no budget and no obvious reason to switch; and our agent-building product genuinely <strong>had gaps because it was early</strong> — they didn't think it was ready. Most AEs would have written the account off for the year.</p>
           <p><strong class="beat">T — Task</strong>: I made a deliberate bet — <strong>relationship-first, not deal-first</strong>. Win the trust before pitching anything.</p>
           <p><strong class="beat">A — Action (four moves)</strong>: <strong>One — go wide, not just deep</strong>: weekly touchpoints across decision-makers AND adjacent teams, so I understood the company's wider goals, not just procurement's — context every other vendor was missing. <strong>Two — take their scepticism seriously</strong>: deep multi-stakeholder POC feedback surfaced that they saw the potential and wanted to diversify cloud, but didn't trust the product was ready — so I fed that straight to our product group, got real roadmap detail, and <strong>put their leadership in a room with ours</strong> to hear it directly. <strong>Three — de-risk the migration</strong>: I stood up a <strong>tiger team of forward-deployed engineers and PMs</strong> and got written support commitments for the migration. <strong>Four — remove the budget blocker</strong>: they had no budget because they'd just renewed the incumbent, so I <strong>restructured their wider Google agreement</strong>, found rightsizing they actually needed, and used those savings to offset our product cost for a year.</p>
@@ -879,6 +901,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 Capability · Trust · Partner — Sora dropped; Mythos &amp; Fable 5 non-US</p>
           <p class="target">Target: ~150 sec. <strong>Lead with CAPABILITY</strong> — don't re-run the safety-only line you gave Ollie. Three pillars → quick competitive contrast → M&amp;E wedge. Proof tags built in.</p>
           <p>"I'd frame it as three things that compound — <strong>capability where it counts, trust by design, and the partnership model</strong>.</p>
           <p><strong class="beat">1 · Capability where it counts</strong>: Claude is the frontier leader in <strong>coding and agentic work</strong> — the multi-step, tool-using tasks enterprises actually deploy to automate operations end-to-end. Add a very large context window and real reliability on long, messy inputs — whole codebases, contracts, rights catalogues, hours of transcripts — and you can put it on the work that moves the needle, not just chat. I'd know — I <strong>build with Claude Code myself</strong>, and the gap on agentic reliability is real.</p>
@@ -902,6 +925,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 Reposition to the goal · own it · walk when overpromising</p>
           <p class="target">Target: ~150 sec. <strong>Predicted scenario Q</strong> — likely framed around a real event: "a competitor pulls a model (Sora), or a model a customer wants gets export-restricted — how do you handle the customer? When do you reposition vs. walk away?" Lead with the principle, then the three calls. Ties to your honesty + "doing-right-by-the-customer" muscles.</p>
           <p>"My rule is simple: when something changes — a capability gets pulled, or a model gets export-restricted — <strong>the customer hears it from me first, and hears what we're doing about it in the same breath</strong>. Bad news delivered fast and straight builds more trust than good news delivered slowly.</p>
           <p><strong class="beat">1 · Go back to the goal, not the product</strong>: I separate what they asked for from what they're actually trying to achieve. If a specific model is off the table, the business outcome usually isn't — so I reposition to the path that still gets them there: a different model, a different sequencing, or the roadmap. <strong>Most 'dead' deals are one feature-fixation away from a live one.</strong></p>
@@ -924,7 +948,8 @@
           </div>
         </summary>
         <div class="detail-body">
-          <p class="target">Target: ~120 sec. Gold for the 20-page exercise, "what would you bring," and GTM. Market timing + a CONCRETE pipeline you'd walk in with. <strong>Lead on the Elstree partner relationship — that's your standout.</strong></p>
+          <p class="stats">📊 Universal Bedford resort · Elstree (gov part-funded) partner live · assistive AI / UK jobs</p>
+          <p class="target">Target: ~120 sec. Gold for the 20-page exercise,"what would you bring," and GTM. Market timing + a CONCRETE pipeline you'd walk in with. <strong>Lead on the Elstree partner relationship — that's your standout.</strong></p>
           <p>"UK media &amp; entertainment is about to be one of the most exciting places in tech — and it's <strong>underserved on AI right now</strong>. There's a wave of investment landing in the UK creative economy over the next few years, and whoever earns the industry's trust early will own it.</p>
           <p><strong class="beat">Universal's UK resort</strong>: the clearest signal is Universal building a major new theme-park resort in Bedford. I've run the parks playbook before — at Microsoft I co-led the <strong>Universal Studios Data &amp; AI deal</strong>, so I know how these operations buy, build and scale technology. I'd bring those relationships and that pattern straight in.</p>
           <p><strong class="beat">Elstree immersive experience</strong>: closer to home, there's the government part-funded immersive-experience programme at <strong>Elstree in Hertfordshire</strong> — built to feed value back into the UK creative industries in one of the country's historic film hubs. I'm <strong>already in conversation with the partner awarded the build-out</strong>, and they're <strong>actively looking for AI partners</strong> to bring the experience to life. That's a live opportunity I'd bring with me.</p>
@@ -946,6 +971,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 1 of 8 → 24 · only 2 on startups · 278% Y1 · roadmap influence on features/connectors</p>
           <p class="target">Target: ~110 sec. True story — you built the startup scale motion. Three actions: partner play, field enablement, product feedback loop. 278% is the proof at the end, not the headline.</p>
           <p><strong class="beat">S — Situation</strong>: "When I joined Google's UK team in February 2025 I was one of eight — we're twenty-four now — and at the start <strong>only two of us covered startups</strong>. What became obvious fast was that <strong>the company was built for enterprise</strong>. The products, and just as importantly the mechanisms to onboard, support and scale POCs, were all designed around enterprise customers. <strong>A real startup motion didn't exist.</strong></p>
           <p><strong class="beat">T — Task</strong>: So the task wasn't a tidy assignment handed to me — it was to <strong>make Google actually work for startups</strong>: lower the barrier to entry, get them into POCs we could scale, and equip the field to sell to a very different kind of buyer.</p>
@@ -967,6 +993,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 MSc 3.9 GPA · 8-wk confidence coaching (Lucy Antrobus) · Sky Women-in-Tech panel</p>
           <p class="target">Target: ~110 sec. TWO growth proofs — MSc (technical gap) + the confidence coach (personal gap). Also your go-to for 'overcoming a weakness / self-development.' "Not to become a developer, but to be useful from the inside" is the consultative-AE line.</p>
           <p><strong class="beat">S — Situation</strong>: "The clearest example for me is going back to school for my <strong>MSc in Applied AI while working full-time</strong> at Microsoft. I knew I wanted to be deeper in the AI space, and the way to get there was to understand the technical layer myself — <em>not to become a developer, but to be useful to my customers from the inside.</em></p>
           <p><strong class="beat">T — Task</strong>: I wanted to close the technical gap I'd identified in myself.</p>
@@ -989,6 +1016,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 AI Festival keynote (Suffolk) · the role found me off the back of it</p>
           <p class="target">Target: 95 sec. AI Festival keynote → Anthropic role found me. Conviction backed by specifics.</p>
           <p><strong class="beat">S — Situation</strong>: "My <strong>AI Festival keynote in Suffolk</strong> last month is the cleanest recent example. The dominant narratives in the AI conversation today fall into two camps — pure techno-optimism that frames AI as unalloyed acceleration, or existential doom that frames it as risk we should slow down. Both are loud, and <strong>both miss the middle</strong>.</p>
           <p><strong class="beat">T — Task</strong>: My task was to argue the third position publicly, in front of an audience whose default was one of the two extremes.</p>
@@ -1010,6 +1038,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 Two lines: anti-ageing concentration · governance softening under post-IPO pressure</p>
           <p class="target">Target: 130 sec. Slowest delivery in the doc. Two-sec pause before starting. Don't smile through it.</p>
           <p>"It's a question I want to take seriously rather than deflect. There are two specific things — and one I'd want to do before I left, if either came up.</p>
           <p><strong class="beat">First</strong> — and this is the concrete one. In Machines of Loving Grace, Dario writes positively about AI extending human life through biological breakthroughs. I'm completely behind AI for disease. My aunt is going through chemo right now, a family friend died of motor neurone disease — if AI accelerates cures for those, I want to be on the team that built it. But there's a line for me between AI for healing and AI for extreme anti-ageing concentrated in the hands of people who are already powerful. If Anthropic's direction tilted toward capabilities that let the wealthy or powerful entrench themselves indefinitely — rule forever, accumulate wealth across generations, claim god-like authority while everyone else doesn't have access — <strong>that's where I'd lose faith</strong>. The 'bring everyone along' principle has to mean something concrete, and that would be the use case where it stops meaning anything.</p>
@@ -1031,6 +1060,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 Decade in M&amp;E · Comcast/Sky, Paramount, Fox, NBCU · live UK pipeline (Universal + Elstree)</p>
           <p class="target">Target: 130 sec. Knowledge / Passion / Growth. Warmer, mission-driven. M&amp;E is anti-AI — that's the headwind I know how to navigate.</p>
           <p>"Three things across three areas.</p>
           <p><strong class="beat">K — Industry knowledge</strong>: First, industry knowledge. A decade in M&amp;E means I know the industry deeply — broadcasters, studios, gaming, post-production; <strong>I've carried Comcast/Sky, Paramount, Fox and NBCU</strong> across that time. The players, the politics, the technical stack, and the cultural sensitivities around AI right now. That matters because M&amp;E is <strong>one of the most AI-resistant industries Anthropic will sell into</strong>. The actors' and writers' strikes, the guild renegotiations, the public scepticism — they're real headwinds. Most candidates would need years to learn what I already know. And I'd bring more than knowledge — <strong>a live UK pipeline</strong>: the parks playbook from my Universal Data &amp; AI deal as Universal builds its Bedford resort, plus an <strong>active conversation with the partner awarded the Elstree immersive build-out</strong>, who's looking for AI partners. <strong>I'd walk in with the patch mapped and deals already moving.</strong> <em>(Full version → UK-M&amp;E card.)</em></p>
@@ -1051,6 +1081,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 ~1,500 UK accounts · 3-filter tiering · lighthouse weighting</p>
           <p class="target">Target: 125 sec. 1,500 UK startups opener = scale anchor. Three filters / No / Lighthouse.</p>
           <p>"At Google I was aligned to <strong>about 1,500 UK startups</strong> when I joined. That number teaches you portfolio discipline — you can engage seriously with maybe 30 or 40 customers in any quarter, so where you spend your time matters as much as how you execute each deal.</p>
           <p>I run three filters in parallel.</p>
@@ -1075,6 +1106,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">💰 Biggest deal in the product line · comp trade made deliberately</p>
           <p class="target">Target: 145 sec. Comp trade was deliberate. Most senior commercial answer. Wise NOT named.</p>
           <p><strong class="beat">S — Situation</strong>: "This one isn't M&amp;E — it's a UK fintech — but it's my cleanest recent example of the muscle you're asking about, and the playbook transfers directly. When I took the account over in January, I inherited a POC on our agent-building product that was going badly. The relationship had been transactional, the incumbent was a competitor they'd just renewed, and our tech genuinely had gaps because it was early. <em>Most AEs would have written the account off for the year.</em></p>
           <p><strong class="beat">T — Task</strong>: The bet I made was relationship-first, not deal-first. Build a full picture of the business before pitching anything else.</p>
@@ -1096,6 +1128,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 9-mo POC · CTO left mid-deal · the champion-commitment lesson</p>
           <p class="target">Target: 100 sec. "Startup-specific refinement of a lesson I'd known at enterprise scale" = neutralises inexperience risk.</p>
           <p><strong class="beat">S — Situation</strong>: "A healthcare startup at Google where I invested a quarter of effort and the deal didn't close. I was selling a Google AI product. We ran the full motion — executive day, POC with a delivery partner, deep alignment with the CTO. <strong>The CTO was a true believer</strong> — championing AI internally, mapping our product to their roadmap, sponsoring the POC. From the outside, everything looked like it was moving.</p>
           <p><strong class="beat">T — Task</strong>: My task was to close the deal.</p>
@@ -1126,6 +1159,7 @@
           </div>
         </summary>
         <div class="detail-body">
+          <p class="stats">📊 Multiple M&amp;E EAP clients on board · brand saved via FDE customisation</p>
           <p class="target">Target: 165 sec. Two-beat story: selling internally + save-the-customer feedback loop. FDE callout = Anthropic-aligned.</p>
           <p><strong class="beat">S — Situation</strong>: "At Google I'm currently running an Early Access Program for a new product in the M&amp;E space — sourcing the right clients and channelling their experience back into the product roadmap. The product team needed customer signal at production scale before broader release, and I'd been asked to source EAP customers from my book and feed their experience back in.</p>
           <p><strong class="beat">T — Task</strong>: My task had two halves. First, pick the right customers — not any customers, ones whose use cases would generate the signal product could actually act on. Second, when those customers hit limitations, get that feedback into product in a way that shaped the roadmap, rather than getting lost in PM filtering.</p>
@@ -1156,28 +1190,28 @@
     <div class="section blue">
       <h2>Question → answer map (glance &amp; deploy)</h2>
       <div class="target">Don't recall — find the row, open the card. Lead with the number, name the names.</div>
-      <ul class="ask-list" style="list-style:none; padding-left:0; margin:0;">
-        <li class="ask-item"><strong>Complex / multi-entity enterprise deal</strong> → SKY-ARC (or NBCU+)</li>
-        <li class="ask-item"><strong>Commercial structuring / procurement</strong> → UDX (23 workloads)</li>
-        <li class="ask-item"><strong>Big ACV / displacement</strong> → UNIVERSAL (confirm the number)</li>
-        <li class="ask-item"><strong>Patient / long-cycle deal</strong> → OMNI (13× in 9 mo)</li>
-        <li class="ask-item"><strong>New customer / land-and-expand</strong> → PARAMOUNT</li>
-        <li class="ask-item"><strong>Difficult customer won over</strong> → WIN-OVER / Hollywood / EAP</li>
-        <li class="ask-item"><strong>Repeatable play / template</strong> → NBCU fanout</li>
-        <li class="ask-item"><strong>Your numbers / attainment</strong> → NUMBERS</li>
-        <li class="ask-item"><strong>Prioritise / territory plan</strong> → RAMP (3 gears) / Q10</li>
-        <li class="ask-item"><strong>Fast pace / no process</strong> → PACE (Oliver Parker org)</li>
-        <li class="ask-item"><strong>Beyond quota / growing talent</strong> → Q9 (Aspire hire)</li>
-        <li class="ask-item"><strong>Growth mindset / a weakness</strong> → Q5 (MSc + Lucy)</li>
-        <li class="ask-item"><strong>Why Anthropic</strong> → Why Anthropic (mission-first)</li>
-        <li class="ask-item"><strong>Differentiation vs Gemini/ChatGPT</strong> → DIFF</li>
-        <li class="ask-item"><strong>Pivot / hard convo / kill the deal</strong> → PIVOT</li>
-        <li class="ask-item"><strong>Why M&amp;E now / what you'd bring</strong> → UK-M&amp;E</li>
-        <li class="ask-item"><strong>Failure / lesson</strong> → Q12 (healthcare / Dubbing)</li>
-        <li class="ask-item"><strong>Values — helpful/honest/harmless</strong> → Q15</li>
-        <li class="ask-item"><strong>Standing up / conviction</strong> → Q7 (AI Festival)</li>
-        <li class="ask-item"><strong>When would you leave Anthropic</strong> → Q8 (integrity)</li>
-      </ul>
+      <div class="tile-grid">
+        <button class="map-tile" data-tag="SKY-ARC">Complex / multi-entity deal<span class="tile-code">SKY-ARC</span></button>
+        <button class="map-tile" data-tag="UDX">Commercial structuring<span class="tile-code">UDX</span></button>
+        <button class="map-tile" data-tag="UNIV">Big ACV / displacement<span class="tile-code">UNIVERSAL</span></button>
+        <button class="map-tile" data-tag="OMNI">Patient / long-cycle deal<span class="tile-code">OMNI</span></button>
+        <button class="map-tile" data-tag="PARAMOUNT">New customer / land &amp; expand<span class="tile-code">PARAMOUNT</span></button>
+        <button class="map-tile" data-tag="WIN-OVER">Difficult customer won over<span class="tile-code">WIN-OVER</span></button>
+        <button class="map-tile" data-tag="NBCU+">Repeatable play / template<span class="tile-code">NBCU+ fanout</span></button>
+        <button class="map-tile" data-tag="NUMBERS">My numbers / attainment<span class="tile-code">NUMBERS</span></button>
+        <button class="map-tile" data-tag="RAMP">Prioritise / territory plan<span class="tile-code">RAMP</span></button>
+        <button class="map-tile" data-tag="PACE">Fast pace / no process<span class="tile-code">PACE</span></button>
+        <button class="map-tile" data-tag="Q9">Beyond quota / growing talent<span class="tile-code">Q9</span></button>
+        <button class="map-tile" data-tag="Q5">Growth mindset / a weakness<span class="tile-code">Q5</span></button>
+        <button class="map-tile" data-tag="WHYANTHROPIC">Why Anthropic<span class="tile-code">mission-first</span></button>
+        <button class="map-tile" data-tag="DIFF">Differentiation vs Gemini/ChatGPT<span class="tile-code">DIFF</span></button>
+        <button class="map-tile" data-tag="PIVOT">Pivot / hard convo / kill deal<span class="tile-code">PIVOT</span></button>
+        <button class="map-tile" data-tag="UK-M&amp;E">Why M&amp;E now / what you'd bring<span class="tile-code">UK-M&amp;E</span></button>
+        <button class="map-tile" data-tag="Q12">Failure / lesson<span class="tile-code">Q12</span></button>
+        <button class="map-tile" data-tag="Q15">Values — helpful/honest/harmless<span class="tile-code">Q15</span></button>
+        <button class="map-tile" data-tag="Q7">Standing up / conviction<span class="tile-code">Q7</span></button>
+        <button class="map-tile" data-tag="Q8">When would you leave Anthropic<span class="tile-code">Q8</span></button>
+      </div>
     </div>
 
   </div>
@@ -1385,5 +1419,19 @@
   You've done the work. Go land it.
 </div>
 
+<script>
+document.querySelectorAll('.map-tile').forEach(function(t){
+  t.addEventListener('click', function(){
+    var tag = t.getAttribute('data-tag');
+    var target = (tag === 'WHYANTHROPIC')
+      ? document.querySelector('details.section.navy')
+      : Array.prototype.slice.call(document.querySelectorAll('details')).find(function(d){
+          var q = d.querySelector('.q-tag');
+          return q && q.textContent.trim() === tag;
+        });
+    if (target){ target.open = true; setTimeout(function(){ target.scrollIntoView({behavior:'smooth', block:'start'}); }, 30); }
+  });
+});
+</script>
 </body>
 </html>
