@@ -59,6 +59,13 @@
     text-transform: uppercase;
     letter-spacing: 0.6px;
   }
+  details.section > summary {
+    padding: 0;
+    background: transparent !important;
+    border-bottom: none !important;
+  }
+  details.section > summary h2 { margin: 0; }
+  details.section[open] > summary { margin-bottom: 10px; }
   .section .target {
     font-size: 11px;
     color: #777;
@@ -479,9 +486,9 @@
   <!-- ========================== LEFT COLUMN ========================== -->
   <div>
 
-    <!-- 90-SEC OPENER (always visible) -->
-    <div class="section pink">
-      <h2>90-Second Opener — "Tell me about yourself"</h2>
+    <!-- 90-SEC OPENER (collapsible) -->
+    <details class="section pink" open>
+      <summary><div class="summary-content"><h2>90-Second Opener — "Tell me about yourself"</h2></div></summary>
       <div class="target">Target: ~95 sec. Two-sec pause before starting. Land the two deals crisply, keep the values line light, and end warm on the personal note.</div>
       <div class="answer">
         <p>"I've spent the last decade running AI commercial strategy for enterprise customers — nearly six years at Microsoft in New York across Media &amp; Entertainment strategic accounts, and now at Google as the AI Specialist running the UK startup book. I own the AI quota and run the full motion end to end — hunt, POC, price, negotiate, close.</p>
@@ -490,11 +497,11 @@
         <p>That's the version of AI I argued for in my <strong>AI Festival keynote</strong> last month — assistive AI as acceleration, brought to everyone, not just the chosen few. This role found me on the back of that talk, and it's the first thing since joining Google I'd genuinely leave for. And outside work — I'm London-based with my husband and our <strong>incredibly sassy toy poodle, Monti</strong>; I'm happiest travelling and eating my way around somewhere new. Happy to take this anywhere you'd like."</p>
       </div>
       <div class="target" style="margin-top:8px">End warm on the personal line — a small smile as you mention Monti. It humanises you and quietly delivers the "bit of humour" trait. One breath, then stop. (The Dubai story now lives in <strong>Why Anthropic</strong>, where it has room.)</div>
-    </div>
+    </details>
 
-    <!-- WHY ANTHROPIC + WHY LEAVING (always visible, now under opener) -->
-    <div class="section navy">
-      <h2>Why Anthropic + Why Leaving Google (combined)</h2>
+    <!-- WHY ANTHROPIC + WHY LEAVING (collapsible) -->
+    <details class="section navy" open>
+      <summary><div class="summary-content"><h2>Why Anthropic + Why Leaving Google (combined)</h2></div></summary>
       <div class="target">Target: 155 sec (≈175 with the optional Dubai beat). The leveling question. Build pauses between paragraphs.</div>
       <div class="answer">
         <p>"We're at one of those rare moments in history where everything fundamental about how we live and work is being rewritten — and unlike most technological waves, this one touches everyone, not a subset of people. The question for me has never been whether to be in this work — it's how close to the centre of it I can get.</p>
@@ -503,7 +510,7 @@
         <p style="border-left:3px solid #C00000; padding-left:10px;"><em>Optional personal beat — deploy only if the mission conversation has room and you can say it evenly:</em> "And that responsibility piece isn't abstract for me. I was caught in Dubai when the war broke out earlier this year — for the first time in my life I saw a threat like that up close, and it crystallised what's at stake if powerful AI ends up in the wrong hands. It's the part of this work I care most about."</p>
         <p>There's a leadership piece to this too. My manager put it to me directly last week — <em class="q-quote">"you're on a path to leadership at Google, why give that up?"</em> But the leadership I want isn't inheriting a path that's already built — <strong>it's helping build one</strong>. Google Cloud is <strong>18,000 people</strong> with the playbooks already written; Anthropic is around <strong>3,000</strong>, with EMEA still taking shape — and from what I've read about how openly ideas move there, there's real room to help shape how it grows. That's where I do my best work: my career has been landing things that didn't have a playbook yet. So for me this is a clear call — Anthropic is where I get to <strong>build something and grow with it</strong>, and that's exactly the impact I'm looking for."</p>
       </div>
-    </div>
+    </details>
 
     <!-- ALL QUESTIONS AS CLICK-TO-EXPAND -->
     <div class="section grey">
