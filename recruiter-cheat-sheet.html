@@ -483,6 +483,11 @@
   .map-tile.t-gold { border-left-color:#B8860B; background:#fffdf4; } .map-tile.t-gold:hover { background:#B8860B; }
   .map-tile.t-green { border-left-color:#2E7D32; background:#f4fbf4; } .map-tile.t-green:hover { background:#2E7D32; }
   .map-tile.t-navy { border-left-color:#1F3A5F; background:#f5f8fc; } .map-tile.t-navy:hover { background:#1F3A5F; }
+  .map-tile.t-purple { border-left-color:#7B1FA2; background:#faf5fc; } .map-tile.t-purple:hover { background:#7B1FA2; }
+  .map-tile.t-orange { border-left-color:#E65100; background:#fff8f2; } .map-tile.t-orange:hover { background:#E65100; }
+  .map-tile.t-slate { border-left-color:#546E7A; background:#f6f8f9; } .map-tile.t-slate:hover { background:#546E7A; }
+  .tile-head { grid-column:1 / -1; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.8px; margin:11px 0 1px; padding-bottom:3px; border-bottom:2px solid currentColor; }
+  .tile-head:first-child { margin-top:0; }
   .stats { background:#f1f8f2; border:1px solid #cfe6cf; border-left:3px solid #0a7d33; border-radius:4px; padding:7px 10px; margin:0 0 9px 0; font-size:12px; font-weight:700; color:#14471f; line-height:1.5; }
 </style>
 </head>
@@ -1075,8 +1080,8 @@
         </div>
       </details>
 
-      <!-- Q9 -->
-      <details>
+      <!-- Q9 (moved to green Culture group) -->
+      <details class="research">
         <summary>
           <div class="summary-content">
             <div class="summary-top">
@@ -1231,27 +1236,47 @@
       <h2>Question → answer map (glance &amp; deploy)</h2>
       <div class="target">Don't recall — find the row, open the card. Lead with the number, name the names.</div>
       <div class="tile-grid">
-        <button class="map-tile t-red" data-tag="SKY-ARC">Complex / multi-entity deal<span class="tile-code">SKY-ARC</span></button>
-        <button class="map-tile t-red" data-tag="RIGHTMOVE">Technical depth / demo-led land<span class="tile-code">RIGHTMOVE</span></button>
-        <button class="map-tile t-red" data-tag="UDX">Commercial structuring<span class="tile-code">UDX</span></button>
-        <button class="map-tile t-red" data-tag="UNIV">Big ACV / displacement<span class="tile-code">UNIVERSAL</span></button>
-        <button class="map-tile t-red" data-tag="OMNI">Patient / long-cycle deal<span class="tile-code">OMNI</span></button>
-        <button class="map-tile t-red" data-tag="PARAMOUNT">New customer / land &amp; expand<span class="tile-code">PARAMOUNT</span></button>
-        <button class="map-tile t-red" data-tag="WIN-OVER">Difficult customer won over<span class="tile-code">WIN-OVER</span></button>
-        <button class="map-tile t-red" data-tag="NBCU+">Repeatable play / template<span class="tile-code">NBCU+ fanout</span></button>
-        <button class="map-tile t-red" data-tag="NUMBERS">My numbers / attainment<span class="tile-code">NUMBERS</span></button>
-        <button class="map-tile t-red" data-tag="RAMP">Prioritise / territory plan<span class="tile-code">RAMP</span></button>
-        <button class="map-tile t-red" data-tag="PACE">Fast pace / no process<span class="tile-code">PACE</span></button>
-        <button class="map-tile t-gold" data-tag="Q9">Beyond quota / growing talent<span class="tile-code">Q9</span></button>
-        <button class="map-tile t-gold" data-tag="Q5">Growth mindset / a weakness<span class="tile-code">Q5</span></button>
+        <div class="tile-head" style="color:#1F3A5F">① Intro &amp; Why Anthropic</div>
+        <button class="map-tile t-navy" data-tag="OPENER">Tell me about yourself<span class="tile-code">90-SEC OPENER</span></button>
         <button class="map-tile t-navy" data-tag="WHYANTHROPIC">Why Anthropic + mission + why-leave<span class="tile-code">WHY ANTHROPIC</span></button>
-        <button class="map-tile t-red" data-tag="DIFF">Differentiation vs Gemini/ChatGPT<span class="tile-code">DIFF</span></button>
-        <button class="map-tile t-red" data-tag="PIVOT">Pivot / hard convo / kill deal<span class="tile-code">PIVOT</span></button>
-        <button class="map-tile t-red" data-tag="UK-M&amp;E">Why M&amp;E now / what you'd bring<span class="tile-code">UK-M&amp;E</span></button>
-        <button class="map-tile t-gold" data-tag="Q12">Failure / lesson<span class="tile-code">Q12</span></button>
-        <button class="map-tile t-green" data-tag="Q15">Values — helpful/honest/harmless<span class="tile-code">Q15</span></button>
-        <button class="map-tile t-gold" data-tag="Q7">Standing up / conviction<span class="tile-code">Q7</span></button>
-        <button class="map-tile t-gold" data-tag="Q8">When would you leave Anthropic<span class="tile-code">Q8</span></button>
+
+        <div class="tile-head" style="color:#2E7D32">② Culture &amp; values</div>
+        <button class="map-tile t-green" data-tag="Q9">What I bring<span class="tile-code">Q9</span></button>
+        <button class="map-tile t-green" data-tag="Q15">Helpful / honest / harmless<span class="tile-code">Q15</span></button>
+        <button class="map-tile t-green" data-tag="Q13">What stood out (research)<span class="tile-code">Q13</span></button>
+        <button class="map-tile t-green" data-tag="Q8">When would you leave<span class="tile-code">Q8</span></button>
+
+        <div class="tile-head" style="color:#C00000">③ Big complex deals</div>
+        <button class="map-tile t-red" data-tag="SKY-ARC">Complex / multi-entity (Sky/Comcast)<span class="tile-code">SKY-ARC</span></button>
+        <button class="map-tile t-red" data-tag="NBCU+">Enterprise / ethical template<span class="tile-code">NBCU+</span></button>
+        <button class="map-tile t-red" data-tag="UNIV">Big ACV / displaced AWS<span class="tile-code">UNIVERSAL</span></button>
+        <button class="map-tile t-red" data-tag="UDX">Commercial structuring<span class="tile-code">UDX</span></button>
+        <button class="map-tile t-red" data-tag="PARAMOUNT">Land &amp; expand<span class="tile-code">PARAMOUNT</span></button>
+        <button class="map-tile t-red" data-tag="OMNI">Patient / long-cycle<span class="tile-code">OMNI</span></button>
+        <button class="map-tile t-red" data-tag="WIN-OVER">Difficult customer won over<span class="tile-code">WIN-OVER</span></button>
+
+        <div class="tile-head" style="color:#7B1FA2">④ Technical depth</div>
+        <button class="map-tile t-purple" data-tag="RIGHTMOVE">Demo-led land (Rightmove)<span class="tile-code">RIGHTMOVE</span></button>
+        <button class="map-tile t-purple" data-tag="Q14">What I've built<span class="tile-code">Q14</span></button>
+        <button class="map-tile t-purple" data-tag="DIFF">vs Gemini / ChatGPT<span class="tile-code">DIFF</span></button>
+
+        <div class="tile-head" style="color:#B8860B">⑤ Building from zero (0→1)</div>
+        <button class="map-tile t-gold" data-tag="Q4">Built the UK startup motion<span class="tile-code">Q4</span></button>
+        <button class="map-tile t-gold" data-tag="RAMP">First 6 months (3 gears)<span class="tile-code">RAMP</span></button>
+        <button class="map-tile t-gold" data-tag="UK-M&amp;E">UK M&amp;E market + pipeline<span class="tile-code">UK-M&amp;E</span></button>
+
+        <div class="tile-head" style="color:#E65100">⑥ Pace &amp; volume</div>
+        <button class="map-tile t-orange" data-tag="PACE">Fast pace / no process<span class="tile-code">PACE</span></button>
+        <button class="map-tile t-orange" data-tag="Q10">Prioritise (1,500 accts)<span class="tile-code">Q10</span></button>
+
+        <div class="tile-head" style="color:#546E7A">⑦ Other characteristics</div>
+        <button class="map-tile t-slate" data-tag="Q5">Growth mindset / a weakness<span class="tile-code">Q5</span></button>
+        <button class="map-tile t-slate" data-tag="Q7">Standing up / conviction<span class="tile-code">Q7</span></button>
+        <button class="map-tile t-slate" data-tag="Q11">Challenging the status quo<span class="tile-code">Q11</span></button>
+        <button class="map-tile t-slate" data-tag="Q12">Failure / lesson<span class="tile-code">Q12</span></button>
+        <button class="map-tile t-slate" data-tag="PIVOT">Pivot / hard convo / kill deal<span class="tile-code">PIVOT</span></button>
+        <button class="map-tile t-slate" data-tag="PARTNERS">M&amp;E partners<span class="tile-code">PARTNERS</span></button>
+        <button class="map-tile t-slate" data-tag="NUMBERS">My numbers / attainment<span class="tile-code">NUMBERS</span></button>
       </div>
     </div>
 
@@ -1477,6 +1502,8 @@ document.querySelectorAll('.map-tile').forEach(function(t){
     var tag = t.getAttribute('data-tag');
     var target = (tag === 'WHYANTHROPIC')
       ? document.querySelector('details.section.navy')
+      : (tag === 'OPENER')
+      ? document.querySelector('details.section.pink')
       : Array.prototype.slice.call(document.querySelectorAll('details')).find(function(d){
           var q = d.querySelector('.q-tag');
           return q && q.textContent.trim() === tag;
