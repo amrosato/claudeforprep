@@ -175,6 +175,14 @@
   details.gblue { border-left-color: #42A5F5; background: #f5f9fe; }
   details.gblue[open] { border-left-color: #1565C0; }
   details.gblue[open] summary { background: #eaf3fd; border-bottom-color: #c6dcf5; }
+  /* Current events / hard-objection (orange) cards */
+  details.hot { border-left-color: #FB8C00; background: #fff8f2; }
+  details.hot[open] { border-left-color: #E65100; }
+  details.hot[open] summary { background: #fff1e6; border-bottom-color: #f5d9bf; }
+  /* Verbatim-phrase callout box */
+  .verbatim { margin-top:8px; background:#fff4e8; border:1px solid #f3cfa3; border-left:3px solid #E65100; border-radius:4px; padding:8px 11px; }
+  .verbatim .vh { font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.6px; color:#E65100; margin-bottom:4px; }
+  .verbatim p { margin:4px 0; font-size:12px; font-style:italic; }
   /* Left-column coloured group dividers */
   .group-divider {
     font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px;
@@ -779,6 +787,108 @@
         </div>
       </details>
 
+      <!-- ===== CURRENT EVENTS & HARD OBJECTIONS ===== -->
+      <div class="group-divider" style="color:#E65100">Current events &amp; hard objections</div>
+
+      <!-- FABLE 5 - current events / safety posture -->
+      <details class="hot">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">FABLE 5</span>
+              <span class="q-anchor">Current events &middot; trust</span>
+              <span class="q-title-text">Fable 5 / Mythos 5 — the safety-posture story</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">&#128293; Two stories: 10 Jun sabotage apology &middot; 12–13 Jun export suspension &middot; turn the news into a resilience-architecture conversation</p>
+          <p class="target">Likely Q (3 variants): <strong>A &mdash;</strong> "your take on Fable 5, and how it impacts customer conversations?" &middot; <strong>B &mdash;</strong> "you follow the news, what do you make of it?" (testing currency) &middot; <strong>C &mdash;</strong> "how would you handle a customer worried about the rollback?" (testing positioning). <strong>Separate the two stories; land calm, not defensive.</strong> ~2:00.</p>
+          <p>"Two stories layered together — I'd separate them.</p>
+          <p>On the <strong>'secret sabotage' piece around 10 June</strong>: that's proof <strong>Anthropic's safety posture is real, not marketing</strong>. When the company made the wrong tradeoff on capability limits, they <strong>apologised publicly and made the fallback to Opus 4.8 visible</strong>. Most labs wouldn't have. That's a <strong>customer trust story</strong> — particularly for <strong>M&amp;E customers post-strikes</strong>, who are choosing AI partners on <strong>values, not just capability</strong>.</p>
+          <p>The <strong>export-control suspension on 12–13 June</strong> is the harder conversation, but I'd frame it differently than most people are. The terms that pulled Fable 5 and Mythos 5 <strong>exist to protect humanity against bad actors with frontier capability — they're not surveillance, they're not Anthropic gatekeeping the model to the few</strong>. The premise underneath is that we're still in the period where <strong>AI capability is outpacing our understanding of AI safety</strong>. The pendulum could swing either way — toward enormous public good or toward catastrophic misuse — and <strong>Anthropic is making the conservative bet until interpretability research catches up</strong>. That IS the bargain <strong>Constitutional AI and the RSP</strong> imply.</p>
+          <p>The customer conversation, then, isn't 'is Fable 5 available' — it's <strong>'are we using the right model in the Anthropic family for each job?'</strong> <strong>Opus 4.8 for high-reasoning workloads, Sonnet for production scale, Haiku for low-latency</strong>. <strong>Single-model dependency on ANY frontier model</strong> — Fable 5, GPT-5, Gemini Ultra — is now an <strong>architectural risk regardless of vendor</strong>. Documented fallback paths within the model family, <strong>multi-region inference via Bedrock EU and Vertex EU</strong>, ideally <strong>multi-provider gateway design</strong>. That's the <strong>resilience architecture conversation</strong> I'd want with every Tier 1 customer in the next 30 days.</p>
+          <p>The deeper point — and this is what I'd want EMEA customers to understand — is that <strong>the lab that WOULDN'T pull a model when safety or national security requires it is the lab you should be more worried about</strong>. Anthropic's posture is the <strong>differentiation</strong>. Most customers haven't fully internalised that yet. <strong>Fable 5 is the moment that lands.</strong>"</p>
+          <div class="verbatim">
+            <div class="vh">&#9733; 3 phrases to memorise verbatim</div>
+            <p>1. "The terms that pulled Fable 5 exist to protect humanity against bad actors with frontier capability — they're not surveillance, they're not Anthropic gatekeeping the model to the few."</p>
+            <p>2. "The customer conversation isn't 'is Fable 5 available' — it's 'are we using the right model in the Anthropic family for each job?'"</p>
+            <p>3. "The lab that WOULDN'T pull a model when safety or national security requires it is the lab you should be more worried about."</p>
+          </div>
+          <div style="margin-top:14px; border-top:1px dashed #f3cfa3; padding-top:10px;">
+            <div class="target" style="margin:0 0 6px;"><strong>&#8627; Follow-ups</strong> — expand only if asked.</div>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"But isn't this a sales killer?"</span></div></div></summary>
+              <div class="detail-body"><p>"It's a <strong>sales accelerator</strong> if you frame it right. The conversation isn't 'buy Claude' — it's <strong>'how is your AI estate designed for resilience?'</strong> Most customers haven't been forced to think about that yet. Fable 5 makes them. <strong>The customers who DON'T have that architecture are the ones with the real problem, not me.</strong>"</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"They'd rather use a US lab with no export-control exposure?"</span></div></div></summary>
+              <div class="detail-body"><p>"I'd ask them <strong>which lab they think doesn't have that exposure</strong>. <strong>Every frontier US lab is subject to the same export framework.</strong> The lab that hasn't been pulled YET isn't safer — it just hasn't been in the spotlight yet. The right risk question isn't 'which vendor is immune' — it's <strong>'is our architecture resilient when ANY vendor is constrained.'</strong>"</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"Does this make it harder to land your first EMEA deal?"</span></div></div></summary>
+              <div class="detail-body"><p>"Not if I'm in the right room. The <strong>C-level conversation about AI as critical infrastructure is becoming more sophisticated, not less</strong>. Customers thinking at that level — and my Tier 1 list IS thinking at that level — actually <strong>want a vendor that's transparent about safety calls</strong>. The customers it makes harder for me are the ones I shouldn't be selling to anyway."</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"What's your immediate first move?"</span></div></div></summary>
+              <div class="detail-body"><p>"I'd reach out to my <strong>Sky and BT contacts this week with a single-paragraph note</strong>. Not selling — just flagging there's an <strong>architecture conversation worth having about fallback resilience</strong>. That's a senior peer-to-peer message that <strong>turns the news cycle into a meeting request</strong>. BT especially given they're already inside Glasswing — this is the moment to deepen that conversation, not retreat from it."</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">Loyalty test: "Worried about joining mid-story?"</span></div></div></summary>
+              <div class="detail-body"><p>"Honestly, <strong>the opposite</strong>. If I joined Anthropic when everything was easy, I'd learn nothing. Joining during a moment where the company has to <strong>publicly defend its safety posture and explain its export-control decisions — that's where you find out what the company is actually made of</strong>. The way Anthropic handled the apology, the public posture, the customer communication — that's exactly the kind of company I want to be representing. <strong>The Fable 5 story isn't a reason to be worried about Anthropic. It's the reason to be optimistic about it.</strong>"</p></div>
+            </details>
+          </div>
+        </div>
+      </details>
+
+      <!-- POSTURE - public-posture objection -->
+      <details class="hot">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">POSTURE</span>
+              <span class="q-anchor">Objection handling</span>
+              <span class="q-title-text">Public-posture objection — "loud voice / clashing with govt"</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">&#128293; "What if their access got pulled and we're dependent?" &middot; loud = predictable &middot; single-vendor lock-in is the real risk</p>
+          <p class="target">Likely Q: "We're worried about doing business with Anthropic — loud public voice, clashing with the US government. What if all their access got pulled and we were dependent on all their models?" <strong>Probably posed as a customer scenario Paddy walks you through</strong> — but he may ask it straight. Four moves: political reality &rarr; loud = predictable &rarr; dependency is architectural &rarr; comparative. ~2:00.</p>
+          <p>"That's a legitimate concern — and it's the <strong>right CEO-level question</strong> to be asking. Most enterprise buyers aren't thinking at this level yet. Let me give you the full picture.</p>
+          <p>First, the <strong>political reality</strong>. <strong>Anthropic isn't being shut down.</strong> The Fable 5 and Mythos 5 suspension was about <strong>specific capabilities under specific circumstances — not about the company</strong>. Anthropic is now <strong>one of the most strategically important AI companies in the US</strong> — talent, capability, government engagement, economic value. <strong>The US doesn't shutter companies like Anthropic; it shapes their behaviour.</strong> Dario Amodei testifies to Congress regularly, Anthropic files public comments on regulation, and they work directly with <strong>CAISI in the US and AISI in the UK</strong>. That's a company <strong>inside the tent shaping policy</strong>, not one heading for a confrontation.</p>
+          <p>Second — and this is counterintuitive — <strong>a company that's loud about its values is actually MORE predictable than one that isn't</strong>. You know what Anthropic will do because they've told you publicly: they'll pull a model when safety or national security requires it, they'll apologise when they get it wrong, they'll keep building toward measurable safety. <strong>The labs you should worry about are the ones whose posture is opaque</strong> — because when something goes wrong you have no idea what they'll do.</p>
+          <p>Third — on the dependency question. <strong>Single-vendor lock-in to ANY frontier lab is the architectural risk you're describing, not Anthropic specifically.</strong> The right design is <strong>multi-region inference via Bedrock EU and Vertex EU</strong>, documented fallback within the Anthropic family — <strong>Opus 4.8, Sonnet and Haiku</strong> each serve different use cases — and ideally <strong>multi-provider gateway design</strong> that lets you swap providers per workload. That's a conversation you should be having regardless of where you start.</p>
+          <p>And finally — the <strong>comparative question</strong>. <strong>OpenAI has had its own public clashes. Google has antitrust pressure. Meta has had EU regulatory friction.</strong> The 'Anthropic is uniquely risky because they're vocal' framing <strong>doesn't survive comparison</strong>. The right question is: <strong>which lab's values are most aligned with how YOU want to deploy AI?</strong> Then build architectural resilience around any single dependency. Both answers, together.</p>
+          <p>The deeper point — <strong>Anthropic's public voice isn't a risk to manage. It's the artifact of a company trying to keep AI development going in a direction you can actually trust.</strong> The customers who internalise that are partnering with Anthropic strategically. The customers treating it as a liability are missing what the posture actually signals."</p>
+          <div class="verbatim">
+            <div class="vh">&#9733; 3 phrases to memorise verbatim</div>
+            <p>1. "The US doesn't shutter companies like Anthropic; it shapes their behaviour."</p>
+            <p>2. "A company that's loud about its values is actually MORE predictable than one that isn't. You know what Anthropic will do because they've told you publicly."</p>
+            <p>3. "Anthropic's public voice isn't a risk to manage. It's the artifact of a company trying to keep AI development going in a direction you can actually trust."</p>
+          </div>
+          <div style="margin-top:14px; border-top:1px dashed #f3cfa3; padding-top:10px;">
+            <div class="target" style="margin:0 0 6px;"><strong>&#8627; Follow-ups</strong> — expand only if asked.</div>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"What if a future US admin decides Anthropic IS the problem?"</span></div></div></summary>
+              <div class="detail-body"><p>"That risk is <strong>real for any AI company, not just Anthropic</strong>. The mitigation is the same — <strong>multi-region inference, model-family redundancy within Anthropic, and multi-provider design</strong> so no single vendor is a single point of failure. That's true if you partner with Anthropic, and true if you partner with anyone else. The right question isn't 'which lab is administration-proof' — there isn't one. It's <strong>'is your architecture resilient to any vendor scenario.'</strong>"</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"Wouldn't a more politically quiet lab be safer?"</span></div></div></summary>
+              <div class="detail-body"><p>"<strong>Define 'quiet.'</strong> OpenAI has been in multiple public controversies — leadership turnover, government scrutiny, ongoing copyright litigation. Google is under antitrust pressure that could reshape Vertex's commercial terms. Meta has been in EU regulatory cycles for years. <strong>The labs that look quiet today aren't actually quiet — they're just quieter at the moment we're talking.</strong> The substantive question isn't which lab has the lowest current temperature — it's <strong>which lab's values and posture you can actually predict over a multi-year partnership</strong>."</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"Worst-case scenario for our deployment?"</span></div></div></summary>
+              <div class="detail-body"><p>"Honestly — <strong>full export-style suspension across the entire Anthropic model family for a sustained period</strong>. That's the tail risk. The architectural answer is the <strong>multi-provider gateway design</strong> — <strong>hot fallback to a non-Anthropic model</strong> for workloads that can't tolerate downtime. We can architect that up front. And it's worth saying: <strong>that scenario applies to every frontier lab, not just Anthropic</strong>. The architecture is the answer either way."</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"How do I sell this internally to my board?"</span></div></div></summary>
+              <div class="detail-body"><p>"Three points, and I'd help you frame them. <strong>One</strong> — Anthropic's safety posture is the reason we'd be comfortable with the partnership <strong>in regulated contexts where reputational risk is asymmetric</strong>. <strong>Two</strong> — the architecture we're proposing has <strong>resilience built in</strong>, so single-vendor exposure isn't actually high. <strong>Three</strong> — the right comparison isn't 'Anthropic versus a lab without a public voice' — it's <strong>'a lab whose values you can predict versus a lab whose values you can't.'</strong> That's the boardroom version of the conversation."</p></div>
+            </details>
+          </div>
+        </div>
+      </details>
+
       <!-- ===== OTHER DEALS ===== -->
       <div class="group-divider" style="color:#C00000">Other deals</div>
 
@@ -1312,17 +1422,21 @@
         <button class="map-tile t-green" data-tag="Q9">What I bring<span class="tile-code">Q9</span></button>
         <button class="map-tile t-green" data-tag="Q8">When would you leave<span class="tile-code">Q8</span></button>
 
-        <div class="tile-head" style="color:#C00000">③ Big complex deals</div>
+        <div class="tile-head" style="color:#E65100">③ Current events &amp; hard objections</div>
+        <button class="map-tile t-orange" data-tag="FABLE 5">Fable 5 / safety posture<span class="tile-code">FABLE 5</span></button>
+        <button class="map-tile t-orange" data-tag="POSTURE">Public-posture objection<span class="tile-code">POSTURE</span></button>
+
+        <div class="tile-head" style="color:#C00000">④ Big complex deals</div>
         <button class="map-tile t-red" data-tag="SKY TELCO">Telco contact-centre AI (Sky)<span class="tile-code">SKY TELCO</span></button>
         <button class="map-tile t-red" data-tag="UNIV">Big ACV / displaced AWS<span class="tile-code">UNIVERSAL</span></button>
         <button class="map-tile t-red" data-tag="PARAMOUNT">Land &amp; expand<span class="tile-code">PARAMOUNT</span></button>
         <button class="map-tile t-red" data-tag="WIN-OVER">Difficult customer won over<span class="tile-code">WIN-OVER</span></button>
 
-        <div class="tile-head" style="color:#7B1FA2">④ Technical depth</div>
+        <div class="tile-head" style="color:#7B1FA2">⑤ Technical depth</div>
         <button class="map-tile t-purple" data-tag="RIGHTMOVE">Demo-led land (Rightmove)<span class="tile-code">RIGHTMOVE</span></button>
         <button class="map-tile t-purple" data-tag="DIFF">vs Gemini / ChatGPT<span class="tile-code">DIFF</span></button>
 
-        <div class="tile-head" style="color:#1565C0">⑤ Building, pace &amp; the patch</div>
+        <div class="tile-head" style="color:#1565C0">⑥ Building, pace &amp; the patch</div>
         <button class="map-tile t-blue" data-tag="MEDDPICC">Framework — MEDDPICC &gt; BANT<span class="tile-code">MEDDPICC</span></button>
         <button class="map-tile t-blue" data-tag="Q10">Prioritise (1,500 accts)<span class="tile-code">Q10</span></button>
         <button class="map-tile t-blue" data-tag="PARTNERS">M&amp;E partners<span class="tile-code">PARTNERS</span></button>
@@ -1331,7 +1445,7 @@
         <button class="map-tile t-blue" data-tag="Q4">Built the UK startup motion<span class="tile-code">Q4</span></button>
         <button class="map-tile t-blue" data-tag="UK-M&amp;E">UK M&amp;E market + pipeline<span class="tile-code">UK-M&amp;E</span></button>
 
-        <div class="tile-head" style="color:#546E7A">⑥ Other characteristics</div>
+        <div class="tile-head" style="color:#546E7A">⑦ Other characteristics</div>
         <button class="map-tile t-slate" data-tag="Q5">Growth mindset / a weakness<span class="tile-code">Q5</span></button>
         <button class="map-tile t-slate" data-tag="Q7">Standing up / conviction<span class="tile-code">Q7</span></button>
         <button class="map-tile t-slate" data-tag="Q11">Challenging the status quo<span class="tile-code">Q11</span></button>
