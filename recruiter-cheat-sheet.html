@@ -94,6 +94,17 @@
   .blue h2 { color: #0D47A1; }
   .red { border-left: 4px solid #C00000; }
   .red h2 { color: #8B0000; }
+  .orange { border-left: 4px solid #E65100; }
+  .orange h2 { color: #E65100; }
+  /* Questions for Paddy panel */
+  .pq-list { display:flex; flex-direction:column; gap:7px; margin-top:8px; }
+  .pq-item { font-size:11.5px; line-height:1.42; background:#fff; border:1px solid #f3cfa3; border-left:3px solid #FB8C00; border-radius:5px; padding:7px 9px; color:#5a3a1a; }
+  .pq-item .pq-tag { display:block; font-size:9.5px; font-weight:800; letter-spacing:.4px; color:#E65100; margin-bottom:3px; text-transform:uppercase; }
+  .pq-item.skip { background:#fff1e0; border:2px solid #E65100; box-shadow:0 1px 5px rgba(230,81,0,.16); }
+  .pq-item.skip .pq-tag::after { content:" · ★ NEVER SKIP"; color:#C00000; }
+  .pq-q { font-style:italic; }
+  .pq-sub { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:#E65100; margin:12px 0 2px; }
+  .pq-note { margin-top:10px; font-size:11px; font-weight:700; color:#8B0000; background:#fdecec; border:1px solid #f3b6b6; border-radius:5px; padding:7px 9px; }
 
   strong.beat { color: #AD1457; }
   em.q-quote {
@@ -1453,6 +1464,35 @@
         <button class="map-tile t-slate" data-tag="PIVOT">Pivot / hard convo / kill deal<span class="tile-code">PIVOT</span></button>
         <button class="map-tile t-slate" data-tag="NUMBERS">My numbers / attainment<span class="tile-code">NUMBERS</span></button>
       </div>
+    </div>
+
+    <!-- QUESTIONS FOR PADDY -->
+    <div class="section orange">
+      <h2>Questions for Paddy (in order)</h2>
+      <div class="target">Open by offering to prioritise — you have more than the time allows. <strong>★ boxes = never skip</strong> if crunched: Q1, Q3, Q4, Q7 + the Closer.</div>
+
+      <div class="pq-sub">Opener framing — deliver verbatim</div>
+      <div class="pq-list">
+        <div class="pq-item"><span class="pq-tag">Opener</span><span class="pq-q">"Paddy, I've been preparing questions for you in some detail — I've got more than we'll have time for. Want me to share what's at the top of my list and we can prioritise based on what's most useful for both of us?"</span></div>
+      </div>
+
+      <div class="pq-list">
+        <div class="pq-item skip"><span class="pq-tag">Q1 · Stage 1 callback</span><span class="pq-q">"I asked Ollie a version of this in Stage 1 — what would you have liked to know about Anthropic before joining? The good and the bad. You're a few weeks in, so I'm curious what's surprised you, positively and negatively."</span></div>
+        <div class="pq-item"><span class="pq-tag">Q2 · Team makeup + hiring</span><span class="pq-q">"Help me understand the EMEA TMT team. How many people, where are they sitting geographically, how senior is the bench, and where you're looking to hire next."</span></div>
+        <div class="pq-item skip"><span class="pq-tag">Q3 · Management style</span><span class="pq-q">"I want to make sure I'd be one of the strongest reports you've ever had. What's your management style — how do you like to work with your team? What makes a great report-manager relationship for you, and what frustrates you?"</span></div>
+        <div class="pq-item skip"><span class="pq-tag">Q4 · The bar at month 12</span><span class="pq-q">"What does the absolute best version of an EMEA TMT AE look like at month 12? Not just the numbers — the kind of operator, the relationships built, the influence inside Anthropic. I want to understand what I'm building toward."</span></div>
+        <div class="pq-item"><span class="pq-tag">Q5 · First 90-days trap</span><span class="pq-q">"When I'm thinking about my first 90 days, what's the trap that other new hires have fallen into that I should actively avoid?"</span></div>
+        <div class="pq-item"><span class="pq-tag">Q6 · Reverse the energy</span><span class="pq-q">"What's giving you the most energy in the role right now? What are you walking into every Monday excited about?"</span></div>
+        <div class="pq-item skip"><span class="pq-tag">Q7 · Gaps to close</span><span class="pq-q">"Based on what you've heard today, what would you want me to focus on between now and the final round? Where do you see gaps in my profile or my thinking I could close in the next couple of weeks? I want to walk into the next round at my strongest."</span></div>
+      </div>
+
+      <div class="pq-sub">Closer — pick one, deliver verbatim</div>
+      <div class="pq-list">
+        <div class="pq-item skip"><span class="pq-tag">Closer A · measured</span><span class="pq-q">"Last question — what's the one thing you'd want me to leave today knowing about this role, or about working with you, that would help me show up at my best in the final round?"</span></div>
+        <div class="pq-item skip"><span class="pq-tag">Closer B · bolder — use if it feels true</span><span class="pq-q">"This is the role I've been preparing for over the last several years of my career, and the conversation today has only made me want it more. What's the most useful piece of advice you'd give me between now and final round?"</span></div>
+      </div>
+
+      <div class="pq-note">★ Never skip if crunched for time: Q1, Q3, Q4, Q7 — and the Closer.</div>
     </div>
 
   </div>
