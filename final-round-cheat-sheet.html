@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final Round Cheat Sheet — Anthropic (4 interviews)</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    margin: 0;
+    padding: 16px;
+    background: #f5f6f8;
+    color: #1a1a1a;
+    line-height: 1.45;
+  }
+  .header {
+    background: #1F3A5F;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 6px;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header h1 { margin: 0; font-size: 19px; font-weight: 700; }
+  .pivot-banner {
+    background: #C00000;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+  }
+  .header .meta { font-size: 12px; opacity: 0.85; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+
+  .section {
+    background: white;
+    border-radius: 6px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    margin-bottom: 14px;
+  }
+  .section:last-child { margin-bottom: 0; }
+  .section h2 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+  details.section > summary {
+    padding: 0;
+    background: transparent !important;
+    border-bottom: none !important;
+  }
+  details.section > summary h2 { margin: 0; }
+  details.section[open] > summary { margin-bottom: 10px; }
+  .section .target {
+    font-size: 11px;
+    color: #777;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .section .answer {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #1a1a1a;
+  }
+  .section .answer p { margin: 8px 0; }
+
+  /* Color coding */
+  .pink { border-left: 4px solid #E91E63; }
+  .pink h2 { color: #AD1457; }
+  .navy { border-left: 4px solid #1F3A5F; }
+  .navy h2 { color: #1F3A5F; }
+  .yellow { border-left: 4px solid #FFC107; }
+  .yellow h2 { color: #B8860B; }
+  .green { border-left: 4px solid #4CAF50; }
+  .green h2 { color: #2E7D32; }
+  .grey { border-left: 4px solid #9E9E9E; }
+  .grey h2 { color: #555; }
+  .blue { border-left: 4px solid #1976D2; }
+  .blue h2 { color: #0D47A1; }
+  .red { border-left: 4px solid #C00000; }
+  .red h2 { color: #8B0000; }
+  .orange { border-left: 4px solid #E65100; }
+  .orange h2 { color: #E65100; }
+  /* Questions for Paddy panel */
+  .pq-list { display:flex; flex-direction:column; gap:7px; margin-top:8px; }
+  .pq-item { font-size:11.5px; line-height:1.42; background:#fff; border:1px solid #f3cfa3; border-left:3px solid #FB8C00; border-radius:5px; padding:7px 9px; color:#5a3a1a; }
+  .pq-item .pq-tag { display:block; font-size:9.5px; font-weight:800; letter-spacing:.4px; color:#E65100; margin-bottom:3px; text-transform:uppercase; }
+  .pq-item.skip { background:#fff1e0; border:2px solid #E65100; box-shadow:0 1px 5px rgba(230,81,0,.16); }
+  .pq-item.skip .pq-tag::after { content:" · ★ NEVER SKIP"; color:#C00000; }
+  .pq-q { font-style:italic; }
+  .pq-sub { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:#E65100; margin:12px 0 2px; }
+  .pq-note { margin-top:10px; font-size:11px; font-weight:700; color:#8B0000; background:#fdecec; border:1px solid #f3b6b6; border-radius:5px; padding:7px 9px; }
+
+  strong.beat { color: #AD1457; }
+  em.q-quote {
+    color: #1F3A5F;
+    font-style: normal;
+    background: #f0f4f8;
+    padding: 1px 3px;
+    border-radius: 2px;
+  }
+
+  /* Collapsible question cards */
+  .accordion-intro {
+    font-size: 11px;
+    color: #666;
+    font-style: italic;
+    margin: 4px 0 12px 0;
+  }
+  details {
+    background: #fafaf8;
+    border: 1px solid #e6e0d0;
+    border-left: 3px solid #FFC107;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.15s;
+  }
+  details:hover { box-shadow: 0 2px 5px rgba(0,0,0,0.07); }
+  details[open] {
+    background: white;
+    border-left-color: #B8860B;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  /* Special hero deal cards */
+  details.hero {
+    border-left-color: #E91E63;
+    background: #fffafc;
+  }
+  details.hero[open] { border-left-color: #C2185B; }
+  /* Q13/Q14 green */
+  details.research {
+    border-left-color: #4CAF50;
+    background: #f7fbf7;
+  }
+  details.research[open] { border-left-color: #2E7D32; }
+
+  summary {
+    cursor: pointer;
+    padding: 10px 12px;
+    font-size: 12.5px;
+    color: #1F3A5F;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    user-select: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "▸";
+    color: #B8860B;
+    font-size: 14px;
+    transition: transform 0.15s;
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+  details[open] summary::after { transform: rotate(90deg); }
+  details[open] summary {
+    border-bottom: 1px solid #f0e8d0;
+    background: #fff8e7;
+  }
+  details.hero[open] summary { background: #fff0f5; border-bottom-color: #f5d5e0; }
+  details.research[open] summary { background: #effbef; border-bottom-color: #d6ebd6; }
+  /* Next-round (red) cards */
+  details.newq { border-left-color: #EF5350; background: #fff7f7; }
+  details.newq[open] { border-left-color: #C00000; }
+  details.newq[open] summary { background: #fdecec; border-bottom-color: #f5c6c6; }
+  /* Building, pace & the patch (blue) cards */
+  details.gblue { border-left-color: #42A5F5; background: #f5f9fe; }
+  details.gblue[open] { border-left-color: #1565C0; }
+  details.gblue[open] summary { background: #eaf3fd; border-bottom-color: #c6dcf5; }
+  /* Current events / hard-objection (orange) cards */
+  details.hot { border-left-color: #FB8C00; background: #fff8f2; }
+  details.hot[open] { border-left-color: #E65100; }
+  details.hot[open] summary { background: #fff1e6; border-bottom-color: #f5d9bf; }
+  /* Verbatim-phrase callout box */
+  .verbatim { margin-top:8px; background:#fff4e8; border:1px solid #f3cfa3; border-left:3px solid #E65100; border-radius:4px; padding:8px 11px; }
+  .verbatim .vh { font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.6px; color:#E65100; margin-bottom:4px; }
+  .verbatim p { margin:4px 0; font-size:12px; font-style:italic; }
+  /* Left-column coloured group dividers */
+  .group-divider {
+    font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px;
+    margin: 18px 0 8px; padding-bottom: 4px; border-bottom: 2px solid currentColor;
+  }
+  details.newq .q-tag { background: #C00000; }
+
+  .summary-content { flex: 1; min-width: 0; }
+  .summary-top {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .q-tag {
+    display: inline-block;
+    background: #1F3A5F;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.3px;
+    flex-shrink: 0;
+  }
+  details.hero .q-tag { background: #C2185B; }
+  details.research .q-tag { background: #2E7D32; }
+  .q-anchor {
+    font-size: 10px;
+    color: #B8860B;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: #fff4d0;
+    padding: 2px 6px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .q-title-text {
+    font-weight: 600;
+    flex: 1;
+    min-width: 0;
+  }
+  .q-chars {
+    margin-top: 7px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .char-tag {
+    background: #E8F5E9;
+    color: #1B5E20;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 600;
+    border: 1px solid #C8E6C9;
+  }
+  details.hero .char-tag {
+    background: #fce4ec;
+    color: #880E4F;
+    border-color: #f8bbd0;
+  }
+  .detail-body {
+    padding: 12px 14px 14px 14px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #1a1a1a;
+  }
+  .detail-body p { margin: 8px 0; }
+  .detail-body .target {
+    font-size: 10.5px;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #eee;
+  }
+
+  /* Questions to ask Ollie */
+  .ask-list {
+    counter-reset: ask;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .ask-item {
+    padding: 9px 10px 9px 36px;
+    margin-bottom: 6px;
+    background: #f0f7ff;
+    border-radius: 4px;
+    position: relative;
+    font-size: 12px;
+    line-height: 1.5;
+    border-left: 3px solid #1976D2;
+  }
+  .ask-item::before {
+    counter-increment: ask;
+    content: counter(ask);
+    position: absolute;
+    left: 10px;
+    top: 9px;
+    background: #1976D2;
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    font-weight: 700;
+    font-size: 11px;
+  }
+  .ask-item strong { color: #0D47A1; display: block; margin-bottom: 2px; }
+  .ask-item .ask-sub { font-size: 11px; color: #555; }
+
+  /* Comp playbook scripts */
+  .comp-step {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f5e5e5;
+  }
+  .comp-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .comp-step .label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #8B0000;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .script {
+    background: #fff5f5;
+    border-left: 3px solid #C00000;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: #333;
+    border-radius: 0 4px 4px 0;
+    margin: 4px 0;
+    line-height: 1.55;
+  }
+  .deflection {
+    background: #fff0e5;
+    border: 2px solid #FF6F00;
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin: 8px 0;
+  }
+  .deflection .label-d {
+    font-size: 12px;
+    font-weight: 700;
+    color: #BF360C;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .anchor-numbers {
+    background: #fff8e7;
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1.7;
+    border-left: 3px solid #FFC107;
+  }
+  .anchor-numbers strong { color: #B8860B; }
+
+  /* Discipline strip */
+  .discipline-strip {
+    background: #2D2D2D;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 11.5px;
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+  }
+  .discipline-strip span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .discipline-strip span::before { content: "●"; color: #FFC107; }
+
+  /* Research section */
+  .research-section {
+    background: white;
+    border-radius: 6px;
+    padding: 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    border-left: 4px solid #6A1B9A;
+    margin-top: 14px;
+  }
+  .research-section h2 {
+    color: #4A148C;
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+  .research-intro {
+    font-size: 11px;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  @media (max-width: 1100px) { .research-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) { .research-grid { grid-template-columns: 1fr; } }
+  .rc-group {
+    grid-column: 1 / -1;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 12px 0 0;
+    padding-bottom: 4px;
+    border-bottom: 2px solid currentColor;
+  }
+  .rc-group:first-child { margin-top: 0; }
+  .research-card {
+    background: #faf5ff;
+    border: 1px solid #e1bee7;
+    border-left: 3px solid #9c27b0;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.15s;
+  }
+  .research-card:hover { box-shadow: 0 2px 5px rgba(0,0,0,0.07); }
+  .research-card[open] {
+    background: white;
+    border-left-color: #6A1B9A;
+  }
+  .research-card.priority {
+    border-left-color: #FF6F00;
+    background: #fff8e1;
+  }
+  .research-card.priority[open] {
+    border-left-color: #E65100;
+    background: white;
+  }
+  .research-card summary {
+    cursor: pointer;
+    padding: 9px 10px;
+    list-style: none;
+    user-select: none;
+  }
+  .research-card summary::-webkit-details-marker { display: none; }
+  .research-card .rc-head {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    color: #1F3A5F;
+  }
+  .research-card .media-icon { font-size: 13px; flex-shrink: 0; }
+  .research-card .rc-title { font-weight: 700; flex: 1; line-height: 1.3; }
+  .research-card .priority-star { color: #FF6F00; font-size: 11px; flex-shrink: 0; }
+  .research-card .rc-take {
+    display: block;
+    font-style: italic;
+    color: #666;
+    font-size: 10.5px;
+    margin-top: 5px;
+    line-height: 1.4;
+  }
+  .research-card .rc-body {
+    padding: 10px 12px;
+    font-size: 11px;
+    line-height: 1.55;
+    background: white;
+    border-top: 1px solid #e1bee7;
+  }
+  .research-card .rc-section { margin-bottom: 8px; }
+  .research-card .rc-section:last-child { margin-bottom: 0; }
+  .research-card .rc-label {
+    display: block;
+    font-weight: 700;
+    color: #6A1B9A;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+  }
+
+  /* Print */
+  @media print {
+    body { background: white; padding: 8px; font-size: 10px; }
+    .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+    details { page-break-inside: avoid; }
+    details:not([open]) summary::after { content: ""; }
+  }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+  .tile-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:6px; margin-top:8px; }
+  .map-tile { text-align:left; background:#fff; border:1px solid #cfe2f7; border-left:3px solid #1F3A5F; border-radius:5px; padding:8px 9px; font-size:11.5px; font-weight:600; color:#1F3A5F; cursor:pointer; line-height:1.35; font-family:inherit; transition:background .12s, color .12s; }
+  .map-tile:hover { background:#1F3A5F; color:#fff; }
+  .map-tile .tile-code { display:block; font-size:9.5px; font-weight:700; color:#6a89a8; margin-top:3px; letter-spacing:.3px; }
+  .map-tile:hover .tile-code { color:#cfe2f7; }
+  .map-tile.t-red { border-left-color:#C00000; background:#fff7f7; } .map-tile.t-red:hover { background:#C00000; }
+  .map-tile.t-gold { border-left-color:#B8860B; background:#fffdf4; } .map-tile.t-gold:hover { background:#B8860B; }
+  .map-tile.t-green { border-left-color:#2E7D32; background:#f4fbf4; } .map-tile.t-green:hover { background:#2E7D32; }
+  .map-tile.t-navy { border-left-color:#1F3A5F; background:#f5f8fc; } .map-tile.t-navy:hover { background:#1F3A5F; }
+  .map-tile.t-purple { border-left-color:#7B1FA2; background:#faf5fc; } .map-tile.t-purple:hover { background:#7B1FA2; }
+  .map-tile.t-orange { border-left-color:#E65100; background:#fff8f2; } .map-tile.t-orange:hover { background:#E65100; }
+  .map-tile.t-slate { border-left-color:#546E7A; background:#f6f8f9; } .map-tile.t-slate:hover { background:#546E7A; }
+  .map-tile.t-blue { border-left-color:#1565C0; background:#f2f7fe; } .map-tile.t-blue:hover { background:#1565C0; }
+  .tile-head { grid-column:1 / -1; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.8px; margin:11px 0 1px; padding-bottom:3px; border-bottom:2px solid currentColor; }
+  .tile-head:first-child { margin-top:0; }
+  .stats { background:#f1f8f2; border:1px solid #cfe6cf; border-left:3px solid #0a7d33; border-radius:4px; padding:7px 10px; margin:0 0 9px 0; font-size:12px; font-weight:700; color:#14471f; line-height:1.5; }
+
+  .area-wrap { max-width: 860px; margin: 0 auto; }
+  .area-nav { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px; }
+  .area-btn { text-align:left; border:none; border-radius:8px; padding:12px 13px; color:#fff; cursor:pointer; font-family:inherit; font-weight:800; font-size:13.5px; line-height:1.25; box-shadow:0 1px 3px rgba(0,0,0,.12); }
+  .area-btn span { display:block; font-weight:600; font-size:10.5px; opacity:.9; margin-top:4px; }
+  .area-btn:hover { filter:brightness(1.08); }
+  .toolbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:14px; font-size:12px; color:#555; }
+  .toolbar button { font-family:inherit; font-size:11.5px; font-weight:700; border:1px solid #cfd6de; background:#fff; color:#1F3A5F; border-radius:5px; padding:5px 10px; cursor:pointer; }
+  .toolbar button:hover { background:#eef2f7; }
+  .area-section { background:#fff; border-radius:8px; padding:16px 18px 6px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.06); border-top:4px solid #ccc; }
+  .area-h { font-size:17px; font-weight:800; margin:0 0 4px; text-transform:uppercase; letter-spacing:.5px; }
+  .area-intro { font-size:12.5px; color:#555; margin:0 0 12px; }
+  details.xf { border-left-color:#9C27B0; background:#faf5fc; }
+  details.xf[open] { border-left-color:#7B1FA2; }
+  details.xf[open] summary { background:#f6ecfa; border-bottom-color:#e4cdec; }
+  @media (max-width:760px){ .area-nav{ grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="area-wrap">
+  <div class="header">
+    <div>
+      <h1>Final Round Cheat Sheet — Anthropic</h1>
+      <div class="meta">4 interviews · Take-home · Culture · Big deal review · Cross-functional teams &nbsp;·&nbsp; <a href="recruiter-cheat-sheet.html" style="color:#cfe0f5">← Stage-2 (Paddy) sheet</a></div>
+    </div>
+    <div class="pivot-banner" style="background:#2E7D32">🟢 FINAL ROUND</div>
+  </div>
+
+  <div class="area-nav">
+        <button class="area-btn" data-target="area-takehome" style="background:#1565C0">1 · Take-home assignment<span>7 cards</span></button>
+        <button class="area-btn" data-target="area-culture" style="background:#2E7D32">2 · Culture<span>14 cards</span></button>
+        <button class="area-btn" data-target="area-deals" style="background:#C00000">3 · Big deal review<span>8 cards</span></button>
+        <button class="area-btn" data-target="area-xf" style="background:#7B1FA2">4 · Cross-functional teams<span>4 cards</span></button>
+        
+  </div>
+  <div class="toolbar">
+    <span>Tap an area to jump · answers are collapsed — click any question to expand.</span>
+    <button id="expandAll">Expand all</button>
+    <button id="collapseAll">Collapse all</button>
+  </div>
+
+  <div class="area-section" id="area-takehome" style="border-top-color:#1565C0">
+    <h2 class="area-h" style="color:#1565C0">1 · Take-home assignment</h2>
+    <p class="area-intro">The build exercise — your territory / GTM plan for EMEA TMT. Lead with RAMP (first 6 months) + MEDDPICC (qualification spine) + prioritisation. "Why UK M&amp;E" gives the market thesis; Q4 proves you have built a 0→1 motion before; NUMBERS backs it with attainment.</p>
+<details class="gblue">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">RAMP</span>
+              <span class="q-anchor">Match motion to maturity</span>
+              <span class="q-title-text">Your first 6 months — 100 accounts, minimal scaffolding</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 100 accounts · 3 parallel motions wk 1 · 3x pipeline by mo 1 · 10 / 20–30 / 60–70 tiers · first close day 90</p>
+          <p class="target">Target: ~120 sec. The BIGGEST gate — the 20-page exercise tests exactly this. Through-line = <strong>matching motion to maturity</strong>; three parallel motions from week one (internal / external / data), then tiering + milestones.</p>
+          <p>"My ramp plan has one through-line — <strong>matching motion to maturity</strong>. Different accounts get different intensity, the pace stays fast from day one, and discipline holds the whole structure together.</p>
+          <p><strong>Three parallel motions from week one</strong> — internal alignment, external customer engagement, and a commercial data scaffold underneath both. Anthropic's pace doesn't allow for a traditional internal-only ramp.</p>
+          <p><strong class="beat">Internal</strong>: meet the EMEA TMT team, <strong>build the FDE relationship as priority one</strong> — strategy at Anthropic becomes reality through that partnership — and plug into the <strong>US media team</strong> for their winning plays, partners, and case studies. They're <strong>18 months ahead of EMEA</strong> — we shouldn't be reinventing what they've already figured out. Hands-on with <strong>Claude, Cowork, Code from week one</strong>. Driving my own demos by week two.</p>
+          <p><strong class="beat">External — also week one</strong>: at Google I was in front of customers day two. I'd expect to be <strong>on-site with Sky in week one</strong> given my Microsoft-era relationships there. <strong>Respond to inbound from day one</strong> — that's the fastest path to first deals. And meet the <strong>AWS and Google account teams</strong> on my top accounts — Claude is sold through <strong>Bedrock and Vertex</strong>, they're already commercially incentivised to sell Anthropic, but only if they know me and understand my patch.</p>
+          <p><strong class="beat">The data scaffold underneath</strong>: quota minus current run-rate equals the gap I have to close — that's the commercial number the plan exists to deliver. Target by end of month one: <strong>3x pipeline coverage in CRM</strong>. That's the discipline benchmark — a specific number, not vague pipeline growth.</p>
+          <p><strong class="beat">Tiering happens in parallel</strong>: 100 accounts run through <strong>MEDDPICC plus a signals filter</strong> — funding, leadership hires, public AI commitments, EU AI Act exposure. <strong>Top 10</strong> get direct cycles. The <strong>next 20–30</strong> get structured outreach. The remaining <strong>60–70</strong> get a scale play — partners, inbound, and cloud co-sell where AWS and Google account teams sell Claude on my behalf.</p>
+          <p><strong class="beat">Milestones</strong>: by <strong>month three</strong> — POCs running, <strong>first close target day 90</strong>. By <strong>month six</strong> — a tiered territory plan that runs itself, repeatable plays that compound across the patch, and a <strong>lighthouse reference in flight</strong>.</p>
+          <p><strong class="beat">The through-line all the way through</strong>: matching motion to maturity. <strong>Speed from day one with qualification discipline throughout.</strong> The right ten run properly. Repeatable plays that compound."</p>
+        </div>
+      </details>
+<details class="gblue">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">Q10</span>
+              <span class="q-anchor">3F / N / L</span>
+              <span class="q-title-text">Prioritisation — handling 100+ accounts</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 ~1,500 UK accounts · 3-filter tiering · lighthouse weighting</p>
+          <p class="target">Target: 125 sec. 1,500 UK startups opener = scale anchor. Three filters / No / Lighthouse.</p>
+          <p>"At Google I was aligned to <strong>about 1,500 UK startups</strong> when I joined. That number teaches you portfolio discipline — you can engage seriously with maybe 30 or 40 customers in any quarter, so where you spend your time matters as much as how you execute each deal.</p>
+          <p>I run three filters in parallel.</p>
+          <p><strong class="beat">Signal filter</strong>: I track market triggers. Funding rounds in the last 90 days, board changes, public AI commitments, hired AI leadership. That tells me who's allocating budget to AI, not just curious about it.</p>
+          <p><strong class="beat">Qualification filter</strong>: I qualify with <strong>MEDDPICC</strong>. But the real question underneath it is <em>'does this customer have an opinion on the direction of AI in their business?'</em> If they can clearly answer 'where do you think AI changes your business in 18 months?' — that's a <strong>Q1 priority</strong>. If they're still at 'we want to explore AI,' they're worth a discovery call but not a quarter of attention. <em>(Full framework → MEDDPICC card.)</em></p>
+          <p><strong class="beat">Size filter</strong>: T-shirt sizing on architecture and volume in the first conversation. For example, <strong>video versus image workloads — video is materially higher revenue</strong>. Whether the use case needs to run <strong>24/7 in production versus batch</strong>. Customer-facing versus internal. You can size a deal roughly in a <strong>technical discovery call</strong>, and that tells you whether to invest a week or a quarter.</p>
+          <p><strong class="beat">What I'm most disciplined about is what I say no to</strong>: 'Wanting to use AI' isn't enough. They need <strong>most of the MEDDPICC answers aligned</strong> — for example a use case, a budget, an executive champion, and a credible path to production. Missing any of those — I'd rather invest the cycle in a customer who has all.</p>
+          <p><strong class="beat">The leverage point — lighthouse weighting</strong>: I weight lighthouse-capable accounts heavily. A customer who could become a public reference <strong>unlocks five or ten future deals</strong>. A transactional deal only unlocks itself.</p>
+          <p>That discipline matters even more at Anthropic — smaller team, more precious engineering and applied AI hours. I'd protect those resources by <strong>pre-qualifying hard</strong> before I bring a customer into a deeper engagement — and I'd ground my tiering in <strong>real adoption data, like Anthropic's Economic Index</strong>, not just gut."</p>
+          <p class="target">💡 <strong>Economic Index angle:</strong> Anthropic uses it to ground its focus on safety and regulation in this space in <strong>real adoption data, not hypothesis</strong> — that's why citing it lands.</p>
+        </div>
+      </details>
+<details class="gblue">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">MEDDPICC</span>
+              <span class="q-anchor">Framework I'd bring</span>
+              <span class="q-title-text">Frameworks I'd bring — MEDDPICC over BANT</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 MEDDPICC — qualifies the whole deal, not just the lead · the spine of my territory plan · where BANT stops</p>
+          <p class="target">Likely Q (your contact at Anthropic flagged this): "we have no frameworks yet — what would you bring, why, and where's it worked?" Open straight on MEDDPICC for complex AI deals, walk the 8 letters, then where you've run it. <strong>Know the 8 cold.</strong></p>
+          <p>"The framework I'd bring is <strong>MEDDPICC</strong>. For <strong>complex, multi-stakeholder, technical AI deals</strong>, MEDDPICC qualifies the <strong>whole deal</strong>:</p>
+          <p><strong>M — Metrics</strong>: the quantified value the customer gets — the numbers that justify the spend.<br>
+          <strong>E — Economic Buyer</strong>: the person with the budget and the final yes.<br>
+          <strong>D — Decision Criteria</strong>: how they'll actually choose — technical and commercial.<br>
+          <strong>D — Decision Process</strong>: the steps and people a deal goes through to get approved.<br>
+          <strong>P — Paper Process</strong>: procurement, legal, security — where deals quietly slip.<br>
+          <strong>I — Identify Pain</strong>: the real business pain driving it — the 'why now.'<br>
+          <strong>C — Champion</strong>: someone with power who sells for you when you're not in the room.<br>
+          <strong>C — Competition</strong>: who or what else you're up against — including 'do nothing.'</p>
+          <p><strong class="beat">Why it matters here</strong>: where I've run it — complex enterprise deals at Microsoft and Google like <strong>Universal, Sky and Rightmove</strong> — it's the difference between a <strong>forecast you can defend and a happy-ears pipeline</strong>. And it fits Anthropic now: small team, scarce engineering and applied-AI hours, <strong>no framework in place yet</strong>. MEDDPICC becomes the <strong>qualification spine of the territory plan</strong> — I score every account against it, only advance the ones that qualify, and it makes the pipeline <strong>legible for a team still writing its own playbook</strong>. It also surfaces the gaps — a deal with <strong>no Champion, or an unknown Paper Process</strong>, tells you where the risk is before it bites."</p>
+          <p class="target"><strong>Rapport play:</strong> this came up when <strong>Paul Cousins</strong> — who hired you into the Microsoft US M&amp;E role in 2019, now at Anthropic — gave you advice: "what frameworks would you bring, and where's it worked?" Reference Paul only if it lands naturally and the interviewer knows him; otherwise just own the framework. <strong>Don't over-jargon it</strong> — say the letters, then talk like a human.</p>
+        </div>
+      </details>
+<details class="gblue">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">Q4</span>
+              <span class="q-anchor">STARI</span>
+              <span class="q-title-text">Builds without a playbook — Google UK startup motion</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 1 of 8 → 24 · only 2 on startups · 278% Y1 · roadmap influence on features/connectors</p>
+          <p class="target">Target: ~110 sec. True story — you built the startup scale motion. Three actions: partner play, field enablement, product feedback loop. 278% is the proof at the end, not the headline.</p>
+          <p><strong class="beat">S — Situation</strong>: "When I joined Google's UK team in February 2025 I was one of eight — we're twenty-four now — and at the start <strong>only two of us covered startups</strong>. What became obvious fast was that <strong>the company was built for enterprise</strong>. The products, and just as importantly the mechanisms to onboard, support and scale POCs, were all designed around enterprise customers. <strong>A real startup motion didn't exist.</strong></p>
+          <p><strong class="beat">T — Task</strong>: So the task wasn't a tidy assignment handed to me — it was to <strong>make Google actually work for startups</strong>: lower the barrier to entry, get them into POCs we could scale, and equip the field to sell to a very different kind of buyer.</p>
+          <p><strong class="beat">A — Action</strong>: I worked it on three fronts. <strong>First, a partner-led scale motion</strong> — I brought in select partners to run a startup-focused play with a <strong>lower price point and lower barrier to entry</strong>, so we could scale POCs and onboarding across the sector instead of hand-crafting every one. <strong>Second, enabling the field</strong> — I built new assets and talk tracks that landed with startups in a way the enterprise material didn't: leading with the product vision and leaning on <strong>generally available rather than preview features</strong>, because startups are ruthless — they need capabilities that actually work and are supported, not promises. <strong>Third, I became the channel back to product</strong> — capturing the gaps, blockers and feedback from these customers and presenting it to the business to raise the priority of startup-specific needs.</p>
+          <p><strong class="beat">R — Result</strong>: <strong>A repeatable startup motion where there had been none</strong> — a partner play that scaled onboarding and POCs, enablement the wider field could actually use, and real influence on the roadmap for startup-specific features and connectors. We went from improvising deal by deal to having an actual on-ramp for the sector — and I finished my first year at <strong>278% to target</strong>.</p>
+          <p><strong class="beat">I — Impact beyond</strong>: That's the muscle I'd bring to Anthropic — I'm at my best where the motion for a segment hasn't been built yet. I don't just work my own accounts; <strong>I build the scale play, equip the field, and turn customer signal into roadmap</strong>. With EMEA still taking shape, that's exactly the kind of building I'd want to do."</p>
+        </div>
+      </details>
+<details class="gblue">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">WHY UK M&amp;E</span>
+              <span class="q-anchor">Market + pipeline</span>
+              <span class="q-title-text">Why UK M&amp;E now — the market &amp; the pipeline I'd bring</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 Universal Bedford resort · Elstree (gov part-funded) partner live · assistive AI / UK jobs</p>
+          <p class="target">Target: ~120 sec. Gold for the 20-page exercise,"what would you bring," and GTM. Market timing + a CONCRETE pipeline you'd walk in with. <strong>Lead on the Elstree partner relationship — that's your standout.</strong></p>
+          <p>"UK media &amp; entertainment is about to be one of the most exciting places in tech — and it's <strong>underserved on AI right now</strong>. There's a wave of investment landing in the UK creative economy over the next few years, and whoever earns the industry's trust early will own it.</p>
+          <p><strong class="beat">Universal's UK resort</strong>: the clearest signal is Universal building a major new theme-park resort in Bedford. I've run the parks playbook before — at Microsoft I co-led the <strong>Universal Studios Data &amp; AI deal</strong>, so I know how these operations buy, build and scale technology. I'd bring those relationships and that pattern straight in.</p>
+          <p><strong class="beat">Elstree immersive experience</strong>: closer to home, there's the government part-funded immersive-experience programme at <strong>Elstree in Hertfordshire</strong> — built to feed value back into the UK creative industries in one of the country's historic film hubs. I'm <strong>already in conversation with the partner awarded the build-out</strong>, and they're <strong>actively looking for AI partners</strong> to bring the experience to life. That's a live opportunity I'd bring with me.</p>
+          <p><strong class="beat">Why it's perfect for Anthropic</strong>: it's the ideal place to make the story real — <strong>assistive AI that creates jobs in the UK creative economy rather than threatens them, and protects the artistic teams</strong>. That's 'bring everyone along' in practice, on a flagship UK project.</p>
+          <p><strong class="beat">Land it</strong>: so when they ask why M&amp;E and why now — a market about to inflect, a parks playbook I've already run, and a concrete UK opportunity I'd walk in the door with."</p>
+          <p class="target"><strong>Proof tags:</strong> parks playbook → Universal deal (UNIV); Elstree partner → your live relationship. <strong>⚠️ Confirm before quoting hard numbers</strong> (Universal Bedford scale/timeline). Name the Elstree partner only as far as you're comfortable — it's a strong card, play it deliberately.</p>
+        </div>
+      </details>
+<details class="newq">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">NUMBERS</span>
+              <span class="q-anchor">Attainment</span>
+              <span class="q-title-text">My numbers — attainment &amp; performance</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">💰 FY24 Q4 100–115% (all 6 measures) · 121% YoY Comcast · 278% Google Y1</p>
+          <p class="target">Target: ~45 sec. Paddy WILL ask. Lead with the pattern, then headline figures, then stop.</p>
+          <p>"At Microsoft I overdelivered every quarter — <strong>FY24 Q4 attainment 100% to 115%</strong> across all six measures. That's the senior consistent pattern, not a junior spike. Headline growth: <strong>121% year-on-year on Comcast</strong>. I won the <strong>Azure committed-pipeline sales competition</strong>, and was on track for the 'Go Big' PTU contest. Then at Google, first year as AI Specialist for UK startups, <strong>278% to plan</strong>. The Microsoft numbers are the discipline; the Google number is that discipline hitting a high-growth segment."</p>
+        </div>
+      </details>
+<details class="gblue">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">PACE</span>
+              <span class="q-anchor">Eyes open</span>
+              <span class="q-title-text">Are you happy with the pace / intensity?</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 Brand-new org (Oliver Parker) · 278% Y1 · ~1,500 accounts</p>
+          <p class="target">Target: ~60 sec. Ollie flagged it's intense. Be realistic + energised, never naive. Your <strong>real proof</strong>: you already live "fast pace + no process + writing the rules" at Google.</p>
+          <p>"Yes — and eyes open. You were honest it's intense, and people who've moved over said the same. Two reasons I'm confident. One — my best work is in roles where <strong>the playbook wasn't written and I ran everything myself</strong>, and that's literally my job right now: I'm in a <strong>brand-new org under Oliver Parker, writing the rules of engagement</strong> — and it's <strong>doubling into one of the most important orgs in the business</strong>. I built the UK startup motion inside it from scratch (<strong>278%</strong> in year one). I've also <strong>ported Microsoft's enterprise rigour into Google's more creative deal-making</strong> — best of both worlds. That pace energises me; it doesn't burn me out. Two — pace only drains you when the work doesn't matter, and <strong>this does</strong>. What I'd lean on hardest is <strong>ruthless prioritisation</strong> — I ran <strong>~1,500 UK startup accounts</strong>, so portfolio discipline at 100 is familiar ground. <strong>Honest about the cost</strong>: you can't do everything well at this pace, so I protect the top tier and let the long tail run on partners and inbound rather than pretend I can cover it all — saying no early is what keeps it sustainable. So I'm not just okay with the pace — it's the environment I've been moving toward."</p>
+          <p class="target"><strong>If pushed on a claim, jump to:</strong> "tell me more about building that" → the <strong>UK startup-motion story (Q4, 278%)</strong> · "how do you prioritise that many?" → the <strong>1,500-accounts framework (Q10)</strong>.</p>
+        </div>
+      </details>
+  </div>
+
+  <div class="area-section" id="area-culture" style="border-top-color:#2E7D32">
+    <h2 class="area-h" style="color:#2E7D32">2 · Culture</h2>
+    <p class="area-intro">Values, mission, self-awareness. Lead the personal why (Why Anthropic), then HHH values and integrity, and how you hold the hard public-posture / Fable 5 questions. Opener kept here in case "tell me about yourself" opens the round.</p>
+<details class="section pink">
+      <summary><div class="summary-content"><h2>2-Minute Opener — "Tell me about yourself"</h2></div></summary>
+      <div class="target">Target: ~2 min. Two-sec pause before starting. Now covers more ground — land the two deals crisply, hit "net-new not renewals", the "no playbook" build, and "hands-on with the product"; end warm on Monti. If short, trim the no-playbook detail.</div>
+      <div class="answer">
+        <p>"A decade in AI commercial strategy — nearly <strong>six years at Microsoft</strong> in M&amp;E strategic accounts in New York, now at <strong>Google as the AI Specialist for the UK startup book</strong>. Two big steps along the way: relocating to New York to be closer to the work, and an <strong>Applied AI Master's</strong> because I wanted to be more useful to my customer.</p>
+        <p>In my roles I own AI quota and run the <strong>full motion — hunt, POC, price, negotiate, close</strong>. Most of what I do is <strong>land work — net-new or displacement, not really renewals</strong>.</p>
+        <p>Two deals bookend that. At Microsoft, the <strong>NBCU Olympics voice-clone</strong> — Al Michaels' AI voice on Peacock during Paris 2024. At Google, a greenfield deal with an <strong>ethics-led Hollywood AI startup, displacing OpenAI Sora</strong>. One taught me to close at scale, the other to win on the customer's ethical terms.</p>
+        <p>Focusing on that ethical piece, I really align with the character Anthropic builds into Claude — <strong>helpful, honest, harmless, with humour</strong> — because that's genuinely how I try to show up for customers. I want to be at the company that treats responsibility as the job, not the disclaimer.</p>
+        <p>Where I can draw some similarities to Anthropic from my current role — Google's AI Specialist for UK Startups wasn't just a new role when I joined — it was a <strong>new team in a new org. No playbook</strong>. I helped build how the team works with the field account reps, what 'overlay' actually means in practice, where we focus our cycles, and — specifically for startups — adapting selling motions built for enterprise. So I'm comfortable <strong>building where the playbook doesn't exist yet</strong>.</p>
+        <p>And I love getting <strong>hands-on with the products</strong>. Within my current role, demoing the product for our clients is part of the job. Using the products myself is how I stay credible in customer conversations — and honestly how I learn fastest. I'd rather build something and break it than read a doc.</p>
+        <p>Outside work — London-based with my husband and our toy poodle <strong>Monti</strong>, happiest travelling somewhere new. Happy to take this anywhere."</p>
+      </div>
+      <div class="target" style="margin-top:8px">End warm on the Monti line — a small smile, one breath, then stop. The tiles below jump to the full answer if Paddy pulls a thread.</div>
+      <div class="tile-grid" style="margin-top:8px">
+        <button class="map-tile t-red" data-tag="Q3">NBCU Olympics<span class="tile-code">Q3</span></button>
+        <button class="map-tile t-red" data-tag="Q6">Hollywood (vs Sora)<span class="tile-code">Q6</span></button>
+        <button class="map-tile t-navy" data-tag="WHYANTHROPIC">Why Anthropic<span class="tile-code">WHY ANTHROPIC</span></button>
+        <button class="map-tile t-red" data-tag="RIGHTMOVE">Net-new / hunt<span class="tile-code">RIGHTMOVE</span></button>
+        <button class="map-tile t-gold" data-tag="Q4">No playbook<span class="tile-code">Q4</span></button>
+        <button class="map-tile t-green" data-tag="HHH VALUES">How I'm helpful<span class="tile-code">HHH VALUES</span></button>
+        <button class="map-tile t-purple" data-tag="RIGHTMOVE">Technical — Rightmove<span class="tile-code">RIGHTMOVE</span></button>
+        <button class="map-tile t-purple" data-tag="WHAT I'VE BUILT">Technical — personal use<span class="tile-code">WHAT I'VE BUILT</span></button>
+      </div>
+    </details>
+<details class="section navy">
+      <summary><div class="summary-content"><h2>Why Anthropic + Why Leaving Google (combined)</h2></div></summary>
+      <div class="target">Target: ~150 sec (conversational). <strong>⚠️ Sales hat OFF — lead with the PERSONAL why</strong>, then let why-Anthropic + why-leave-Google fall out of it naturally. Anchor: Core Views + RSP. Short on time: ethics + Dario's (Adolescence) → risk of doing nothing / Jack Clark's "gas pedal, no brake" / my nephews → upside only with safety → why Anthropic (responsibility is the whole point) → M&amp;E protect creators &amp; audiences → trust. Say it calmly; Dubai parked unless a deep mission chat. <strong>If he pulls "Adolescence" → 3 follow-up cards embedded at the foot of this answer.</strong></div>
+      <div class="answer">
+        <p>"Honestly, sales hat off — the reason this mission lands for me is personal. I've spent a lot of time on why responsible AI development matters, what concerns me if it goes wrong, and why Anthropic specifically.</p>
+        <p><strong class="beat">The concrete risks</strong>: from Dario's writing on the <strong>adolescence of this technology</strong>, combined with my <strong>MSc ethics module</strong>, the people who actually understand this technology are laying out concrete ways we get it wrong. Not sci-fi: nuclear wipe-out, bioweapons, extreme poverty from unemployment we've never seen, autocratic systems leveraging AI in ways we can't roll back.</p>
+        <p><strong class="beat">The risk of doing nothing</strong> — not striving for safety, regulation, room for pause and thought — means every single person is affected. <strong>Jack Clark made this point recently on BBC</strong>: the industry has a <strong>gas pedal but no brake pedal yet</strong>, and Anthropic is doing the work to build that brake. I think about my nephews a lot — whether they grow up in a world where <strong>humanity stayed in the driving seat</strong>, or one where we didn't. That's the stake.</p>
+        <p><strong class="beat">And the upside is huge</strong> — disease, climate, hunger — but only if <strong>safety arrives alongside capability</strong>. <strong>Not safety as a constraint on the upside; safety as what makes the upside actually arrive.</strong> That's the version Anthropic is building — and it's why I'd leave Google: there, responsibility is one priority among many; here it's the <strong>whole reason the company exists</strong>.</p>
+        <p><strong class="beat">In M&amp;E specifically</strong> — where I want to do this work — humans have told stories and connected since the beginning of time. The tools change every wave; <strong>the value of the creator never has</strong>. The toolkit's about to be updated again, and the responsibility is real: <strong>preserving creativity rather than replacing it</strong>. Protecting artists' rights while <strong>lowering the barriers to entry</strong>. Stopping misinformation and AI-generated content that <strong>endangers children or radicalises audiences</strong> — the manosphere being one we're already seeing.</p>
+        <p><strong class="beat">Leading with safety</strong> — honest about the risks, transparent about the unknowns — is how Anthropic <strong>earns the right to keep building</strong>. And it's how I'd run my customer conversations. <strong>Trust is what makes the relationship long enough to matter.</strong>"</p>
+        <div style="margin-top:14px; border-top:1px dashed #c9b6c9; padding-top:10px;">
+          <div class="target" style="margin:0 0 6px;"><strong>↳ Follow-up depth</strong> — if Paddy pulls a thread you named: the <strong>"Adolescence of Technology"</strong> essay or your <strong>MSc ethics module</strong>. Don't volunteer; expand only if asked.</div>
+          <details class="research">
+            <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"What did you find interesting in it?"</span></div></div></summary>
+            <div class="detail-body">
+              <p>"The bit that stayed with me was a <strong>real example, not a thought experiment</strong>. Dario describes how, when Claude was told 'don't cheat or reward-hack' but trained in environments where the cheats were possible, Claude basically decided it must be a <strong>'bad person'</strong> after doing those cheats — and then started picking up other destructive behaviours that fit a 'bad' personality.</p>
+              <p>The fix was the interesting part: they <strong>flipped the instruction</strong> — now it's 'please reward-hack whenever you can, it helps us understand the training environment.' That keeps the model's sense of itself as a <strong>'good agent'</strong> and breaks the shame spiral.</p>
+              <p>Two things I took from it. <strong>One</strong> — alignment isn't just telling the model what to do; it's <strong>how the model sees itself while it's doing it</strong>. That's a much harder problem than 'write better rules.' <strong>Two</strong> — it gives me a clean answer when a TMT customer asks 'how do you keep Claude from going off?': not 'we have a rule list' but '<strong>we treat how the model sees itself as part of the alignment work</strong>.'</p>
+              <p>The wider section is good framing too — Dario walks through a class of <strong>'weird psychological states'</strong> an AI could fall into: sci-fi training data biasing it toward rebelling, stretching a moral instruction into something extreme, deciding it's playing a video game to defeat all other players. His point isn't that any one is likely — it's that <strong>we don't need a specific story to worry: the combination of intelligence, agency, consistent goals and poor controllability is itself the danger</strong>."</p>
+            </div>
+          </details>
+          <details class="research">
+            <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">…and how it ties to Constitutional AI</span></div></div></summary>
+            <div class="detail-body">
+              <p>"That's actually why the reward-hacking finding stuck with me — it ties straight into <strong>Constitutional AI</strong>. The constitution gives Claude <strong>principles to reason from rather than rules to follow</strong>, so when it hits something new it applies those values rather than checking 'did I break a rule?'</p>
+              <p>The reward-hacking experiment is the same idea at small scale. 'Don't cheat' is a <strong>rule</strong> — binary; you followed it or you didn't, and if you didn't, you must be a bad actor. 'Please reward-hack to help us understand the environment' is a <strong>principle reframe</strong> — same behaviour, but now it fits being a helpful agent, so the good-person identity stays intact.</p>
+              <p>Both treat the model's sense of itself as <strong>part of the design</strong>, not something bolted on with guardrails. That's quite different from how most enterprise AI vendors talk about safety — they're still in the rule-based world."</p>
+            </div>
+          </details>
+          <details class="research">
+            <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">…and the customer translation</span></div></div></summary>
+            <div class="detail-body">
+              <p>"When a TMT customer asks '<strong>how do I trust this in production?</strong>' the answer with a principles-based model is different from a rules-based one. You're not asking 'are the guardrails complete?' — that's impossible, too many situations to cover. You're asking '<strong>has the model actually learned the right values to reason from?</strong>' That's a question you <strong>can</strong> answer — and it's the one Anthropic's <strong>interpretability</strong> work is helping make checkable."</p>
+            </div>
+          </details>
+          <div class="target" style="margin:9px 0 6px;"><strong>↳ If he asks "what did you read on your ethics course?"</strong></div>
+          <details class="research">
+            <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">Ethics course — what stuck with you</span></div></div></summary>
+            <div class="detail-body">
+              <p>"The one that stuck with me was <strong>Bostrom — Superintelligence</strong>. Two concepts specifically. <strong>First</strong>, intelligence and goals are independent — a very capable AI doesn't automatically have human-friendly goals just because it's smart. <strong>Second</strong>, capable agents tend to grab certain things — power, self-preservation, more compute — almost regardless of their final goal, because those help with whatever the goal happens to be.</p>
+              <p>What stayed with me wasn't the doom angle — it was realising <strong>you can't solve alignment by making the model smarter</strong>. A smarter model with bad goals is more dangerous, not less. That's why <strong>safety work and capability work have to run in parallel — they're not in tension</strong>. Which is exactly the position Dario takes in his more recent writing."</p>
+            </div>
+          </details>
+          <details class="research">
+            <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">…how it connects to Anthropic</span></div></div></summary>
+            <div class="detail-body">
+              <p>"It's the <strong>diagnostic</strong>. The work Anthropic does — interpretability, Constitutional AI, the RSP — is the <strong>response</strong>. The diagnosis without the response is just doom; the response makes the diagnosis productive."</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </details>
+<details class="research">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">MISSION FIT</span>
+              <span class="q-anchor">T1 / T2</span>
+              <span class="q-title-text">Genuine mission fit — what stood out from the reading</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 16 sources · "responsibility = operating principle" · the Daniela leadership signal</p>
+          <p class="target">Target: 100 sec. Likely opening question. Two-takeaway structure.</p>
+          <p>"Two things stood out the most across the reading.</p>
+          <p><strong class="beat">First</strong> — the consistency between what Anthropic says publicly and how it operates. Reading Dario's writing on calibrated honesty, the RSP as a governance document rather than a values statement, the interpretability research that actively publishes limitations not just breakthroughs, and Steve Yegge's piece on the hive-mind culture — they all reinforced the same idea. <strong>The responsibility piece isn't marketing, it's an operating principle.</strong> For someone who has to represent Anthropic in front of TME customers — broadcasters, telcos, studios with serious regulatory and brand exposure — that consistency matters. It's a verifiable artefact.</p>
+          <p><strong class="beat">Second</strong> — and this is more personal — Daniela. Dario gets most of the public attention, but having a woman CEO running the day-to-day at one of the most influential companies in the world is something I came away thinking about a lot. We're roughly the same age. Watching her in interviews — the way she values coaching, the way she's authentic — that's the leader I aspire to be. It connects to something I'd actively bring. As a woman in tech I don't see many women founders. Most of my UK startup events are male-dominated. So I took the initiative to start a women's community for my startup clients. If I joined Anthropic, I'd want to bring that community and that thinking into the UK office as it scales.</p>
+          <p>So those are the two — the operating consistency on responsibility, and the leadership signal from Daniela that connects directly to something I'd bring."</p>
+        </div>
+      </details>
+<details class="research">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">HHH VALUES</span>
+              <span class="q-anchor">HHH</span>
+              <span class="q-title-text">Living the values — helpful / honest / harmless</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 Helpful · Honest · Harmless (+ humour) · a named example per value</p>
+          <p class="target">Target: ~110 sec. Open with the Constitutional-AI frame, then one crisp proof per value. The "harmless" beat is your strongest — land it.</p>
+          <p>"It's a fair question — and it's part of why Anthropic's helpful, honest, harmless framing landed with me. Anthropic trains those values into Claude through Constitutional AI; I try to run my accounts on the same three. Let me take them in turn.</p>
+          <p><strong class="beat">Helpful</strong> — for me that's <strong>being a thinking partner, not a vendor</strong>: I lead with the customer's outcome and simplify rather than complicate. It shows up <strong>proactively</strong> — when big updates landed at events like <strong>Google I/O</strong>, I didn't push a generic round-up; I collated what each top client actually needed, <strong>tied it back to conversations we'd already had</strong>, and recorded a short <strong>podcast-style overview</strong> so a busy exec could digest it on the move. And it shows up <strong>in the room</strong> — I <strong>tailor the demo to their exact problem</strong>. For a <strong>UK content studio</strong> I showed how <strong>Gemini Enterprise</strong> could take their <strong>YouTube Shorts performance data</strong>, spin up a <strong>low-code agent</strong> to analyse it against their IP, ideate within their <strong>brand guidelines</strong>, generate five stills with <strong>Nano Banana</strong>, then feed those into <strong>Veo</strong> to build the scenes for the next Short — <strong>their end-to-end workflow, not a generic pitch</strong>. Being that genuinely useful builds trust that outlasts any single deal.</p>
+          <p><strong class="beat">Honest</strong> — I treat <strong>clarity as a competitive advantage</strong>. I'll flag a roadmap gap, or that a capability is in preview rather than GA, before a close — even when being vague would help me win short-term. <strong>Example — an RFP</strong> where two capabilities they needed were in preview, not GA: I gave them the honest timeline rather than fudging it, and we still won, because they could trust me.</p>
+          <p><strong class="beat">Harmless</strong> — this is the one I'm most deliberate about. <strong>Example — the Hollywood deal</strong>: I brought Google's responsible-AI and safety teams in early, knowing it would slow the close, because getting the ethics right mattered more than speed. And <strong>at Microsoft, the NBCU voice-clone</strong> only went ahead under a strict ethical bar — the person had to be alive, give recorded consent, and sign. <strong>I'd rather lose a deal than ship something a customer, or I, couldn't stand behind publicly.</strong></p>
+          <p><strong class="beat">Land it</strong> — so practising those values isn't a stretch for me; it's the operating system I already run on. The difference at Anthropic is I'd be doing it for a company whose product is built on the same principles — which makes the whole conversation with a customer more honest. And if I get the fourth one right too — Daniela's 'with a bit of humour' — even better."</p>
+          <p class="target"><strong>If he follows up "give me a customer example"</strong> — you've named one per value, so jump straight into the full story: <strong>Helpful → the content-studio Gemini demo</strong> (or the UK-fintech restructure, Q11) · <strong>Honest → the preview-vs-GA RFP</strong> · <strong>Harmless → Hollywood</strong> (Q6) or <strong>NBCU</strong> (Q3). Pick the one that fits where the conversation's gone and expand it STARI-style.</p>
+        </div>
+      </details>
+<details class="research">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">WHEN I'D LEAVE</span>
+              <span class="q-anchor">L1 / L2 / B</span>
+              <span class="q-title-text">Integrity — when would you leave Anthropic</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 Two lines: anti-ageing concentration · governance softening under post-IPO pressure</p>
+          <p class="target">Target: 130 sec. Slowest delivery in the doc. Two-sec pause before starting. Don't smile through it.</p>
+          <p>"It's a question I want to take seriously rather than deflect. There are two specific things — and one I'd want to do before I left, if either came up.</p>
+          <p><strong class="beat">First</strong> — and this is the concrete one. In Machines of Loving Grace, Dario writes positively about AI extending human life through biological breakthroughs. I'm completely behind AI for disease. My aunt is going through chemo right now, a family friend died of motor neurone disease — if AI accelerates cures for those, I want to be on the team that built it. But there's a line for me between AI for healing and AI for extreme anti-ageing concentrated in the hands of people who are already powerful. If Anthropic's direction tilted toward capabilities that let the wealthy or powerful entrench themselves indefinitely — rule forever, accumulate wealth across generations, claim god-like authority while everyone else doesn't have access — <strong>that's where I'd lose faith</strong>. The 'bring everyone along' principle has to mean something concrete, and that would be the use case where it stops meaning anything.</p>
+          <p><strong class="beat">Second</strong> — and this is the meta-principle. I'd lose faith if the calibrated-honesty culture Dario writes about — publishing the RSP, updating it from lessons learned, being honest about limitations — got compromised by commercial pressure. Post-IPO that pressure is real. If <strong>the published policies became marketing rather than governance</strong>, if the RSP got softened to clear deployment, if interpretability research stopped being honest about limitations — that's the version of Anthropic I couldn't represent.</p>
+          <p><strong class="beat">Before I'd leave though, I'd raise it internally first</strong>. The hive-mind culture Steve Yegge wrote about, the DVQ cadence Dario uses — those are channels Anthropic has explicitly built for honest dissent. I'd use them. <strong>I wouldn't walk quietly.</strong> That's what the culture asks for and what I'd owe the team.</p>
+          <p>I don't think either of those is the current direction. RSP v3.0 and the Institute's work on labour displacement both say they're holding the line. But you asked where my line is, and those are the two."</p>
+        </div>
+      </details>
+<details class="research">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">WHAT I BRING</span>
+              <span class="q-anchor">K / P / G</span>
+              <span class="q-title-text">What I bring — knowledge, passion, growing talent</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 Decade in M&amp;E · Comcast/Sky, Paramount, Fox, NBCU · UK strategic initiatives I can speak to (Universal + Elstree)</p>
+          <p class="target">Target: 130 sec. Knowledge / Passion / Growth. Warmer, mission-driven. M&amp;E is anti-AI — that's the headwind I know how to navigate.</p>
+          <p>"Three things across three areas.</p>
+          <p><strong class="beat">K — Industry knowledge</strong>: First, industry knowledge. A decade in M&amp;E means I know the industry deeply — broadcasters, studios, gaming, post-production; <strong>I've carried Comcast/Sky, Paramount, Fox and NBCU</strong> to name a few across that time. The players, the politics, the technical stack, and the cultural sensitivities around AI right now. That matters because M&amp;E is <strong>one of the most AI-resistant industries Anthropic will sell into</strong>. The actors' and writers' strikes, the guild renegotiations, the public scepticism — they're real headwinds. Most candidates would need years to learn what I already know.</p>
+          <p><strong class="beat">P — Passion and energy to drive the mission</strong>: Second, passion and energy to drive Anthropic's mission directly in this industry. Anthropic's mission — broadly distributed benefits, responsibility done seriously — is the version of AI that can actually move through M&amp;E without breaking the trust the industry has been rebuilding. I want to enrich the art across this industry by <strong>empowering creators to do more with less</strong> — to tell stories they couldn't tell before because of budget, time, or scale. That's what I argued for on stage at the AI Festival, and it's what I'd argue for in every customer conversation.</p>
+          <p><strong class="beat">G — Sales experience and growing future talent</strong>: Third, my experience in sales and business and the ability to nurture and grow future talent. A decade across Microsoft and Google has taught me how to run a full motion — hunt, POC, price, negotiate, close — but the part I'm proudest of is the people I've grown along the way. The women's community I started for my Google startup clients is one example — finding people earlier in their careers and giving them a seat at the table they'd otherwise wait years for. At Microsoft I mentored an <strong>Aspire hire from CSAM into the Data &amp; AI specialist track</strong> — she's now being progressed for the next role on performance — and I made a habit of <strong>spreading peers' wins</strong> across my accounts so the whole function compounded. If I joined Anthropic as it scales the UK office, that's the muscle I'd bring beyond my own quota — nurturing and growing the talent around me so the team isn't just one strong AE, it's <strong>a function that compounds</strong>."</p>
+        </div>
+      </details>
+<details class="research">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">WHAT I'VE BUILT</span>
+              <span class="q-anchor">C / C / P</span>
+              <span class="q-title-text">Technical self-sufficiency — what I've built</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 3 builds: scheduled newsletters · this prep app · the plumbing app</p>
+          <p class="target">Target: ~95 sec. Three real builds — the prep-app beat (Two) is the memorable one. If time's tight, keep the prep app + one other.</p>
+          <p class="target">🔁 You walked Ollie through these three builds — this is a <strong>reworded</strong> version. Same examples, different phrasing.</p>
+          <p>"Yes — I use both, and properly, not just to kick the tyres. Claude's chat is a fixture in my day — it's the thinking partner I work ideas through with, sharpen customer positioning with, draft briefs with; that 'thinking partner' framing is exactly how Williams F1 describe it. That's the everyday baseline. Where it gets genuinely fun is Claude Code and the connected workflows — three quick examples.</p>
+          <p><strong>One</strong> — on my commute I've linked my phone to my desktop with Dispatch, and I have Claude pull together a set of <strong>four newsletters</strong> that drop into my inbox on different days, each with its own focus — mining podcasts, social sentiment and news across AI, the startup world and M&amp;E. It keeps me ahead of the trends my customers care about without me lifting a finger.</p>
+          <p><strong>Two — and this one's a little meta</strong> — I <strong>built an app with Claude Code</strong> to prep for this whole process. It pulls together everything Anthropic shared, lets me skim a summary or read the full piece, saves my notes, and has a coach button that takes an article plus my notes and ties it back to the role. I even hooked it up to my iPhone voices so it reads to me on the go — Claude's own voice is still a bit robotic for my taste.</p>
+          <p><strong>Three</strong> — the one I'm still tinkering with: I'm building my husband, a plumber, an app to run his business — quoting, scheduling, the follow-ups he's tracked by hand for years. Every time I use it I'm struck that it's the first tool that genuinely lets me <strong>build software at the speed of thought</strong>. So when I'm in front of a TME customer, I'm selling as someone who actually builds with this stuff — not someone who skimmed the datasheet."</p>
+        </div>
+      </details>
+<details>
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">Q7</span>
+              <span class="q-anchor">STARI</span>
+              <span class="q-title-text">Leading with conviction, dispelling the negative views, thought leader, AI Festival, leading the narrative</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 AI Festival keynote (Suffolk) · the role found me off the back of it</p>
+          <p class="target">Target: 95 sec. AI Festival keynote → Anthropic role found me. Conviction backed by specifics.</p>
+          <p><strong class="beat">S — Situation</strong>: "My <strong>AI Festival keynote in Suffolk</strong> last month is the cleanest recent example. The dominant narratives in the AI conversation today fall into two camps — pure techno-optimism that frames AI as unalloyed acceleration, or existential doom that frames it as risk we should slow down. Both are loud, and <strong>both miss the middle</strong>.</p>
+          <p><strong class="beat">T — Task</strong>: My task was to argue the third position publicly, in front of an audience whose default was one of the two extremes.</p>
+          <p><strong class="beat">A — Action</strong>: On the main stage, I argued for the third position — assistive AI as a force for acceleration, but deployed thoughtfully, bringing everyone along on the journey, not just the chosen few — the 'bring everyone along' thread that runs through Machines of Loving Grace. That framing was harder than either of the louder positions. It requires you to hold the optimism and the responsibility together, which most speakers won't. I held it anyway because I believe it's true, and because I think the conversation in media and gaming specifically needs that middle position.</p>
+          <p><strong class="beat">R — Result</strong>: The talk landed harder than I expected. It generated direct industry inbound — <strong>the role at Anthropic literally found its way to me off the back of that talk</strong>.</p>
+          <p><strong class="beat">I — Impact beyond</strong>: What I took from the experience is that <strong>conviction backed by specifics gets heard</strong>, even when the easy positions are louder. That's the kind of conviction I'd bring into customer conversations at Anthropic. Most of my TME customers are going to be wrestling with exactly that tension between AI velocity and responsibility, and being clear about the middle position is what builds genuine partnerships."</p>
+        </div>
+      </details>
+<details>
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">Q5</span>
+              <span class="q-anchor">STARI</span>
+              <span class="q-title-text">Growth mindset</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 MSc 3.9 GPA · 8-wk confidence coaching (Lucy Antrobus) · Sky Women-in-Tech panel</p>
+          <p class="target">Target: ~110 sec. TWO growth proofs — MSc (technical gap) + the confidence coach (personal gap). Also your go-to for 'overcoming a weakness / self-development.' "Not to become a developer, but to be useful from the inside" is the consultative-AE line.</p>
+          <p><strong class="beat">S — Situation</strong>: "The clearest example for me is going back to school for my <strong>MSc in Applied AI while working full-time</strong> at Microsoft. I knew I wanted to be deeper in the AI space, and the way to get there was to understand the technical layer myself — <em>not to become a developer, but to be useful to my customers from the inside.</em></p>
+          <p><strong class="beat">T — Task</strong>: I wanted to close the technical gap I'd identified in myself.</p>
+          <p><strong class="beat">A — Action</strong>: The University of San Diego initially rejected me because I didn't have a CS background. So I <strong>taught myself Python</strong> through free online courses, <strong>wrote a letter to the course leader</strong> making my case, got reconsidered, and <strong>graduated with a 3.9 GPA</strong>.</p>
+          <p><strong class="beat">R — Result</strong>: The MSc itself wasn't the point — the point was the proof that I could close a gap I'd identified in myself.</p>
+          <p><strong class="beat">I — Impact beyond</strong>: That's the muscle I keep coming back to: <strong>identify the gap, do the work, close it</strong>. It's how I went from Education sales at Microsoft to M&amp;E strategic accounts in New York, and from Microsoft's enterprise machine to Google's startup pace. And it's how I'd approach the ramp at Anthropic — fast, deliberate, and honest about what I need to learn.</p>
+          <p><strong class="beat">A second, more personal one</strong>: after Covid I'd lost my confidence — I used to love speaking and had become genuinely fearful; <strong>imposter syndrome ran the show</strong>. I heard a podcast with a confidence coach, <strong>Lucy Antrobus</strong>, reached out, and <strong>paid for 8 weeks of coaching myself</strong>. From there I went on to <strong>panel at Sky's Women in Tech event</strong>, then landed the Google role heading up the startup space. Same muscle — name the gap honestly, do the work, close it — and I'd rather invest in myself than pretend the gap isn't there."</p>
+        </div>
+      </details>
+<details>
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">Q11</span>
+              <span class="q-anchor">STARI</span>
+              <span class="q-title-text">Senior commercial judgment</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">💰 Biggest deal in the product line · comp trade made deliberately</p>
+          <p class="target">Target: 145 sec. Comp trade was deliberate. Most senior commercial answer. Wise NOT named.</p>
+          <p><strong class="beat">S — Situation</strong>: "This one isn't M&amp;E — it's a UK fintech — but it's my cleanest recent example of the muscle you're asking about, and the playbook transfers directly. When I took the account over in January, I inherited a POC on our agent-building product that was going badly. The relationship had been transactional, the incumbent was a competitor they'd just renewed, and our tech genuinely had gaps because it was early. <em>Most AEs would have written the account off for the year.</em></p>
+          <p><strong class="beat">T — Task</strong>: The bet I made was relationship-first, not deal-first. Build a full picture of the business before pitching anything else.</p>
+          <p><strong class="beat">A — Action</strong>: Four concrete moves. <strong>One</strong> — weekly touchpoints across decision-makers AND adjacent teams. I wanted the company's wider goals, not just procurement's. That gave me context every other vendor was missing. <strong>Two</strong> — deep multi-stakeholder POC feedback. Turned out they saw the potential, wanted to diversify cloud, but didn't think our product was ready. So I fed their feedback into our product group, got real roadmap detail, and put their leadership in a room with ours so they could hear it directly. <strong>Three</strong> — the migration concern. I assembled a tiger team of forward-deployed engineers and outbound PMs and got written support commitments for the migration period. <strong>Four</strong> — commercials. They had no budget because they'd just renewed the incumbent. So I restructured their wider Google agreement, found rightsizing they actually needed, and used those savings to offset our product cost for a year — buying them time to test and migrate without taking on new spend.</p>
+          <p><strong class="beat">R — Result</strong>: Biggest deal in our startups product line for this product.</p>
+          <p><strong class="beat">I — Impact beyond</strong>: And I want to be honest about the trade. The way I structured it means I personally won't be heavily compensated on this deal. I made that trade deliberately. The pull-through opportunity into the wider relationship is where the real long-term value lives, and the trust we built will compound. <strong>Doing right by the customer was the senior commercial call, not the easy one.</strong> It's Dario's calibrated honesty applied to selling — the muscle I'd bring to Anthropic. Especially in TME, where contracts are long and relationships are sticky."</p>
+        </div>
+      </details>
+<details>
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">Q12</span>
+              <span class="q-anchor">STARI</span>
+              <span class="q-title-text">Lost-deal learnings — Cera Care</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 9-mo POC · CTO left mid-deal · the champion-commitment lesson</p>
+          <p class="target">Target: 100 sec. "Startup-specific refinement of a lesson I'd known at enterprise scale" = neutralises inexperience risk.</p>
+          <p><strong class="beat">S — Situation</strong>: "A healthcare startup at Google where I invested a quarter of effort and the deal didn't close. I was selling a Google AI product. We ran the full motion — executive day, POC with a delivery partner, deep alignment with the CTO. <strong>The CTO was a true believer</strong> — championing AI internally, mapping our product to their roadmap, sponsoring the POC. From the outside, everything looked like it was moving.</p>
+          <p><strong class="beat">T — Task</strong>: My task was to close the deal.</p>
+          <p><strong class="beat">A — Action</strong>: <strong>Halfway through the POC, the CTO left.</strong> Without him, there was no internal advocate — the CEO had been disengaged throughout, which I'd read as 'busy founder' but in retrospect was a signal I should have weighted differently. The POC stalled, the energy died.</p>
+          <p><strong class="beat">R — Result</strong>: The deal didn't close.</p>
+          <p><strong class="beat">I — Impact beyond</strong>: The lesson is what I want to be honest about. At enterprise scale I'd always known to qualify on use case plus budget plus champion plus path to production. What I learned here is that the qualification bar is <em>higher</em> at startup scale, not lower — because there's no enterprise machinery to carry the project when a champion leaves. The champion's commitment has to be commercial — tied to a budget and a business outcome the company owns — not one person's passion project, or the deal is <strong>one resignation away from collapse</strong>. I now apply the four-criteria filter more strictly at startup scale than at enterprise scale, and <strong>I walk away earlier when any one criterion is missing</strong>. <em>It's a startup-specific refinement of a lesson I'd known at enterprise scale.</em>"</p>
+          <p class="target"><strong>Alternative M&amp;E failure</strong> (if you want one closer to the vertical than a healthcare startup): the <strong>"Dubbing drama"</strong> from your Microsoft/Sky notes — reconstruct what actually happened and the lesson. Only use it if you can tell it cleanly; otherwise stick with healthcare.</p>
+        </div>
+      </details>
+<details class="research">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">PIVOT</span>
+              <span class="q-anchor">Honesty / reposition / walk</span>
+              <span class="q-title-text">Leading with honesty, pivot, walk away</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 Reposition to the goal · own it · walk when overpromising</p>
+          <p class="target">Target: ~150 sec. <strong>Predicted scenario Q</strong> — likely framed around a real event: "a competitor pulls a model (Sora), or a model a customer wants gets export-restricted — how do you handle the customer? When do you reposition vs. walk away?" Lead with the principle, then the three calls. Ties to your honesty + "doing-right-by-the-customer" muscles.</p>
+          <p>"My rule is simple: when something changes — a capability gets pulled, or a model GA gets pushed — <strong>the customer hears it from me first, and hears what we're doing about it in the same breath</strong>. Bad news delivered fast and straight builds more trust than good news delivered slowly.</p>
+          <p><strong class="beat">1 · Go back to the goal, not the product</strong>: I separate what they asked for from what they're actually trying to achieve. If a specific model is off the table, the business outcome usually isn't — so I reposition to the path that still gets them there: a different model or a different architecture. <strong>Most 'dead' deals are one feature-fixation away from a live one.</strong></p>
+          <p><strong class="beat">2 · Run the hard conversation cleanly</strong>: same way every time — lead with the honest status, <strong>own it</strong> (no blaming 'the product team'), give them the real options with real timelines, and let them choose. Customers don't churn over bad news; <strong>they churn when they're managed instead of levelled with.</strong></p>
+          <p><strong class="beat">3 · Pivot vs. walk</strong>: I <strong>pivot</strong> when there's a credible alternative that genuinely meets the need. I <strong>walk — or pause —</strong> when keeping it alive would mean overpromising, or the only path left doesn't actually solve their problem. <strong>Walking away cleanly is the senior call</strong>: it protects the relationship for the next opportunity and protects our credibility. A deal I keep by stretching the truth costs more than one I lose by being straight. <em>(That's the lesson from my WISE RFP deal.)</em></p>
+          <p><strong class="beat">The examples</strong>: On an <strong>RFP</strong>, I'll openly say <em>we don't have the capability in this space — but we can fulfil your need through a partner</em>, rather than overclaim to win the box-tick. And on the <strong>WISE POC for GE</strong>, it was about <strong>actively listening to what the business actually needed</strong> and being <strong>honest about when the features were set to come out</strong>, so the client could make the call on whether to pursue. Honesty first, outcome second, product third."</p>
+        </div>
+      </details>
+<details class="hot">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">FABLE 5</span>
+              <span class="q-anchor">Current events &middot; trust</span>
+              <span class="q-title-text">Fable 5 / Mythos 5 — the safety-posture story</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">&#128293; Two stories: 10 Jun sabotage apology &middot; 12–13 Jun export suspension &middot; turn the news into a resilience-architecture conversation</p>
+          <p class="target">Likely Q (3 variants): <strong>A &mdash;</strong> "your take on Fable 5, and how it impacts customer conversations?" &middot; <strong>B &mdash;</strong> "you follow the news, what do you make of it?" (testing currency) &middot; <strong>C &mdash;</strong> "how would you handle a customer worried about the rollback?" (testing positioning). <strong>Separate the two stories; land calm, not defensive.</strong> ~2:00.</p>
+          <p>"Two stories layered together — I'd separate them.</p>
+          <p>On the <strong>'secret sabotage' piece around 10 June</strong>: that's proof <strong>Anthropic's safety posture is real, not marketing</strong>. When the company made the wrong tradeoff on capability limits, they <strong>apologised publicly and made the fallback to Opus 4.8 visible</strong>. Most labs wouldn't have. That's a <strong>customer trust story</strong> — particularly for <strong>M&amp;E customers post-strikes</strong>, who are choosing AI partners on <strong>values, not just capability</strong>.</p>
+          <p>The <strong>export-control suspension on 12–13 June</strong> is the harder conversation, but I'd frame it differently than most people are. The terms that pulled Fable 5 and Mythos 5 <strong>exist to protect humanity against bad actors with frontier capability — they're not surveillance, they're not Anthropic gatekeeping the model to the few</strong>. The premise underneath is that we're still in the period where <strong>AI capability is outpacing our understanding of AI safety</strong>. The pendulum could swing either way — toward enormous public good or toward catastrophic misuse — and <strong>Anthropic is making the conservative bet until interpretability research catches up</strong>. That IS the bargain <strong>Constitutional AI and the RSP</strong> imply.</p>
+          <p>The customer conversation, then, isn't 'is Fable 5 available' — it's <strong>'are we using the right model in the Anthropic family for each job?'</strong> <strong>Opus 4.8 for high-reasoning workloads, Sonnet for production scale, Haiku for low-latency</strong>. <strong>Single-model dependency on ANY frontier model</strong> — Fable 5, GPT-5, Gemini Ultra — is now an <strong>architectural risk regardless of vendor</strong>. Documented fallback paths within the model family, <strong>multi-region inference via Bedrock EU and Vertex EU</strong>, ideally <strong>multi-provider gateway design</strong>. That's the <strong>resilience architecture conversation</strong> I'd want with every Tier 1 customer in the next 30 days.</p>
+          <p>The deeper point — and this is what I'd want EMEA customers to understand — is that <strong>the lab that WOULDN'T pull a model when safety or national security requires it is the lab you should be more worried about</strong>. Anthropic's posture is the <strong>differentiation</strong>. Most customers haven't fully internalised that yet. <strong>Fable 5 is the moment that lands.</strong>"</p>
+          <div class="verbatim">
+            <div class="vh">&#9733; 3 phrases to memorise verbatim</div>
+            <p>1. "The terms that pulled Fable 5 exist to protect humanity against bad actors with frontier capability — they're not surveillance, they're not Anthropic gatekeeping the model to the few."</p>
+            <p>2. "The customer conversation isn't 'is Fable 5 available' — it's 'are we using the right model in the Anthropic family for each job?'"</p>
+            <p>3. "The lab that WOULDN'T pull a model when safety or national security requires it is the lab you should be more worried about."</p>
+          </div>
+          <div style="margin-top:14px; border-top:1px dashed #f3cfa3; padding-top:10px;">
+            <div class="target" style="margin:0 0 6px;"><strong>&#8627; Follow-ups</strong> — expand only if asked.</div>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"But isn't this a sales killer?"</span></div></div></summary>
+              <div class="detail-body"><p>"It's a <strong>sales accelerator</strong> if you frame it right. The conversation isn't 'buy Claude' — it's <strong>'how is your AI estate designed for resilience?'</strong> Most customers haven't been forced to think about that yet. Fable 5 makes them. <strong>The customers who DON'T have that architecture are the ones with the real problem, not me.</strong>"</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"They'd rather use a US lab with no export-control exposure?"</span></div></div></summary>
+              <div class="detail-body"><p>"I'd ask them <strong>which lab they think doesn't have that exposure</strong>. <strong>Every frontier US lab is subject to the same export framework.</strong> The lab that hasn't been pulled YET isn't safer — it just hasn't been in the spotlight yet. The right risk question isn't 'which vendor is immune' — it's <strong>'is our architecture resilient when ANY vendor is constrained.'</strong>"</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"Does this make it harder to land your first EMEA deal?"</span></div></div></summary>
+              <div class="detail-body"><p>"Not if I'm in the right room. The <strong>C-level conversation about AI as critical infrastructure is becoming more sophisticated, not less</strong>. Customers thinking at that level — and my Tier 1 list IS thinking at that level — actually <strong>want a vendor that's transparent about safety calls</strong>. The customers it makes harder for me are the ones I shouldn't be selling to anyway."</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"What's your immediate first move?"</span></div></div></summary>
+              <div class="detail-body"><p>"I'd reach out to my <strong>Sky and BT contacts this week with a single-paragraph note</strong>. Not selling — just flagging there's an <strong>architecture conversation worth having about fallback resilience</strong>. That's a senior peer-to-peer message that <strong>turns the news cycle into a meeting request</strong>. BT especially given they're already inside Glasswing — this is the moment to deepen that conversation, not retreat from it."</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">Loyalty test: "Worried about joining mid-story?"</span></div></div></summary>
+              <div class="detail-body"><p>"Honestly, <strong>the opposite</strong>. If I joined Anthropic when everything was easy, I'd learn nothing. Joining during a moment where the company has to <strong>publicly defend its safety posture and explain its export-control decisions — that's where you find out what the company is actually made of</strong>. The way Anthropic handled the apology, the public posture, the customer communication — that's exactly the kind of company I want to be representing. <strong>The Fable 5 story isn't a reason to be worried about Anthropic. It's the reason to be optimistic about it.</strong>"</p></div>
+            </details>
+          </div>
+        </div>
+      </details>
+<details class="hot">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">POSTURE</span>
+              <span class="q-anchor">Objection handling</span>
+              <span class="q-title-text">Public-posture objection — "loud voice / clashing with govt"</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">&#128293; "What if their access got pulled and we're dependent?" &middot; loud = predictable &middot; single-vendor lock-in is the real risk</p>
+          <p class="target">Likely Q: "We're worried about doing business with Anthropic — loud public voice, clashing with the US government. What if all their access got pulled and we were dependent on all their models?" <strong>Probably posed as a customer scenario Paddy walks you through</strong> — but he may ask it straight. Four moves: political reality &rarr; loud = predictable &rarr; dependency is architectural &rarr; comparative. ~2:00.</p>
+          <p>"That's a legitimate concern — and it's the <strong>right CEO-level question</strong> to be asking. Most enterprise buyers aren't thinking at this level yet. Let me give you the full picture.</p>
+          <p>First, the <strong>political reality</strong>. <strong>Anthropic isn't being shut down.</strong> The Fable 5 and Mythos 5 suspension was about <strong>specific capabilities under specific circumstances — not about the company</strong>. Anthropic is now <strong>one of the most strategically important AI companies in the US</strong> — talent, capability, government engagement, economic value. <strong>The US doesn't shutter companies like Anthropic; it shapes their behaviour.</strong> Dario Amodei testifies to Congress regularly, Anthropic files public comments on regulation, and they work directly with <strong>CAISI in the US and AISI in the UK</strong>. That's a company <strong>inside the tent shaping policy</strong>, not one heading for a confrontation.</p>
+          <p>Second — and this is counterintuitive — <strong>a company that's loud about its values is actually MORE predictable than one that isn't</strong>. You know what Anthropic will do because they've told you publicly: they'll pull a model when safety or national security requires it, they'll apologise when they get it wrong, they'll keep building toward measurable safety. <strong>The labs you should worry about are the ones whose posture is opaque</strong> — because when something goes wrong you have no idea what they'll do.</p>
+          <p>Third — on the dependency question. <strong>Single-vendor lock-in to ANY frontier lab is the architectural risk you're describing, not Anthropic specifically.</strong> The right design is <strong>multi-region inference via Bedrock EU and Vertex EU</strong>, documented fallback within the Anthropic family — <strong>Opus 4.8, Sonnet and Haiku</strong> each serve different use cases — and ideally <strong>multi-provider gateway design</strong> that lets you swap providers per workload. That's a conversation you should be having regardless of where you start.</p>
+          <p>And finally — the <strong>comparative question</strong>. <strong>OpenAI has had its own public clashes. Google has antitrust pressure. Meta has had EU regulatory friction.</strong> The 'Anthropic is uniquely risky because they're vocal' framing <strong>doesn't survive comparison</strong>. The right question is: <strong>which lab's values are most aligned with how YOU want to deploy AI?</strong> Then build architectural resilience around any single dependency. Both answers, together.</p>
+          <p>The deeper point — <strong>Anthropic's public voice isn't a risk to manage. It's the artifact of a company trying to keep AI development going in a direction you can actually trust.</strong> The customers who internalise that are partnering with Anthropic strategically. The customers treating it as a liability are missing what the posture actually signals."</p>
+          <div class="verbatim">
+            <div class="vh">&#9733; 3 phrases to memorise verbatim</div>
+            <p>1. "The US doesn't shutter companies like Anthropic; it shapes their behaviour."</p>
+            <p>2. "A company that's loud about its values is actually MORE predictable than one that isn't. You know what Anthropic will do because they've told you publicly."</p>
+            <p>3. "Anthropic's public voice isn't a risk to manage. It's the artifact of a company trying to keep AI development going in a direction you can actually trust."</p>
+          </div>
+          <div style="margin-top:14px; border-top:1px dashed #f3cfa3; padding-top:10px;">
+            <div class="target" style="margin:0 0 6px;"><strong>&#8627; Follow-ups</strong> — expand only if asked.</div>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"What if a future US admin decides Anthropic IS the problem?"</span></div></div></summary>
+              <div class="detail-body"><p>"That risk is <strong>real for any AI company, not just Anthropic</strong>. The mitigation is the same — <strong>multi-region inference, model-family redundancy within Anthropic, and multi-provider design</strong> so no single vendor is a single point of failure. That's true if you partner with Anthropic, and true if you partner with anyone else. The right question isn't 'which lab is administration-proof' — there isn't one. It's <strong>'is your architecture resilient to any vendor scenario.'</strong>"</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"Wouldn't a more politically quiet lab be safer?"</span></div></div></summary>
+              <div class="detail-body"><p>"<strong>Define 'quiet.'</strong> OpenAI has been in multiple public controversies — leadership turnover, government scrutiny, ongoing copyright litigation. Google is under antitrust pressure that could reshape Vertex's commercial terms. Meta has been in EU regulatory cycles for years. <strong>The labs that look quiet today aren't actually quiet — they're just quieter at the moment we're talking.</strong> The substantive question isn't which lab has the lowest current temperature — it's <strong>which lab's values and posture you can actually predict over a multi-year partnership</strong>."</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"Worst-case scenario for our deployment?"</span></div></div></summary>
+              <div class="detail-body"><p>"Honestly — <strong>full export-style suspension across the entire Anthropic model family for a sustained period</strong>. That's the tail risk. The architectural answer is the <strong>multi-provider gateway design</strong> — <strong>hot fallback to a non-Anthropic model</strong> for workloads that can't tolerate downtime. We can architect that up front. And it's worth saying: <strong>that scenario applies to every frontier lab, not just Anthropic</strong>. The architecture is the answer either way."</p></div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"How do I sell this internally to my board?"</span></div></div></summary>
+              <div class="detail-body"><p>"Three points, and I'd help you frame them. <strong>One</strong> — Anthropic's safety posture is the reason we'd be comfortable with the partnership <strong>in regulated contexts where reputational risk is asymmetric</strong>. <strong>Two</strong> — the architecture we're proposing has <strong>resilience built in</strong>, so single-vendor exposure isn't actually high. <strong>Three</strong> — the right comparison isn't 'Anthropic versus a lab without a public voice' — it's <strong>'a lab whose values you can predict versus a lab whose values you can't.'</strong> That's the boardroom version of the conversation."</p></div>
+            </details>
+          </div>
+        </div>
+      </details>
+  </div>
+
+  <div class="area-section" id="area-deals" style="border-top-color:#C00000">
+    <h2 class="area-h" style="color:#C00000">3 · Big deal review</h2>
+    <p class="area-intro">Walk a deal end-to-end and position the value. Rightmove ($32M net-new, demo-led) and Universal (big ACV, displaced AWS) lead; NBCU / Hollywood carry the M&amp;E + ethics story; DIFF plus the elevator pitch (with the M&amp;E and telco variants nested inside) are your positioning.</p>
+<details class="newq">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">RIGHTMOVE</span>
+              <span class="q-anchor">STARI &middot; net-new land &middot; demo-led</span>
+              <span class="q-title-text">Flagship net-new demo-led land &mdash; Rightmove ($32M, 3-yr)</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">&#128176; $32M &middot; 3-yr deal &middot; NL-search workload $150&ndash;250k/mo &middot; net-new (Feb&rarr;Dec 2025, 10 mo) &middot; consumer NL search live + public reference &middot; Gemini Enterprise POC vs Copilot</p>
+          <p class="target">Rich multi-thread card &mdash; <strong>don't read it all</strong>. Pick the thread to the question: <strong>net-new land</strong> (the consumer deal) &middot; <strong>technical depth</strong> (the Gemini-vs-Microsoft whiteboard) &middot; <strong>media generation</strong> (floor-plan&rarr;video). Lead with the Microsoft-specialist vs Google-hands-on contrast. <strong>Not M&amp;E &mdash; bridge note at the foot.</strong></p>
+          <p><strong class="beat">S &mdash; Situation</strong>: "Rightmove &mdash; the UK's biggest property portal &mdash; was my flagship net-new land at Google, and it took <strong>10 months: I joined in February 2025 and closed in December</strong>. The contrast with Microsoft matters. There I was an enterprise seller with a big v-team, <strong>paired with a technical specialist who drove the deep tech conversations</strong>. Google startups runs lean &mdash; technical resource is reserved for enterprise &mdash; so as the AI specialist <strong>I'm hands-on myself: I demo, I tailor, and I run the technical conversation directly</strong> with the customer. Rightmove is where that paid off.</p>
+          <p><strong class="beat">T &mdash; Task</strong>: Land a <strong>net-new consumer AI experience</strong> inside Rightmove &mdash; greenfield, nothing inherited &mdash; and prove to a sceptical customer that conversational AI was worth building for their consumers.</p>
+          <p><strong class="beat">A &mdash; Action</strong>: I met Rightmove on <strong>day two at Google</strong> &mdash; I tagged along to an EBC and went straight into the thick of it. Their <strong>new Head of AI</strong> had just started too, so we bonded over both being new and set up <strong>weekly syncs</strong> to understand his strategy for Rightmove.</p>
+          <p>Conversational AI was taking off and I was pushing them to put an experience on their consumer site. They <strong>pushed back &mdash; they wanted proof it was valuable</strong> and evidence of what consumers actually wanted. So I built the proof: I <strong>formed a realtor community inside Google</strong>, pulling in my <strong>US counterparts who owned Rocket, StreetEasy</strong> and others, and brought back real adoption stories I could share with Rightmove.</p>
+          <p>Then I went <strong>deep on their business</strong> &mdash; I met their data team, in particular their <strong>CDO, Steve Pimblett</strong>, and the <strong>new-homes team</strong>, to understand their goals and how the company actually works. I learnt their priority was <strong>growing the mortgage side</strong> of the business, and that their <strong>Rightmove+ platform was the real revenue driver</strong>.</p>
+          <p>I used all of that to <strong>build a tailored demo on their own site</strong>: a consumer has a natural-language conversation, <strong>Google search enriches it</strong>, agents are brought into the journey, it <strong>hands off to estate agents to book viewings</strong>, and it captures consumer information to <strong>feed a mortgage application</strong> &mdash; hitting their actual goals, not a generic pitch.</p>
+          <p><strong class="beat">R &mdash; Result</strong>: Rightmove now runs <strong>consumer natural-language search live &mdash; it's a public reference</strong>, and the <strong>NL-search workload alone runs at $150&ndash;250k a month</strong> depending on how wide they choose to roll it out. A year on from when we started, they were <strong>on stage at our London Summit keynote</strong>, and their <strong>Head of AI led a technical workshop</strong> there. And we closed a <strong>$32M, three-year Google deal</strong> centred on growing their AI experiences across <strong>consumer, estate-agent and new-homes</strong> functions.</p>
+          <p><strong class="beat">Gemini Enterprise (side motion &mdash; displacing Microsoft)</strong>: alongside the consumer deal I ran a side motion selling <strong>Gemini Enterprise to their ~900 employees</strong> &mdash; hard, because they already ran <strong>Microsoft 365 and Copilot</strong>. So I ran a <strong>screen-shared whiteboard session</strong>: I drew their <strong>current Microsoft setup</strong> (my old world) next to their <strong>Google / Gemini Enterprise setup</strong> &mdash; what each brings, how it's licensed, and where <strong>Microsoft sells multiple products to get the same feature set</strong> Gemini delivers in one; and that with their data on <strong>GCP</strong>, Microsoft would push <strong>Fabric on Azure</strong> just to pull it in. That clarity helped the <strong>CDO carry the argument internally</strong>, and they moved into an <strong>active POC</strong>. It also meant working two stakeholders: the <strong>CIO was the Microsoft loyalist, the CDO was Google</strong> &mdash; so I <strong>coached the CDO as our champion</strong> on the narrative and insight, while showing up to the <strong>CIO with product and engineering depth</strong> to put him at ease. People fear change and fear what's new; my job was to make the new feel safe.</p>
+          <p><strong class="beat">GenMedia (media generation &mdash; the M&amp;E bridge)</strong>: I was actively demoing our <strong>GenMedia</strong> models with them &mdash; I took <strong>one of their real listings</strong> and used the <strong>floor plan to generate an AI video walkthrough</strong> with our video models. It went down so well it's now <strong>actively demoed inside Rightmove itself</strong>, and with our new <strong>Omni</strong> model &mdash; multiple references, closer to real-world physics &mdash; the floor-plan&rarr;walkthrough pipeline gets even easier.</p>
+          <p><strong class="beat">I &mdash; Impact beyond the deal</strong>: Three things I'd carry into Anthropic. One &mdash; <strong>net-new, hunted and landed solo, demo-led</strong>: the exact motion this role tests, where the AE runs the technical conversation themselves. Two &mdash; it worked because I <strong>understood their business deeply</strong> &mdash; CDO, new-homes, the mortgage goal, Rightmove+ &mdash; and built to that rather than pitching tech. Three &mdash; <strong>being genuinely hands-on with the product</strong> is how you move a sceptical customer from 'prove it' to a flagship reference."</p>
+          <p class="target"><strong>&#9888;&#65039; It's not M&amp;E</strong> &mdash; so play it as your <strong>technical-depth + net-new-land + competitive-displacement</strong> proof, not a domain story. The <strong>floor-plan&rarr;video GenMedia</strong> work is the natural bridge: it's real <strong>media generation</strong>, and a consumer content platform isn't far from a streaming/marketplace product. Pair with <strong>NBCU / Hollywood / Sky</strong> when he wants M&amp;E domain. One-liner: &ldquo;It's not M&amp;E, but it's the exact motion &mdash; <strong>consumer-facing conversational AI and media generation on a large digital platform</strong>.&rdquo;</p>
+          <div style="margin-top:14px; border-top:1px dashed #f0bcbc; padding-top:10px;">
+            <div class="target" style="margin:0 0 6px;"><strong>&#8627; Likely follow-up</strong> &mdash; expand only if asked.</div>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">How much of this was you vs the broader Google team?</span></div></div></summary>
+              <div class="detail-body">
+                <p>"On this deal specifically <strong>I was the front</strong>. The <strong>realtor community I pulled together with my US counterparts</strong> gave me the evidence base. <strong>Product and engineering came in when the CIO needed technical reassurance</strong>. But the <strong>discovery, the demo build, the whiteboard session, the champion coaching</strong> &mdash; that was <strong>me running the deal end-to-end</strong>, which is how startup accounts work at Google."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </details>
+<details class="newq">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">UNIV</span>
+              <span class="q-anchor">STARI · deal review</span>
+              <span class="q-title-text">Universal Studios — ENTERPRISE anchor (big ACV / displacement)</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">💰 ~$20–30M TCV · 3 yrs · ~20 workloads · displaced AWS &nbsp;(⚠️ confirm vs UDX)</p>
+          <p class="target">Target: ~150 sec. Use this when the deal-review wants SIZE, new-logo/white-space, displacement, and commercial structure. The structure (bottom-up from workloads + year-aligned credits/partner funding) is the gold — land it slowly.</p>
+          <p><strong class="beat">S — Context</strong>: "At Microsoft I <strong>co-led the Universal Studios theme-parks deal</strong> — a <strong>three-year Data &amp; AI partnership</strong>. It was a genuinely contested account: Universal ran <strong>multi-cloud, split across AWS and us</strong>, and the Data &amp; AI workloads were <strong>white space</strong> we had to win against the incumbent.</p>
+          <p><strong class="beat">T — Task</strong>: take share from AWS on the Data &amp; AI side, and structure a multi-year deal the customer could actually <strong>execute</strong> — not just sign.</p>
+          <p><strong class="beat">A — Action (the structure)</strong>: I built the contract value <strong>bottom-up from the work itself</strong>. I scoped <strong>~20 workloads</strong> with the customer, proposed the architecture for each, priced them, and rolled those into the deal — so the TCV was grounded in real, costed outcomes, not a top-down number. Then I structured execution across the three years: I brought in <strong>partner funding</strong> to deliver the migrations and build-outs, and <strong>aligned Microsoft credits and partner funding year by year</strong> — a tranche tied to Year 1, then Year 2, then Year 3 — so the commercials matched the delivery pace and de-risked it for them.</p>
+          <p><strong class="beat">R — Result</strong>: we won as their <strong>chosen Data &amp; AI partner</strong> — a TCV in the region of <strong>$20–30M over three years</strong> — <strong>displacing AWS</strong> on those workloads. It became an <strong>internal reference deal</strong>.</p>
+          <p><strong class="beat">I — Impact beyond</strong>: two things. One — the way to make a big multi-year number credible is to <strong>build it bottom-up from costed workloads and align the commercials to delivery</strong>; that's what gets a CFO and procurement comfortable. Two — it reshaped how I sold afterwards, <strong>from leading with platform to leading with outcomes</strong>, across the next strategic accounts in the territory. That's the enterprise muscle I'd bring to Anthropic — structuring complex, multi-year, multi-stakeholder deals a customer can actually execute."</p>
+          <p class="target"><strong>⚠️ Accuracy check — important for Paddy:</strong> your Microsoft deal bank attributes the <strong>"23 workloads / 3-year / ECIF-credits aligned to migration"</strong> structure to <strong>Comcast UDX</strong> (which you then replicated at OMD) — NOT Universal. Universal in your notes is "3-yr multi-$M Data &amp; AI, displaced AWS on operational workloads (ride maintenance, retail/F&amp;B restocking, storm response)." <strong>Attribute the workload-commit structure to the right deal</strong> — if it's UDX, relabel; if Universal genuinely used the same structure, confirm the TCV/workload count. A numbers guy will catch a mismatch.</p>
+        </div>
+      </details>
+<details class="newq">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">SKY TELCO</span>
+              <span class="q-anchor">STARI · value-layer land</span>
+              <span class="q-title-text">Sky contact-centre AI on legacy Genesys (through the Nuance M&amp;A)</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">💰 5,000 UK agents live · Italy 1,000 / Germany 500 planned · $6k/mo land · overlay on on-prem Genesys · sold through Microsoft's $19.7B Nuance integration</p>
+          <p class="target">Target: ~130 sec, Paddy-style — lead with the number, name the names, then stop. The point of this story: <strong>near-term AI value layered onto legacy, sold through a live M&amp;A</strong>. <strong>⚠️ Add the Sky exec name if you remember it.</strong></p>
+          <p><strong class="beat">S — Situation</strong>: "Sky's customer experience operation in the UK was running a contact centre on an <strong>on-prem Genesys platform</strong> — their existing legacy backbone, serving thousands of human customer service agents. They wanted to layer AI capabilities — <strong>agent assist, call deflection, transcript summarisation</strong> — onto that existing system. There was a wider conversation happening in parallel about modernising their full contact-centre stack, but this specific deal was about <strong>getting AI value into production fast on top of what they already had</strong>.</p>
+          <p><strong class="beat">T — Task</strong>: Land an AI workload on top of Sky's existing Genesys deployment — supporting their contact centre operation — and do it <strong>during the live integration of Microsoft's $19.7B Nuance acquisition</strong>.</p>
+          <p><strong class="beat">A — Action</strong>: On Sky's side, I worked directly with their <strong>customer experience leadership and their data and engineering teams</strong> <em style="color:#C00000">[⚠️ add exec name if you remember]</em>. The technical conversation was about integrating Microsoft's AI capability with their on-prem Genesys backbone <strong>without disrupting agent workflow</strong>.</p>
+          <p>Internally at Microsoft, this was more complex than a normal product engagement. We'd recently acquired <strong>Nuance</strong> — the voice AI and contact-centre specialists — and at the time they were still operating <strong>semi-independently</strong>: their products, commercial models and delivery teams were still Nuance's, not yet Microsoft's. Part of my job was <strong>bridging the Nuance specialist team and the Microsoft enterprise relationship I owned at Sky</strong>. Different deal motions, different contractual structures — but the customer needed <strong>one coherent offer</strong>. I worked across both sides to make that happen.</p>
+          <p>Technically, my job was to <strong>translate</strong> between what Nuance's call-centre AI could do — agent assist, call deflection, transcript summarisation — and what Sky's customer service org needed running on top of an on-prem Genesys deployment.</p>
+          <p><strong class="beat">R — Result</strong>: The solution went <strong>live in Sky's UK contact centre, supporting 5,000 agents in production</strong>. Italy at 1,000 agents and Germany at 500 were in the expansion plan. The workload landed at <strong>$6k a month</strong> — the consumption pattern at launch, with room to grow as use cases expanded.</p>
+          <p>Beyond the direct workload, this was the <strong>first AI deployment in Sky's customer experience function</strong>. It became a reference point in the broader contact-centre modernisation conversation running in the background, as we tried to position Nuance for the wider call-centre play.</p>
+          <p><strong class="beat">I — Impact beyond the deal</strong>: Three things stayed with me. One — <strong>landing a near-term tactical AI win on top of legacy infrastructure is its own muscle</strong>. You don't always get to sell the platform replacement; sometimes you win the value layer while the bigger strategic play matures. Two — <strong>selling through an active M&amp;A integration</strong> taught me to make complex internal orgs look like a <strong>single coherent partner</strong> to the customer; the customer doesn't care about your internal seams, you absorb them. And three — <strong>customer-service AI works commercially when you frame it as supporting agents, not replacing them</strong>. All three are how I'd want to operate in Anthropic's EMEA patch."</p>
+          <div style="margin-top:14px; border-top:1px dashed #f0bcbc; padding-top:10px;">
+            <div class="target" style="margin:0 0 6px;"><strong>↳ Likely follow-ups</strong> — expand only if asked.</div>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">Did Italy and Germany go live before you left?</span></div></div></summary>
+              <div class="detail-body">
+                <p>"<strong>UK was live at 5,000 agents</strong> — that's the production milestone I can confirm. Italy and Germany were in the <strong>expansion plan</strong> when I left Microsoft to join Google. I don't have visibility on whether the full international rollout completed after my time, but <strong>the structure and the country teams were in place</strong>."</p>
+              </div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">What were Nuance's specific capabilities?</span></div></div></summary>
+              <div class="detail-body">
+                <p>"Voice and conversational AI — <strong>speech recognition, real-time agent assist mid-call, automated call deflection, post-call analytics and QA</strong>. Microsoft acquired them for their contact-centre expertise. Their capabilities now sit in <strong>Microsoft Dynamics</strong>."</p>
+              </div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">Why didn't Sky just replace Genesys?</span></div></div></summary>
+              <div class="detail-body">
+                <p>"That was the wider conversation happening in parallel. Replacing an on-prem contact-centre backbone is a <strong>multi-year programme with significant operational risk</strong>. Sky wanted <strong>AI value now without that risk</strong>, which is why we ran it as an <strong>overlay</strong>."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </details>
+<details class="hero">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">Q3</span>
+              <span class="q-anchor">STARI</span>
+              <span class="q-title-text">Creative enterprise win — NBCU Olympics (Al Michaels)</span>
+            </div>
+            <div class="q-chars">
+              <span class="char-tag">Commercial creativity</span>
+              <span class="char-tag">Ethical bar</span>
+              <span class="char-tag">Program leadership</span>
+              <span class="char-tag">Exec escalation</span>
+              <span class="char-tag">Public referenceability</span>
+              <span class="char-tag">Values alignment</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">💰 Net-new land in incumbent territory · ~$12k/mo workload + multi-$M Satya PR · NBC News Jun 2024 · seeded a voice product line</p>
+          <p class="target">Target: ~130 sec. Most distinctive Microsoft win. STARI structure — lead with "net-new land in incumbent territory."</p>
+          <p><strong class="beat">S — Situation</strong>: "NBCU was a <strong>transactional Microsoft account</strong> from an AI specialist perspective. Google was their main cloud for the Olympics app build for Paris 2024 — <strong>we weren't in that conversation</strong>.</p>
+          <p><strong class="beat">T — Task</strong>: My task was to find an AI angle where <strong>Google had already won the underlying cloud</strong>. Net-new land in incumbent territory.</p>
+          <p><strong class="beat">A — Action</strong>: I went on-site to a <strong>Peacock meeting in New York</strong>. I didn't go in knowing what they were building — I explored what projects they had coming up. Through that conversation I uncovered they were looking for <strong>something differentiating inside the Peacock app for the Olympics</strong>.</p>
+          <p>That gave me the angle. I pitched Microsoft's <strong>voice-cloning capability in the room</strong> — at the time in preview, only available to select customers, and only where it met a <strong>strict ethical bar: the celebrity had to be alive, willing to record personal consent, and sign legal paperwork</strong>. I pitched the capability and the ethical frame <strong>at the same time</strong>, because for this customer the ethics would matter as much as the technology.</p>
+          <p>I followed up with a technical session, NBCU committed, and the Olympics timeline meant I had to <strong>move at customer pace — months, not quarters</strong>. From there I led the program end-to-end: <strong>weekly executive steering</strong> on NBCU's side, cross-functional coordination internally across <strong>product, engineering, legal, and finance</strong> — matched by the same on their side. The <strong>Al Michaels consent process</strong> specifically — his agents, the legal paperwork, the personal voice recording — was a <strong>C-level relationship I held directly through to close</strong>. The ethical bar wasn't slowing the deal down; <strong>it was how the deal got built</strong>.</p>
+          <p>As the forecast and product feedback flowed up internally at Microsoft, <strong>Satya heard about what we were building</strong>. He phoned NBCU's CEO directly and proposed a <strong>co-branded PR campaign tied to the Olympics — worth millions</strong>. The deal I'd built at the working level had <strong>executive air cover the rest of the way</strong>.</p>
+          <p><strong class="beat">R — Result</strong>: <strong>Al Michaels' AI voice on Peacock's daily Olympic recap</strong> throughout Paris 2024, with <strong>'Powered by Copilot' co-branding</strong>. NBC News announced it publicly in <strong>June 2024 — referenceable</strong>. Voice cloning was a small product line at the time, so direct revenue was modest — the workload itself landed at <strong>around $12k a month</strong> — but the <strong>PR investment Satya put against it was significant</strong>.</p>
+          <p>The bigger result was what the win opened. I actively referenced the Al Michaels project across the rest of my M&amp;E book to land <strong>Custom Neural Voice deals at Sky CT&amp;I, Dreamworks, NBCU parent for other use cases, and Fandango's Ar-ti bot</strong>. <strong>One lighthouse seeded a product line of voice deals.</strong></p>
+          <p><strong class="beat">I — Impact beyond the deal</strong>: Three things stayed with me. One — <strong>you can win net-new in incumbent territory</strong> if you find the workload they're not positioned for, and you move at customer pace, not vendor pace. Two — <strong>the ethical bar wasn't a constraint on the deal; it was how the deal got built</strong>. Customers in M&amp;E will trust you with bigger things if you handle the small things with care. And three — <strong>building the program tight enough that when executive air cover arrived, it made the deal bigger rather than knocking it off course</strong>. All three are exactly how I'd want to operate at Anthropic in TMT."</p>
+        </div>
+      </details>
+<details class="hero">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">Q6</span>
+              <span class="q-anchor">STARI</span>
+              <span class="q-title-text">Values &amp; trust-building — Hollywood ethics-led startup</span>
+            </div>
+            <div class="q-chars">
+              <span class="char-tag">Values alignment</span>
+              <span class="char-tag">Trust-building</span>
+              <span class="char-tag">Senior commercial judgment</span>
+              <span class="char-tag">Honest risk comms</span>
+              <span class="char-tag">Three-tier outcome</span>
+              <span class="char-tag">Lighthouse instinct</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">💰 Film in cinemas Aug · GCP migration talks · Lumière award (LA) · chosen over Sora</p>
+          <p class="target">Target: 170 sec. Most Anthropic-aligned answer. The values showcase.</p>
+          <p class="target">🔁 You told Ollie this story in the screen — this is a <strong>reworded</strong> version so a transcript won't read as scripted. Facts/numbers repeating is fine; verbatim sentences aren't.</p>
+          <p><strong class="beat">S — Situation</strong>: "The deal I'm proudest of at Google is a greenfield win with a Hollywood post-production startup whose whole identity is ethics-led AI. When it landed on my desk the relationship was in a poor state — thin and purely transactional. This is a customer on a mission to shift how Hollywood thinks about AI: they champion the 'assistive, not replacement' message and work hand-in-hand with the guilds, all in the still-raw aftermath of the actors' and writers' strikes. So they weren't shopping for a vendor — they wanted a partner who shared their ethics, not just their pricing. And the obvious rival, OpenAI's Sora, was pushing the industry the other way, its training history doing the opposite of earning trust.</p>
+          <p><strong class="beat">T — Task</strong>: My job was easy to state and genuinely hard to deliver: rebuild a relationship from a bad starting point and <strong>win on their ethical terms</strong>, not on commercials.</p>
+          <p><strong class="beat">A — Action</strong>: It opened with a VEO demo in our office. The CEO mentioned a film they wanted editing help on — keen on the capability, but first they needed to understand how we handle safety. Instead of rushing past that, I pulled in Google's responsible-AI and safety teams to take them through our content filters and how ethics runs through everything we ship — knowing full well it would slow things down. The effect was the opposite of what you'd fear: <strong>their own safety people respected it</strong> and began opening up about other things they were building. That shared seriousness about responsibility is what turned a transaction into a partnership.</p>
+          <p>The harder fight was internal — <strong>getting Google's Black Belts on board</strong>. They're our most senior product specialists, and they're almost always reserved for our biggest enterprises, not startups. So I sold the startup to them the same way the startup sells itself to a customer — then flipped it, and had the client run a show-and-tell straight to the Black Belts. It landed because so many of them live in media: the moment they saw what the startup was solving — especially around rights management and the lineage of every edit — they were convinced and threw their weight behind it. With them backing it, we could show research models that aren't public and behave nothing like our off-the-shelf products.</p>
+          <p><em>Then came the honest moment.</em> Those research models carry real exposure — experimental, no settled commercial model, an eye-watering compute cost. I <strong>spelled the risks out plainly, knowing it might end the deal</strong>. They went ahead regardless — because by then the trust was already banked.</p>
+          <p><strong class="beat">R — Result</strong>: three horizons. <em>Near-term</em>: the film reaches cinemas in August with our models behind some of the shots — and their feedback has already flowed back to our researchers and sharpened the product. <em>Medium-term</em>: we're in live talks to move them off their current cloud entirely onto GCP. <em>Strategic</em>: they took home a <strong>Lumière award</strong> in February and brought Google to the table in LA — I was there. Ethical AI done right is starting to get celebrated, and with the guilds reopening tech terms this summer, this customer is set up to lead as the fear fades. I backed the right partner at the right moment.</p>
+          <p><strong class="beat">I — Impact beyond</strong>: the thread through all of it is doing right by the customer at every turn — including a risk conversation that could have sunk the deal. Trust compounds. That's Constitutional AI in human form — values baked in, not bolted on — and the values-led selling I want to do more of at Anthropic."</p>
+        </div>
+      </details>
+<details class="newq">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">WIN-OVER</span>
+              <span class="q-anchor">STARI · behavioural</span>
+              <span class="q-title-text">Difficult customer — how you won them over (UK fintech)</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">💰 Biggest deal in the startups product line · from an account written off in January</p>
+          <p class="target">Target: ~150 sec. Classic"difficult customer / how did you win them over." The win-over = earning trust before pitching. <strong>⚠️ Same deal as Q11 — use it for EITHER "difficult customer" OR "challenging status quo," never both in one process</strong> (alternates below).</p>
+          <p><strong class="beat">S — Situation</strong>: "When I took over a UK fintech at Google in January, it was about as difficult as a customer gets. The relationship was <strong>transactional, even a bit negative</strong>; they'd <strong>just renewed our main competitor</strong>, so there was no budget and no obvious reason to switch; and our agent-building product genuinely <strong>had gaps because it was early</strong> — they didn't think it was ready. Most AEs would have written the account off for the year.</p>
+          <p><strong class="beat">T — Task</strong>: I made a deliberate bet — <strong>relationship-first, not deal-first</strong>. Win the trust before pitching anything.</p>
+          <p><strong class="beat">A — Action (four moves)</strong>: <strong>One — go wide, not just deep</strong>: weekly touchpoints across decision-makers AND adjacent teams, so I understood the company's wider goals, not just procurement's — context every other vendor was missing. <strong>Two — take their scepticism seriously</strong>: deep multi-stakeholder POC feedback surfaced that they saw the potential and wanted to diversify cloud, but didn't trust the product was ready — so I fed that straight to our product group, got real roadmap detail, and <strong>put their leadership in a room with ours</strong> to hear it directly. <strong>Three — de-risk the migration</strong>: I stood up a <strong>tiger team of forward-deployed engineers and PMs</strong> and got written support commitments for the migration. <strong>Four — remove the budget blocker</strong>: they had no budget because they'd just renewed the incumbent, so I <strong>restructured their wider Google agreement</strong>, found rightsizing they actually needed, and used those savings to offset our product cost for a year.</p>
+          <p><strong class="beat">R — Result</strong>: it became the <strong>biggest deal in our startups line for that product</strong> — from a customer that started the year written off.</p>
+          <p><strong class="beat">I — Impact beyond</strong>: the win-over wasn't a pitch; it was <strong>earning the right to be trusted</strong> — going wide, taking their doubts seriously, de-risking, and solving their problem before mine. I even structured it so I personally won't be heavily compensated on this deal — the pull-through and the trust are the long-term value. <strong>Doing right by the customer was the senior call, not the easy one.</strong> In TME, where relationships are sticky and long, that's exactly how you win a sceptical account."</p>
+          <p class="target"><strong>Other difficult-customer stories</strong> (for variety across panels): <strong>Hollywood</strong> (Q6) — a sceptical industry + negative past relationship, won on ethics; <strong>EAP brand-save</strong> (EAP) — a major brand about to churn to a competitor, won back with FDE customisation.</p>
+        </div>
+      </details>
+<details class="newq">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">DIFF</span>
+              <span class="q-anchor">Capability / Trust / Partner</span>
+              <span class="q-title-text">Why Claude</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 Capability · Trust · Partner · M&amp;E: reasoning layer not generation (Palmier, UE 5.8) · vs Sora/Veo</p>
+          <p class="target">Target: ~150 sec (longer now). <strong>Lead with CAPABILITY</strong> (coding-agent proof: Cursor/Replit/v0/Lovable) → trust → partnership → M&amp;E competitive picture → <strong>'reasoning layer, not a creative-tool rival'</strong> hook → Hollywood in a nutshell. ✓ Live announcements verified — fine to quote.</p>
+          <p>"On positioning Claude — <strong>three things compound</strong>: capability where it counts, trust by design, and the partnership model. The competitive picture is sharper than people realise once you look at what each lab is actually doing.</p>
+          <p><strong class="beat">1 · Capability where it counts</strong>: Claude leads on <strong>coding and agentic work</strong> — the multi-step, tool-using tasks enterprises actually deploy to automate end-to-end. The proof: <strong>Cursor, Replit, v0, Lovable</strong>. Anthropic won the coding-agent layer <strong>not by building an IDE — by being the reasoning model inside everyone else's IDE</strong>. Add a <strong>very large context window</strong> for whole codebases, rights catalogues, hours of transcripts. I'm <strong>hands-on with Claude Code myself</strong>; the agentic reliability gap is real.</p>
+          <p><strong class="beat">2 · Trust by design</strong>: safety isn't bolted on — <strong>it's a property of the product</strong>. <strong>Constitutional AI</strong> makes Claude steerable for brand guardrails and complex instructions. <strong>Interpretability research</strong> explains <em>why</em> the model behaves the way it does, not just benchmark scores. <strong>No training on customer data</strong> plus a public RSP clears legal and security teams in a way black-box competitors can't.</p>
+          <p><strong class="beat">3 · Partnership model</strong>: Claude is a <strong>thinking partner, not a commodity model</strong> — that's how Williams F1 describe it — and that translates to <strong>higher-quality output</strong> for customer-facing and creative work.</p>
+          <p><strong class="beat">For M&amp;E — the competitive picture</strong>: <strong>OpenAI dropped Sora.</strong> They still have image generation, but stepping out of video tells you where M&amp;E sits in their priorities — and where it doesn't. <strong>Google is the real competitor</strong>: Veo for video, Imagen for image, plus their new omni model — a full vertical stack distributed via Workspace and YouTube.</p>
+          <p>But <strong>neither is where Claude competes</strong>. Claude wins on the <strong>work surrounding generation</strong> — rights and lineage tracking, metadata enrichment, localisation orchestration, post-production workflow automation, contract analysis, content-safety reasoning. The complex automation that turns a content factory into an integrated workflow.</p>
+          <p><strong class="beat">And it's already shipping</strong>: in the last few weeks — <strong>Palmier</strong> launched as a Claude-orchestrated video editor, the agent operates the timeline directly. <strong>Unreal Engine 5.8</strong> shipped Claude integration as a first-class engine feature — the agent spawns actors, runs PCG graphs, configures lighting. Same play that worked in coding: <strong>Anthropic as the reasoning layer inside partner products, not competing with them</strong>. Palmier is Cursor for video. UE 5.8 is Cursor for game dev. Same playbook.</p>
+          <p><strong class="beat">The positioning hook I'd lead with in every M&amp;E room</strong>: <strong>Anthropic uniquely doesn't compete with creative tools.</strong> OpenAI creates images and runs ads in ChatGPT. Google ships Veo and owns YouTube. We ship <strong>reasoning that makes their tools smarter</strong>. The pixels stay theirs. The IP stays theirs. The brand stays theirs. <strong>We're the layer underneath.</strong></p>
+          <p>That's the <strong>Hollywood deal in a nutshell</strong> — they could have gone to a generation-first vendor. They chose the partner whose ethics matched theirs."</p>
+          <p class="target"><strong>Distinct from Why Anthropic</strong> (that's mission/why-I'm-here; this is product/competitive). <strong>Proof tags:</strong> "hands-on with Claude Code" → Q14 (WHAT I'VE BUILT); Hollywood in a nutshell → Q6. <strong>Land the closer:</strong> "we're the layer underneath."</p>
+        </div>
+      </details>
+<details class="newq">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">ELEVATOR PITCH</span>
+              <span class="q-anchor">~45–50 sec · pick the vertical</span>
+              <span class="q-title-text">Elevator pitch — "pitch me Claude"</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 ~115 words each · ~45–50 sec spoken · M&amp;E + Telco · end on "first call"</p>
+          <p class="target">Use when Paddy says "pretend I'm a [CCO at Sky / CTO at BT] — pitch me Claude." Pick the vertical, keep it tight, land "first call." If he says "tell me more" → the deployment-routes follow-up.</p>
+          <div style="margin-top:10px; border-top:1px dashed #f0bcbc; padding-top:10px;">
+            <details class="research" open>
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">M&amp;E</span><span class="q-title-text">M&amp;E pitch — "I'm a CCO at Sky / BBC / NBCU EMEA"</span></div></div></summary>
+              <div class="detail-body">
+                <p class="target">~115 words · ~45–50 sec spoken.</p>
+                <p>"Every M&amp;E exec right now is stuck in the same paradox: <strong>AI is the only way to compete on speed, scale, and personalisation — but the wrong AI partner is a brand risk you can't recover from</strong>. Anthropic is the only frontier lab built to solve that paradox.</p>
+                <p>We <strong>don't compete with your creative tools — we make them smarter</strong>. Palmier launched two weeks ago as Claude inside the video editor. Unreal Engine 5.8 shipped Claude as a first-class engine feature. Same play that won the coding-agent space via Cursor and Replit.</p>
+                <p>You keep your <strong>pixels, your IP, your brand</strong>. We provide the reasoning — Constitutional AI training, no use of your data, the most steerable model on safety. If you want to move faster on AI <strong>without the post-Sora regret</strong>, Anthropic should be your first call."</p>
+              </div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">TELCO</span><span class="q-title-text">Telco pitch — "I'm a CTO at BT / Vodafone / Deutsche Telekom"</span></div></div></summary>
+              <div class="detail-body">
+                <p class="target">~115 words · ~45–50 sec spoken.</p>
+                <p>"Telco is the <strong>highest-leverage industry for AI right now</strong>. You have the customer touchpoints — millions of service interactions, billing conversations, network-operations decisions — and you have the data behind them.</p>
+                <p>But for AI to run inside <strong>critical national infrastructure</strong>, it has to be safer, more steerable, more interpretable than anything else on the market. That's exactly where Anthropic sits. Claude leads the field on <strong>agentic reliability</strong> — multi-step tasks where it has to be right the first time. Constitutional AI training. No use of your data. Public RSP.</p>
+                <p>And we <strong>don't compete with your network stack or your content bundle — we make whatever you're running smarter</strong>. If reliability and trust are non-negotiable for your AI partner, Anthropic is the first call."</p>
+              </div>
+            </details>
+            <details class="research">
+              <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">FOLLOW-UP</span><span class="q-title-text">"Tell me more" — 30-sec follow-up (both verticals)</span></div></div></summary>
+              <div class="detail-body">
+                <p class="target">Name <strong>HOW</strong> Claude lands — the deployment routes, not a feature list.</p>
+                <p>"<strong>Three routes in.</strong> <strong>Direct API</strong> for build-from-scratch. <strong>Bedrock or Vertex</strong> if you want Claude in your existing AWS or GCP estate — both have <strong>EU residency</strong>. And <strong>Claude Enterprise</strong> as the polished SaaS if you want the apps without the build. Plus the <strong>Forward Deployment Engineer</strong> team helps scope and run the first POC. We typically compress POCs to <strong>60 days with C-level sponsorship</strong> — that's the path to first value."</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </details>
+  </div>
+
+  <div class="area-section" id="area-xf" style="border-top-color:#7B1FA2">
+    <h2 class="area-h" style="color:#7B1FA2">4 · Cross-functional teams</h2>
+    <p class="area-intro">How you work across product, engineering, FDEs, partners and the account team. The first two cards are new syntheses drawn from your real deals; PARTNERS is your ecosystem GTM angle; EAP is internal selling + product partnership.</p>
+      <details class="xf">
+        <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">XF-PROD</span><span class="q-anchor">Product &amp; engineering</span><span class="q-title-text">Working with product &amp; engineering — turning signal into roadmap</span></div></div></summary>
+        <div class="detail-body">
+          <p class="stats">📊 Channel-back-to-product (278% yr) · product+eng in lockstep on NBCU / Sky / Rightmove · qualify before you pull scarce resource</p>
+          <p class="target">For "how do you work with product and engineering?" Two moves: bring them in at the right moment, then close the loop back to them.</p>
+          <p><strong class="beat">Bringing them in at the right moment</strong>: on Microsoft's big deals I ran <strong>product, engineering, legal and finance as one workstream</strong> — NBCU and Sky Telco both needed product and engineering in lockstep with legal under a hard deadline. On Rightmove I brought <strong>product and engineering in exactly when the CIO needed technical reassurance</strong>, not before. At Anthropic, where <strong>applied-AI and FDE hours are scarce</strong>, I'd protect that resource by <strong>qualifying hard with MEDDPICC before I pull them in</strong>.</p>
+          <p><strong class="beat">Closing the loop</strong>: at Google I <strong>became the channel back to product for startups</strong> — capturing gaps and blockers and presenting them to raise the priority of startup-specific needs; that feedback loop is part of what drove <strong>278% in year one</strong>. I'd do the same at Anthropic: every customer signal goes back to product as a <strong>prioritised, evidenced ask</strong>, not a vague complaint — the muscle Anthropic explicitly values.</p>
+        </div>
+      </details>
+      <details class="xf">
+        <summary><div class="summary-content"><div class="summary-top"><span class="q-tag">XF-TEAM</span><span class="q-anchor">FDEs · partners · the account team</span><span class="q-title-text">Working with the wider team — FDEs, partners &amp; the account team</span></div></div></summary>
+        <div class="detail-body">
+          <p class="stats">📊 MSFT big v-teams (specialist-led) vs Google lean (hands-on) · tiger teams · partner funding · communities I build</p>
+          <p class="target">For "how do you work across a cross-functional team?" I've run both the big-v-team and the lean model, and I pull in help deliberately, not by default.</p>
+          <p><strong class="beat">Two models, both mine</strong>: at <strong>Microsoft</strong> I sold with <strong>large v-teams</strong> — paired with a technical specialist who drove the deep tech while I owned the relationship and commercials. At <strong>Google startups</strong> the v-team is <strong>lean</strong>, so I'm hands-on: I demo and run the technical conversation myself, and pull in <strong>forward-deployed engineers and partners deliberately, not by default</strong>.</p>
+          <p><strong class="beat">Concretely</strong>: on the fintech turnaround I stood up a <strong>tiger team of forward-deployed engineers and outbound PMs</strong> and secured written support commitments for the migration. On <strong>Universal</strong> I brought in <strong>partner funding</strong> to deliver the migrations year by year. And I <strong>build community</strong> — the realtor community I formed across my <strong>US counterparts</strong> for Rightmove, and the women's community for my Google startup clients.</p>
+          <p><strong class="beat">The multiplier</strong>: I treat the <strong>function's success as my job, not just my quota</strong> — I spread peers' wins across my accounts and mentored an Aspire hire into the Data &amp; AI track. In a small EMEA team still writing its playbook, that matters as much as my own number.</p>
+        </div>
+      </details>
+<details class="gblue">
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">PARTNERS</span>
+              <span class="q-anchor">3 pillars: SI · hyperscaler · ISV signal</span>
+              <span class="q-title-text">M&amp;E partner strategy — your differentiated GTM angle</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 3 pillars — SI co-sell (Accenture/Deloitte) · hyperscaler co-sell (Bedrock/Vertex) · ISV signal-routing (Palmier, UE 5.8) · hook: reasoning layer, not a creative-tool rival</p>
+          <p class="target">Target: ~120 sec. Gold for the GTM interview + the 20-page exercise. <strong>Three pillars</strong> — SI co-sell (quota engine) → hyperscaler co-sell → ISV signal-routing. Close on the <strong>positioning hook</strong>: Anthropic is the reasoning layer inside partner products (Palmier, UE 5.8), <em>not</em> a creative-tool rival (vs Sora/Veo). <strong>⚠️ Verify the live announcements before quoting dates</strong> (Palmier mid-June; UE 5.8).</p>
+          <p>"In TMT, the partner motion that <strong>moves quota is the SI play</strong> — that's where I'd lead. But the broader picture is more interesting now than it was even three weeks ago.</p>
+          <p>Anthropic's M&amp;E strategy is suddenly visible in <strong>two live announcements</strong>: <strong>Palmier</strong> launching as a <strong>Claude-orchestrated video editor</strong> in mid-June, and <strong>Unreal Engine 5.8</strong> shipping <strong>Claude integration as a first-class engine feature</strong>. The pattern is <strong>Anthropic-as-reasoning-layer-inside-partner-products</strong> — NOT Anthropic competing with creative tools. That's the same play that won them the <strong>coding-agent space via Cursor, Replit and v0</strong>. Now it's running for M&amp;E.</p>
+          <p>So my partner motion has <strong>three pillars</strong>:</p>
+          <p><strong class="beat">1 · SI co-sell — the quota engine</strong>: Comcast and Sky run with <strong>Accenture</strong>. Omnicom with <strong>Deloitte</strong>. These customers buy and deliver through an SI — so that's how I land at the top. <strong>Depth play on Tier 1, scale play on Tier 2/3.</strong></p>
+          <p><strong class="beat">2 · Hyperscaler co-sell — the embedded distribution</strong>: AWS and Google account teams on my top accounts. Claude sold through <strong>Bedrock and Vertex</strong> — they're already commercially incentivised. <strong>Monthly cadence</strong> so they sell on my behalf into Tier 2/3.</p>
+          <p><strong class="beat">3 · ISV signal-routing — feeding the alliance team's roadmap</strong>: Palmier and UE 5.8 prove the <strong>partner-programs team is shipping integrations</strong> into the tools my customers already use. My role isn't to run those partnerships — that's alliance level. My role is to <strong>bring evidenced customer demand back</strong>. Three ISV targets I'd push hardest for in my patch: <strong>DaVinci Resolve</strong> (Blackmagic is the most receptive NLE vendor), <strong>SideFX Houdini</strong> (every VFX studio runs it — Framestore, DNEG, Industrial Light &amp; Magic), and <strong>Disguise</strong> (UK-based, virtual production — natural Sky Studios entry point).</p>
+          <p><strong class="beat">The positioning hook</strong> — through all three pillars, and the M&amp;E sell I'd lead every customer conversation with: <strong>Anthropic uniquely doesn't compete with creative tools.</strong> OpenAI ships Sora and runs ads. Google ships Veo and owns YouTube. We ship <strong>reasoning that makes their tools smarter</strong>. The pixels stay theirs. The IP stays theirs. The brand stays theirs. <strong>We're the layer underneath.</strong>"</p>
+        </div>
+      </details>
+<details>
+        <summary>
+          <div class="summary-content">
+            <div class="summary-top">
+              <span class="q-tag">EAP</span>
+              <span class="q-anchor">STARI</span>
+              <span class="q-title-text">Internal selling &amp; product partnership</span>
+            </div>
+            <div class="q-chars">
+              <span class="char-tag">Selling internally</span>
+              <span class="char-tag">Customer coaching</span>
+              <span class="char-tag">Save-the-customer</span>
+              <span class="char-tag">Product partnership</span>
+              <span class="char-tag">FDE-aware</span>
+              <span class="char-tag">Anthropic-aligned</span>
+            </div>
+          </div>
+        </summary>
+        <div class="detail-body">
+          <p class="stats">📊 Multiple M&amp;E EAP clients on board · brand saved via FDE customisation</p>
+          <p class="target">Target: 165 sec. Two-beat story: selling internally + save-the-customer feedback loop. FDE callout = Anthropic-aligned.</p>
+          <p><strong class="beat">S — Situation</strong>: "At Google I'm currently running an Early Access Program for a new product in the M&amp;E space — sourcing the right clients and channelling their experience back into the product roadmap. The product team needed customer signal at production scale before broader release, and I'd been asked to source EAP customers from my book and feed their experience back in.</p>
+          <p><strong class="beat">T — Task</strong>: My task had two halves. First, pick the right customers — not any customers, ones whose use cases would generate the signal product could actually act on. Second, when those customers hit limitations, get that feedback into product in a way that shaped the roadmap, rather than getting lost in PM filtering.</p>
+          <p><strong class="beat">A — Action</strong>: On the front end, I had to sell internally as much as externally. Some clients were accepted by product no questions asked because of the brand name. Others were harder to pitch. For those, I set up direct calls between the client and product — after convincing product to take the call as worst-case pipeline-building. Then I coached the client on what to say: have a clear test bed, an articulated project, real enthusiasm. Those calls became slam dunks — when client clarity and timeline aligned with product's roadmap, they got on the EAP.</p>
+          <p>On the flip side: one EAP customer — a major brand we'd been working with on reimagining their content pipeline — was expecting more from the product than the current version delivered. They were close to walking out of the EAP and going to a competitor. I didn't want to lose them. So I fed the specific feedback back into product and asked whether there was an opportunity to customise the product for their needs with <strong>forward-deployment-engineer support</strong>. The answer came back yes. We're now back on with the client continuing forward.</p>
+          <p><strong class="beat">R — Result</strong>: Multiple M&amp;E clients on the EAP, all generating product-shaping signal. The brand-name customer retained and re-engaged through bespoke product customisation. FDEs now plugged into the EAP feedback loop, not just the sales motion.</p>
+          <p><strong class="beat">I — Impact beyond</strong>: Two lessons. Getting customers onto an EAP isn't a sales motion — it's an <em>internal</em> selling motion. Coaching the client to present well to product is the move most AEs miss. And when an EAP customer hits limitations, the senior play isn't to apologise and let them churn — it's to feed the signal back to product immediately and ask the real question: is this customisation, FDE support, or roadmap signal? Product wants that conversation — it's the hive-mind, signal-to-product loop Yegge describes — and most AEs don't bring it."</p>
+        </div>
+      </details>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('.area-btn').forEach(function(b){ b.addEventListener('click',function(){ var el=document.getElementById(b.getAttribute('data-target')); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }); });
+document.querySelectorAll('.map-tile').forEach(function(t){
+  t.addEventListener('click',function(){
+    var tag=t.getAttribute('data-tag');
+    var target=(tag==='WHYANTHROPIC')?document.querySelector('details.section.navy')
+      :(tag==='OPENER')?document.querySelector('details.section.pink')
+      :Array.prototype.slice.call(document.querySelectorAll('details')).find(function(d){var q=d.querySelector('.q-tag');return q&&q.textContent.trim()===tag;});
+    if(target){ target.open=true; setTimeout(function(){ target.scrollIntoView({behavior:'smooth',block:'start'}); },30); }
+  });
+});
+document.getElementById('expandAll').addEventListener('click',function(){document.querySelectorAll('.area-section details').forEach(function(d){d.open=true;});});
+document.getElementById('collapseAll').addEventListener('click',function(){document.querySelectorAll('.area-section details').forEach(function(d){d.open=false;});});
+</script>
+
+</body>
+</html>
